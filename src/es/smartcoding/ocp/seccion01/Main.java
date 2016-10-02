@@ -158,7 +158,7 @@ class Gato implements Felino {
 		// return String.format("Gato [nombre=%s]", nombre);
 		// return ToStringBuilder.reflectionToString(this);
 		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.JSON_STYLE);
+				ToStringStyle.SIMPLE_STYLE);
 	}
 
 }
