@@ -1,5 +1,5 @@
 /**
- * 
+ * NOT USED
  */
 package es.smartcoding.ocp.seccion01;
 

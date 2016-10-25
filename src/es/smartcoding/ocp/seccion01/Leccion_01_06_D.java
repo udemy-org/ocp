@@ -31,9 +31,9 @@ public class Leccion_01_06_D {
 		private int j = 2;
 	}
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
-		Leccion_01_06_D l17d = new Leccion_01_06_D();
 		Leccion_01_06_D.StaticNestedClass snc = new Leccion_01_06_D.StaticNestedClass();
 		System.out.println(snc.i);
 		System.out.println(snc.j);

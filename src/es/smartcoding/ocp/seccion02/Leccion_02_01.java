@@ -15,10 +15,14 @@ package es.smartcoding.ocp.seccion02;
  *         Algunas interfaces no declaran métodos, como java.io.Serializable, lo que se conoce como una interfaz de marca (marker interface).
  *         
  *         Otras, declaran exáctamente un único método abstracto (y posiblemente otros de tipo default y/o static). Son las interfaces funcionales que veremos posteriormente.
- *
+ *         
  */
 
-interface CuentaBancaria {
+interface Cuenta {}
+
+interface Banco {}
+
+interface CuentaBancaria extends Cuenta, Banco {
 
 	public static final double INTERES = 3.6;
 
@@ -26,6 +30,9 @@ interface CuentaBancaria {
 
 	public abstract void abona(final double abono);
 
+	/*
+	 * strictfp is a keyword in the Java programming language that restricts floating-point calculations to ensure portability.
+	 */
 	public default strictfp double calculaInteres(final double cantidad,
 			final double interes) {
 		return cantidad * interes / 100;
