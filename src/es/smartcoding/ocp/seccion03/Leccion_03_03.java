@@ -3,6 +3,8 @@
  */
 package es.smartcoding.ocp.seccion03;
 
+import java.util.Date;
+
 /**
  * @author pep
  * 
@@ -28,22 +30,35 @@ package es.smartcoding.ocp.seccion03;
  *         
  *         4. Incluso cuando el código compila sin problemas, puede lanzare una excepción en tiempo de ejecución si la transformación no es válida.
  *         
+ *         La línea (1) no compila porque un elefante no es un animal domestico.
  *         
+ *         La línea (2) en cambio, sí que compila pero genera un error en tiempo de ejecución.
  *         
- *         #113
+ *         Para acabar, es importante reconocer las diferencias entre objeto y referencia.
+ *         
+ *         En Java todos los objetos son accedidos por referencia.
+ *         
+ *         Hay dos reglas que resumen este concepto:
+ *         
+ *         1. El tipo de un objeto determina qué propiedades existen dentro del objeto en memória.
+ *         
+ *         2. El tipo de la referencia de un objeto determina qué métodos son accesibles.
+ *         
+ *         En la línea (3) el objeto o aunque hace referencia a una instancia de tipo AnimalDomestico
+ *         
+ *         no puede acceder al método habla().
  *
  */
 
-interface ComunicacionAnimal { void habla();}
+interface AnimalDomestico { void habla();}
 
-abstract class Animal implements ComunicacionAnimal {}
+abstract class Animal implements AnimalDomestico {}
 
 class Gallina extends Animal {
 
 	@Override
 	public void habla() {
-		System.out.println("cocococ");
-		
+		System.out.println("cocococ");	
 	}
 	
 }
@@ -53,13 +68,11 @@ class Vaca extends Animal {
 	@Override
 	public void habla() {
 		System.out.println("muuuuuuuuu");
-		
 	}
 	
 }
 
 class Elefante {}
-
 
 public class Leccion_03_03 {
 
@@ -67,20 +80,21 @@ public class Leccion_03_03 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ComunicacionAnimal ca = new Vaca();
-		ca.habla();
-		ca = new Gallina();
-		ca.habla();
+		AnimalDomestico ad = new Vaca();
+		ad.habla();
+		ad = new Gallina();
+		ad.habla();
 		// Es necesario el cast porque no todos los objetos de tipo ComunicacionAnimal son una Gallina
-		Gallina gallina = (Gallina) ca;
+		Gallina gallina = (Gallina) ad;
 		// en este caso no es necesario el cast porque toda Gallina es de tipo ComunicacionAnimal
-		ca = gallina;
+		ad = gallina;
 		Elefante elefante = new Elefante();
 		// no compila porque no estan relacionados
-		// ca = elefante;
-		// The compiler will not allow casts to unrelated types ???
+		// ca = elefante; // (1)
 		// compila pero genera un error en tiempo de ejecución
-		ca = (ComunicacionAnimal) elefante;
+		ad = (AnimalDomestico) elefante; // (2)
+		Object o = ad; // (3)
+		
 	}
 
 }
