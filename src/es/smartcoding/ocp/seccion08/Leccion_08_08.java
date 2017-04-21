@@ -1,13 +1,13 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion02;
+package es.smartcoding.ocp.seccion08;
 
 /**
  * @author pep
  *
  */
-public class Leccion_02_07 {
+public class Leccion_08_08 {
 
 	/**
 	 * @param args

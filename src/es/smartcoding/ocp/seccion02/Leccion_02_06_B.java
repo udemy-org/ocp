@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion01;
+package es.smartcoding.ocp.seccion02;
 
 /**
  * 
@@ -24,7 +24,7 @@ package es.smartcoding.ocp.seccion01;
  * 
  */
 
-public class Leccion_01_06_B {
+public class Leccion_02_06_B {
 
 	private double T = 1.1e0;
 
@@ -41,7 +41,7 @@ public class Leccion_01_06_B {
 	}
 
 	public static void main(String[] args) {
-		Leccion_01_06_B l17 = new Leccion_01_06_B();
+		Leccion_02_06_B l17 = new Leccion_02_06_B();
 		l17.calcula(10.0);
 	}
 

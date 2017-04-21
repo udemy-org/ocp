@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion01;
+package es.smartcoding.ocp.seccion02;
 
 /**
  * 
@@ -24,7 +24,7 @@ package es.smartcoding.ocp.seccion01;
  *
  */
 
-public class Leccion_01_06_D {
+public class Leccion_02_06_D {
 	
 	private static class StaticNestedClass {
 		private static int i = 1;
@@ -34,11 +34,11 @@ public class Leccion_01_06_D {
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
-		Leccion_01_06_D.StaticNestedClass snc = new Leccion_01_06_D.StaticNestedClass();
+		Leccion_02_06_D.StaticNestedClass snc = new Leccion_02_06_D.StaticNestedClass();
 		System.out.println(snc.i);
 		System.out.println(snc.j);
-		System.out.println(Leccion_01_06_D.StaticNestedClass.i);
-		System.out.println(new Leccion_01_06_D.StaticNestedClass().j);
+		System.out.println(Leccion_02_06_D.StaticNestedClass.i);
+		System.out.println(new Leccion_02_06_D.StaticNestedClass().j);
 	}
 
 }

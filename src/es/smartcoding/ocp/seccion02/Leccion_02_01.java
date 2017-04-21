@@ -2,52 +2,47 @@
  * 
  */
 package es.smartcoding.ocp.seccion02;
+
 /**
  * 
  * @author pep
  * 
- *         Diseño de una interfaz.
- *         
- *         Las interfaces facilitan el desarrollo de software. Es un contrato que las clases que las implementan deben cumplir.
- *         
- *         Permite el prototipado rápido de una aplicación dejando los detalles de la implementación para más adelante.
- *         
- *         Algunas interfaces no declaran métodos, como java.io.Serializable, lo que se conoce como una interfaz de marca (marker interface).
- *         
- *         Otras, declaran exáctamente un único método abstracto (y posiblemente otros de tipo default y/o static). Son las interfaces funcionales que veremos posteriormente.
- *         
+ *         El operador instanceof
+ * 
+ *         El operador instanceof suele utilizarse para identificar conversiones
+ *         de tipo válidas en tiempo de ejecución.
  */
+interface Flotante {
+}
 
-interface Cuenta {}
+abstract class Barco implements Flotante {
+}
 
-interface Banco {}
+class Crucero extends Barco {
+}
 
-interface CuentaBancaria extends Cuenta, Banco {
-
-	public static final double INTERES = 3.6;
-
-	public abstract void ingresa(final double ingreso);
-
-	public abstract void abona(final double abono);
-
-	/*
-	 * strictfp is a keyword in the Java programming language that restricts floating-point calculations to ensure portability.
-	 */
-	public default strictfp double calculaInteres(final double cantidad,
-			final double interes) {
-		return cantidad * interes / 100;
-	}
-
-	public static double interesReducido() {
-		return INTERES * 0.75;
-	}
+class PortaAviones extends Barco {
 }
 
 public class Leccion_02_01 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Flotante c = new Crucero();
+		System.out.println("c instanceof Flotante: " + (c instanceof Flotante));
+		System.out.println("c instanceof Barco: " + (c instanceof Barco));
+		System.out.println("c instanceof Crucero: " + (c instanceof Crucero));
+		System.out.println("c instanceof PortaAviones: " + (c instanceof PortaAviones));
+		Crucero c2 = new Crucero();
+		// System.out.println(c2 instanceof PortaAviones); // NO COMPILA: porque
+		// son tipos incompatibles, un crucero no es un portaaviones.
+		c2 = null;
+		System.out.println("c2 instanceof Crucero: " + (c2 instanceof Crucero));
+		System.out.println("null instanceof Object: " + (null instanceof Object));
+		// El operador instanceof habitualmente se utiliza para hacer casts o
+		// conversiones de tipo seguras.
+		if (c instanceof Crucero) {
+			Crucero crucero = (Crucero) c;
+		}
 	}
 
 }
