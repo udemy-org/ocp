@@ -29,21 +29,33 @@ package es.smartcoding.ocp.seccion03;
  *         Un JavaBean es un principio de diseño para encapsular datos en Java
  *         que sigue unas normas sencillas:
  * 
- *         1. Las propiedades han de ser privadas.
+ *         1. Las propiedades tienen que ser privadas.
  * 
- *         2. Los métodos de lectura empiezan por get o is si el método retorna
+ *         2. Los métodos de lectura deben empiezar por get o is si el método retorna
  *         un valor lógico.
  * 
- *         3. Los métodos de escritura empiezan por set.
+ *         3. Los métodos de escritura deben empiezar por set.
  * 
  *         4. Después de set/is/get escribiremos el nombre de la propiedad
  *         empezando con una mayúscula.
  * 
- *         La relación es-un expresa una relación de herencia
+ *         La relación es-un expresa una relación de herencia.
  * 
  *         La relación tiene-un expresa una relación de composición.
  * 
  */
+
+enum Tamaño {
+	PEQUEÑO, MEDIANO, GRANDE
+}
+
+class Aspecto {
+	private String color;
+	private double peso;
+	private Tamaño tamaño;
+	
+	// ...
+}
 
 class Mascota {
 	/*
@@ -51,14 +63,19 @@ class Mascota {
 	 */
 	private String nombre;
 	private boolean exotico;
+	/*
+	 * Relacion tiene-un. Has-a
+	 */
+	private Aspecto aspecto;
 
 	/*
 	 * No hay constructor por defecto
 	 */
-	public Mascota(String nombre, boolean exotico) {
+	public Mascota(String nombre, boolean exotico, Aspecto aspecto) {
 		super();
 		this.nombre = nombre;
 		this.exotico = exotico;
+		this.aspecto = aspecto;
 	}
 
 	/*
@@ -68,7 +85,16 @@ class Mascota {
 		return nombre;
 	}
 
+	/*
+	 * El cambio de nombre de una mascota sigue unas normas.
+	 * Cualquier nombre no es válido. 
+	 * 
+	 * Si la propiedad nombre fuera public se podría poner un nomber arbitrario.
+	 */
 	public void setNombre(String nombre) {
+		if (nombre == null || nombre.length() < 5) {
+			throw new IllegalArgumentException("Nombre nulo o demasiado corto");
+		}
 		this.nombre = nombre;
 	}
 
@@ -82,7 +108,7 @@ class Mascota {
 
 	@Override
 	public String toString() {
-		return "AnimalDomestico [nombre=" + nombre + ", exotico=" + exotico + "]";
+		return "AnimalDomestico [nombre=" + nombre + ", exotico=" + (exotico ? "Sí" : "No") + "]";
 	}
 
 }
@@ -93,8 +119,9 @@ public class Leccion_03_04 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Mascota mascota = new Mascota("El gato con botas", false, null);
+		// mascota.setNombre(null);
+		System.out.println(mascota);
 	}
 
 }
