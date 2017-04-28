@@ -5,6 +5,9 @@ package es.smartcoding.ocp.seccion03;
 
 /**
  * @author pep
+ * 
+ * 
+ * Patron de diseño Factory
  *
  */
 public class Leccion_03_07 {

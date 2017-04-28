@@ -29,6 +29,9 @@ import java.util.List;
  *         sólo lectura para que puedan ser compartidos por múltiples clases.
  *         Como su estado no cambia después de haber sido creado, son
  *         inherentemente thread safe.
+ *         
+ *         Los patrones de diseño Builder y Factory aunque muy utiles no forman
+ *         del examen. 
  * 
  * 
  */
@@ -124,11 +127,22 @@ class Immutable {
 		if (elements == null) {
 			throw new RuntimeException("La lista de elementos no puede ser nula.");
 		}
-		// Previene que se puedan modificar los elementos de this.elements a través de elements
+		/* Previene que se puedan modificar los elementos de 
+		 * this.elements a través de elements.
+		 */
 		this.elements = new ArrayList<String>(elements);
+		/*
+		 * Esta variante no funciona!!!
+		 * Porque hay dos referencias al mismo objeto por lo tanto
+		 * no queda garantizada la inmutabilidad.
+		 */
+		// this.elements = elements; // NO FUNCIONA
 	}
 
-	public List<String> getElements() {
+	/*
+	 * No debemos compartir referencias a objetos mutables contenidos dentro de un objeto inmutable.
+	 */
+	public final List<String> getElements() {
 		return Collections.unmodifiableList(elements);
 	}
 	
@@ -146,9 +160,8 @@ public class Leccion_03_05 {
 		
 		List<String> elems = Arrays.asList("Alfa", "Bravo", "Charlie");
 		Immutable immutable = new Immutable(elems);
-		//elems.add("Delta");
 		List<String> ret = immutable.getElements();
-		//ret.add("Delta");
+		// ret.add("Delta"); // Lanza una excepción del tipo java.lang.UnsupportedOperationException
 		for(String string: ret) {
 			System.out.println(string);
 		}
