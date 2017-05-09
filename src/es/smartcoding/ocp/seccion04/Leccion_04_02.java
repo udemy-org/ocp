@@ -3,6 +3,8 @@
  */
 package es.smartcoding.ocp.seccion04;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +76,50 @@ import java.util.List;
  *         está permitido porque el tipo está enlazado a la instancia de la
  *         clase.
  * 
+ *         Tanto los mètodos estáticos, de clase, como no estáticos, de
+ *         instancia o virtuales pueden ser métodos genéricos. Si bien, son más
+ *         comunes los métodos genéricos estáticos. En cualquier caso, el tipo
+ *         genérico se declara antes del tipo de retorno de la función, excepto
+ *         si es un tipo genérico conocido que proviene de la clase o interfaz
+ *         genéricos.
+ * 
+ *         De la mezcla de 'legacy' code (codigo antiguo) y código moderno, se
+ *         pueden derivar errores que no se detectan en tiempo de compilación,
+ *         sino como meros avisos o warnings. Puede ser conveniente compilar el
+ *         código con la opción -Xlint:unchecked para obtener un informe
+ *         detallado de los problemas potenciales.
+ * 
+ *         Recuerda que el metodo get(int) de una colección no genérica (raw),
+ *         retorna un Object y que Java no hace autoboxing de Object a otro
+ *         tipo.
+ * 
+ *         Como hemos visto los genéricos se tratan como si fueran Objects. Los
+ *         Bounded wildcards o comodines límite restringen qué tipos pueden
+ *         utilizarse como genéricos. Un bounded parameter type o tipo de
+ *         parámetro limitado es un tipo genérico que especifica el tipo límite
+ *         de un genérico. Se representa mediante un '?' y representa un tipo
+ *         genérico desconocido. El interrogante se pueden utilizar de tres
+ *         formas:
+ * 
+ *         1. Comodín sin límine (Unbounded wildcard) ?. List<?> list = new
+ *         ArrayList<String>(); Acepta cualquier clase.
+ * 
+ *         2. Comodín con un límite superior (Wildcard with an upper bound) ?
+ *         extends type. List<? extends Number> = new ArrayList<Integer>();
+ *         Acepta Number y cualquier clase que de derive de Number.
+ * 
+ *         3. Comodín con un límite inferior (Wildcard with a lower bound) ?
+ *         super type. List<? super RuntimeException> = new
+ *         ArrayList<Throwable>(); Acepta RuntimeException y cualquier
+ *         superclase: Object, Throwable y Exception.
+ * 
+ *         Algo a tener en cuenta es que List<String> no deriva de List<Object>
+ *         a pesar de que String deriva de Object, aunque un array de String sí
+ *         que es un array de Object: Object[] s = new String[5]; Esto sucede
+ *         porque Java elimina el tipo en los genéricos y lo pasa a Object para
+ *         proporcionar compatibilidad con versiones anteriores. En el caso de
+ *         los arrays, Java sí que conoce el verdadero tipo de cada array.
+ * 
  */
 
 interface WaterProofFootwear<T> {
@@ -118,7 +164,7 @@ class HighHeel implements WaterProofFootwear {
 	}
 }
 
-class Boot {
+class Boot extends Shoe {
 }
 
 class Box<T> {
@@ -129,13 +175,44 @@ class Box<T> {
 		this.content = content;
 	}
 
+	public Box<T> post(T t) {
+		System.out.println("Enviando " + t);
+		return new Box<T>();
+	}
+
+	public static <U> Box<U> wrap(U u) {
+		System.out.println("Envolviendo " + u);
+		return new Box<U>();
+	}
+
 }
 
 public class Leccion_04_02 {
+	/*
+	 * Acepta solo una lista de Shoe's
+	 */
+	private static void testShoes(List<Shoe> list) {}
+	
+	/*
+	 * Acepta una lista de Shoe's o de Boot's
+	 */
+	private static void testAnyShoes(List<? extends Shoe> list) {}
+	
+	// TODO
+	// Error: Unbounded generics are immutable
+	// public static void addSound(List<?> list) {list.add("Alfa");}
+	
+	// Error: Upper bounded generics are immutable
+	// public static void addSound(List<? extends Object> list) {list.add("quack");}
+	
+	// Compila pero no se puede pasar una lista de Strings como parámetro formal
+	// public static void addSound(List<Object> list) {list.add("quack");}
+	
+	// Compila y se puede pasar una lista de Strings y de Objects
+	// public static void addSound(List<? super String> list) {list.add("quack");}
 
 	/**
 	 * @param args
-	 *            Eduard: Susana de direccio 10:03
 	 */
 	public static void main(String[] args) {
 		List<String> cadenas = new ArrayList<>();
@@ -144,7 +221,23 @@ public class Leccion_04_02 {
 		// cadenas.add(new Integer(1));
 		Box<Shoe> cajaDeZapatos = new Box<>();
 		Box<Boot> cajaDeBotas = new Box<>();
-
+		/*
+		 * Estas dos llamadas son equivalentes, en (1) el compilador deduce el
+		 * tipo genérico.
+		 */
+		Box<Shoe> b1 = Box.wrap(new Shoe()); // (1)
+		Box<Shoe> b2 = Box.<Shoe>wrap(new Shoe());
+		
+		testShoes(new ArrayList<Shoe>());
+		// testShoes(new ArrayList<Boot>()); // Error
+		testAnyShoes(new ArrayList<Shoe>());
+		testAnyShoes(new ArrayList<Boot>());
+		
+		// TODO
+		List<? super IOException> exceptions = new ArrayList<Exception>();
+		// exceptions.add(new Exception()); // DOES NOT COMPILE
+		exceptions.add(new IOException());
+		exceptions.add(new FileNotFoundException());
 	}
 
 }
