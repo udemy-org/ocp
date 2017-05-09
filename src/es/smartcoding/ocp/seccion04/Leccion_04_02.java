@@ -198,18 +198,18 @@ public class Leccion_04_02 {
 	 */
 	private static void testAnyShoes(List<? extends Shoe> list) {}
 	
-	// TODO
-	// Error: Unbounded generics are immutable
+	// Atención
+	// Error: The method add(capture#1-of ?) in the type List<capture#1-of ?> is not applicable for the arguments (String)
 	// public static void addSound(List<?> list) {list.add("Alfa");}
 	
-	// Error: Upper bounded generics are immutable
+	// Error: The method add(capture#1-of ? extends Object) in the type List<capture#1-of ? extends Object> is not applicable for the arguments (String)
 	// public static void addSound(List<? extends Object> list) {list.add("quack");}
 	
 	// Compila pero no se puede pasar una lista de Strings como parámetro formal
 	// public static void addSound(List<Object> list) {list.add("quack");}
 	
 	// Compila y se puede pasar una lista de Strings y de Objects
-	// public static void addSound(List<? super String> list) {list.add("quack");}
+	public static void addSound(List<? super String> list) {list.add("quack");}
 
 	/**
 	 * @param args
@@ -233,10 +233,11 @@ public class Leccion_04_02 {
 		testAnyShoes(new ArrayList<Shoe>());
 		testAnyShoes(new ArrayList<Boot>());
 		
-		// TODO
+		// Atención
 		List<? super IOException> exceptions = new ArrayList<Exception>();
 		// exceptions.add(new Exception()); // DOES NOT COMPILE
 		exceptions.add(new IOException());
+		// OK porque FineNotFoundException es una IOException
 		exceptions.add(new FileNotFoundException());
 	}
 
