@@ -3,6 +3,9 @@
  */
 package es.smartcoding.ocp.seccion04;
 
+import java.util.ArrayDeque;
+import java.util.TreeSet;
+
 /**
  * @author pep
  * 
@@ -164,44 +167,84 @@ package es.smartcoding.ocp.seccion04;
  *         necesitamos un tipo de parámetro genérico para cada uno. Se suele
  *         utilizar la K para la clave y la v para el valor. Estos son los
  *         métodos que debes conocer:
- *         
+ * 
  *         void clear() elimina todas la claves y valores del mapa
- *         
+ * 
  *         boolean isEmpty() retorna si el mapa esta vacio
- *         
+ * 
  *         int size() retorna el número de entradas (clave-valor) en el mapa
- *         
- *         V get(Object key) retorna el valor asociado con la clave o null si no existe
- *         
- *         V put(K key, V value) añade o reemplaza una pareja clave-valor. Retorna el valor previo si existia o null
- *         
- *         V remove(Object key) elimina y retorna un valor asociado a una clave. Retorna null si no existe
- *         
- *         boolean containsKey(Object key) Retorna si una clave existe en el mapa
- *         
- *         boolean containsValue(Object value) Retorna si un valor existe en el mapa
- *         
+ * 
+ *         V get(Object key) retorna el valor asociado con la clave o null si no
+ *         existe
+ * 
+ *         V put(K key, V value) añade o reemplaza una pareja clave-valor.
+ *         Retorna el valor previo si existia o null
+ * 
+ *         V remove(Object key) elimina y retorna un valor asociado a una clave.
+ *         Retorna null si no existe
+ * 
+ *         boolean containsKey(Object key) Retorna si una clave existe en el
+ *         mapa
+ * 
+ *         boolean containsValue(Object value) Retorna si un valor existe en el
+ *         mapa
+ * 
  *         Set<K> keySet() retorna un conjunto con todas las claves del mapa
- *         
- *         Collection<V> values() retorna una colección con todos los valores del mapa
- *         
+ * 
+ *         Collection<V> values() retorna una colección con todos los valores
+ *         del mapa
+ * 
  *         En resumen:
- *         
- *         Tipo 			Duplicados		Ordenada		Clave-valor		Añadir/eliminar en orden
- *         
- *         List			Sí				Sí (índice)	Sí				Sí
- *         
- *         Map			Sí (valores)		No			Sí				No
- *         
- *         Queue			Sí				Sí			No  				Sí
- *         
- *         Set			No				No			No				No
- *         
- *         Tipo			Interface		Ordenada		hashCode			llama compareTo
- *         
- *         ArrayList		List				No			No				No
- *         
- *         
+ * 
+ *         Tipo Duplicados Ordenada Clave-valor Añadir/eliminar en orden
+ * 
+ *         List Sí Sí (por índice) Sí Sí
+ * 
+ *         Map Sí (valores) No Sí No
+ * 
+ *         Queue Sí Sí No Sí
+ * 
+ *         Set No No No No
+ * 
+ * 
+ *         Tipo Interface Ordenada hashCode llama compareTo
+ * 
+ *         ArrayList List No No No
+ * 
+ *         ArrayDequeu Queue No No No
+ * 
+ *         HashMap Map No Yes No
+ * 
+ *         Hashtable Map No Yes No
+ * 
+ *         LinkedList List, Queue No No No
+ * 
+ *         Stack List No No No
+ * 
+ *         TreeMap Map Yes No Yes
+ * 
+ *         TreeSet Set Yes No Yes
+ * 
+ *         Vector List No No No
+ * 
+ *         TreeSet no puede contener elementos nulos y TreeMap no puede contener
+ *         claves nulas, pero valores nulos sí.
+ * 
+ *         ArrayDequeu no puede contener nulos porque algunos métodos como
+ *         poll() usa null como valor de retorno para indicar que la colección
+ *         está vacia.
+ * 
+ *         Hashtable no permite ni claves ni valores nulos.
+ * 
+ *         Finalmente, es preciso que seas capaz de seleccionar una estrutura de
+ *         datos en función de un escenario concreto. Para ellos debes tener en
+ *         cuenta el tipo de estructura LIFO, FIFO. Si se requiere que esté
+ *         ordenada, si admite duplicados o nulos. Cuando se requiera una pila
+ *         (LIFO) usa ArrayDeque. Si necesitas una cola (FIFO) utiliza una
+ *         LinkedList. Si necesitas una lista utiliza ArrayList. Si necesitas un
+ *         conjunto de elementos sin duplicados utiliza HashSet y si además debe
+ *         estar ordenado utiliza TreeSet. Por último si requieres buscar
+ *         objetos por clave utiliza HashMap o TreeMap si requieres orden.
  * 
  */
 public class Leccion_04_03 {
@@ -210,8 +253,24 @@ public class Leccion_04_03 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		TreeSet<Number> ts = new TreeSet<>();
+		ts.add(1);
+		ts.add(10);
+		ts.add(20);
+		System.out.println(ts.lower(10));
+		System.out.println(ts.floor(10));
+		System.out.println(ts.higher(10));
+		System.out.println(ts.ceiling(10));
+		
+		System.out.println("================");
+		
+		ArrayDeque<Number> ad = new ArrayDeque<>();
+		ad.offer(1);
+		ad.offer(10);
+		ad.offer(20);
+		System.out.println(ad.poll());
+		System.out.println(ad.peek());
+		System.out.println(ad.pop());
 	}
 
 }
