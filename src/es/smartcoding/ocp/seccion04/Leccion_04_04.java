@@ -20,7 +20,36 @@ import java.util.List;
  *         minúsculas. La interfaz Comparable porporciona el orden natural de
  *         una clase. Cuando queremos ordenar un conjunto de objetos por algún
  *         otro campo, utilizamos la interfaz Comparator.
- *
+ * 
+ *         Si tus clases implementan Comparable, debes observar cierta
+ *         coherencia entre el método compareTo() y el método equals(). Cuando
+ *         compareTo() retorna 0 el método equals debería retornar true porque
+ *         no todas las clases funcionan de forma precedible si no se da esta
+ *         condición.
+ * 
+ *         Aunque ambas interfaces son funcionales no tiene sentido utilizar
+ *         lambdas para implementar la interfaz Comparable porque esta interfaz
+ *         esta pensada para ser implementada dentro de la propia clase. En
+ *         cambio sí que tiene sentido implementar la interfaz Comparator con
+ *         una expresión lambda.
+ *         
+ *         Hay algunas diferencias entre ambas interfaces:
+ *         
+ *         Diferencia Comparable Comparator
+ *         
+ *         Paquete java.lang java.util
+ *         
+ *         Implementación en la propia clase Sí No
+ *         
+ *         Nombre del método compareTo compare
+ *         
+ *         Número de parámetros 1 2 
+ *         
+ *         Recomendado usar expresiones lambda No Sí
+ *         
+ *         
+ *        
+ * 
  */
 
 class HobbitAlturaComparator implements java.util.Comparator<Hobbit> {
@@ -39,7 +68,7 @@ class HobbitAlturaPesoComparator implements java.util.Comparator<Hobbit> {
 
 	@Override
 	public int compare(Hobbit hobbit1, Hobbit hobbit2) {
-		Comparator<Hobbit> c = Comparator.comparingInt(s -> s.altura); 
+		Comparator<Hobbit> c = Comparator.comparingInt(s -> s.altura);
 		c = c.thenComparingDouble(s -> s.peso);
 		return c.compare(hobbit1, hobbit2);
 	}
@@ -100,9 +129,9 @@ public class Leccion_04_04 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+
 		Comparator<Hobbit> alturaComparator = (h1, h2) -> h1.altura - h2.altura;
-		
+
 		List<Hobbit> hobbits = new LinkedList<>();
 		// List<Hobbit> hobbits = new ArrayList<>(); // No ordenada
 		hobbits.add(new Hobbit("Tom", 120, 109.90));

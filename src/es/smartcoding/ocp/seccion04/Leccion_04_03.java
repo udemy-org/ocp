@@ -244,7 +244,7 @@ import java.util.TreeSet;
  *         LinkedList. Si necesitas una lista utiliza ArrayList. Si necesitas un
  *         conjunto de elementos sin duplicados utiliza HashSet y si además debe
  *         estar ordenado utiliza TreeSet. Por último si requieres buscar
- *         objetos por clave utiliza HashMap o TreeMap si requieres orden.
+ *         objetos por clave utiliza HashMap, o TreeMap si requieres orden.
  * 
  */
 public class Leccion_04_03 {
