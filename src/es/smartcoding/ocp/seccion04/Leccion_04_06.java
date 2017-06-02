@@ -4,10 +4,12 @@
 package es.smartcoding.ocp.seccion04;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -111,7 +113,7 @@ public class Leccion_04_06 {
 		 */
 		Consumer<List<Integer>> referenciaAMetodo1 = Collections::sort;
 		Consumer<List<Integer>> lambda1 = (List<Integer> list) -> Collections.sort(list);
-		
+
 		List<Integer> list = new ArrayList<>();
 		list.add(3);
 		list.add(5);
@@ -124,36 +126,38 @@ public class Leccion_04_06 {
 		 * Ejemplo de método de instancia de una instancia particular
 		 * 
 		 */
-		
+
 		String s = "lo que sea";
 		Predicate<String> referenciaAMetodo2 = s::startsWith;
 		Predicate<String> lambda2 = (String start) -> s.startsWith(start);
 		System.out.println(lambda2.test("lo que"));
-		
+
 		/*
-		 * Ejemplo de método de instancia de una instancia conocida en tiempo de ejecución
+		 * Ejemplo de método de instancia de una instancia conocida en tiempo de
+		 * ejecución
 		 * 
 		 */
-		
+
 		Predicate<String> referenciaAMetodo3 = String::isEmpty;
 		Predicate<String> lambda3 = (String string) -> string.isEmpty();
 		System.out.println(lambda3.test("Java Rocks!!!"));
-		
+
 		/*
 		 * Ejemplo de referencia a constructor
 		 * 
-		 * Se trata de un nuevo tipo de referencia que utiliza new en vez de un método.
+		 * Se trata de un nuevo tipo de referencia que utiliza new en vez de un
+		 * método.
 		 * 
 		 */
-		
+
 		Supplier<ArrayList<String>> referenciaAMetodo4 = ArrayList::new;
 		Supplier<ArrayList<String>> lambda4 = () -> new ArrayList<>();
-		
+
 		/*
 		 * El método boolean removeIf(Predicate<? super E> filter)
 		 * 
 		 */
-		
+
 		List<String> strings = new ArrayList<>();
 		strings.add("Alfa");
 		strings.add("Bravo");
@@ -163,7 +167,77 @@ public class Leccion_04_06 {
 		System.out.println(strings);
 		strings.removeIf((String str) -> str.startsWith("A"));
 		System.out.println(strings);
-		
+
+		/*
+		 * El método void replaceAll(UnaryOperator<E> o)
+		 * 
+		 * La interfaz funcional UnaryOperator es un especialización de Function
+		 * cuyo método abstracto acepta un parámetro y retorna un valor del
+		 * mismo tipo.
+		 * 
+		 * 
+		 */
+
+		strings.replaceAll((String string) -> string.toUpperCase());
+		System.out.println(strings);
+
+		/*
+		 * Recorriendo una colección
+		 * 
+		 * Java 8 introduce una nuevo método que utiliza una expresión lambda o
+		 * referencia a función.
+		 * 
+		 * 
+		 */
+
+		strings.forEach((String str) -> System.out.println(str));
+		strings.forEach(System.out::println);
+
+		/*
+		 * La nueva API Map de Java 8
+		 * 
+		 * Java 8 ha añadido nuevos métodos a la interfaz Map. Pero sólo merge
+		 * forma parte de los objetivos del examen OCP. Dos métodos más,
+		 * computeIfPresent() y computeIfAbsent() forman parte de los objetivos
+		 * del examen de actualización
+		 * 
+		 */
+
+		Map<String, String> capitales = new HashMap<>();
+		capitales.put("Suiza", "Geneve");
+		capitales.put("Francia", "Paris");
+		capitales.put("Italia", null);
+		// Modifica el valor de la clave "Suiza"
+		capitales.put("Suiza", "Ginebra");
+		// Modifica el valor si no existe o es nula
+		capitales.putIfAbsent("Italia", "Roma");
+		capitales.putIfAbsent("Suiza", "Kiev");
+		System.out.println(capitales);
+
+		/*
+		 * El método merge()
+		 * 
+		 * Algunas veces necesitamos más lógica a la hora de determinar qué
+		 * valor asignar a una clave.
+		 * 
+		 * El método merge proporciona un mecanismo para añadir lógica sobre qué
+		 * valor escoger.
+		 */
+
+		/*
+		 * Esta expresión es una función que retorna la cadena más larga
+		 */
+		BiFunction<String, String, String> biFunction = 
+				(String s1, String s2) -> s1.length() > s2.length() ? s1 : s2;
+		String value = "abcde";
+		Map<String, String> nombres = new HashMap<>();
+		nombres.put("clave1", "abcdefg");
+		nombres.put("clave2", "abcd");
+		String clave1 = nombres.merge("clave1", value, biFunction);
+		String clave2 = nombres.merge("clave2", value, biFunction);
+		System.out.println(nombres);
+		System.out.println(clave1);
+		System.out.println(clave2);
 	}
 
 }
