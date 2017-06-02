@@ -4,10 +4,11 @@
 package es.smartcoding.ocp.seccion04;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -111,7 +112,7 @@ public class Leccion_04_06 {
 		 */
 		Consumer<List<Integer>> referenciaAMetodo1 = Collections::sort;
 		Consumer<List<Integer>> lambda1 = (List<Integer> list) -> Collections.sort(list);
-		
+
 		List<Integer> list = new ArrayList<>();
 		list.add(3);
 		list.add(5);
@@ -124,46 +125,106 @@ public class Leccion_04_06 {
 		 * Ejemplo de método de instancia de una instancia particular
 		 * 
 		 */
-		
+
 		String s = "lo que sea";
 		Predicate<String> referenciaAMetodo2 = s::startsWith;
 		Predicate<String> lambda2 = (String start) -> s.startsWith(start);
 		System.out.println(lambda2.test("lo que"));
-		
+
 		/*
-		 * Ejemplo de método de instancia de una instancia conocida en tiempo de ejecución
+		 * Ejemplo de método de instancia de una instancia conocida en tiempo de
+		 * ejecución
 		 * 
 		 */
-		
+
 		Predicate<String> referenciaAMetodo3 = String::isEmpty;
 		Predicate<String> lambda3 = (String string) -> string.isEmpty();
 		System.out.println(lambda3.test("Java Rocks!!!"));
-		
+
 		/*
 		 * Ejemplo de referencia a constructor
 		 * 
-		 * Se trata de un nuevo tipo de referencia que utiliza new en vez de un método.
+		 * Se trata de un nuevo tipo de referencia que utiliza new en vez de un
+		 * método.
 		 * 
 		 */
-		
+
 		Supplier<ArrayList<String>> referenciaAMetodo4 = ArrayList::new;
 		Supplier<ArrayList<String>> lambda4 = () -> new ArrayList<>();
-		
+
 		/*
 		 * El método boolean removeIf(Predicate<? super E> filter)
 		 * 
+		 * Elimina todos los objetos que una colección que cumplen una
+		 * condición.
+		 * 
+		 * Cómo podría sustituirse (1) con una referencia a método?
+		 * 
+		 * Se trata de una pregunta con truco. No se puede, porque el método
+		 * startsWith() requiere un parámetro que no es str.
+		 * 
 		 */
-		
+
 		List<String> strings = new ArrayList<>();
 		strings.add("Alfa");
 		strings.add("Bravo");
 		strings.add("Charlie");
 		strings.add("Delta");
 		strings.add("Echo");
+		strings.add("Delta");
 		System.out.println(strings);
-		strings.removeIf((String str) -> str.startsWith("A"));
+		strings.removeIf((String str) -> str.startsWith("A")); // (1)
 		System.out.println(strings);
+
+		/*
+		 * El método void replaceAll(UnaryOperator<E> o)
+		 * 
+		 * Cambia todos los objetos de una colección por otro.
+		 * 
+		 * La interfaz funcional UnaryOperator es una especialización de
+		 * Function para cuando el parámetro y el resultado son del mmismo tipo.
+		 * 
+		 */
+
+		strings.replaceAll((String string) -> string.toUpperCase());
+		System.out.println(strings);
+
+		/*
+		 * Recorrer una colección es una operación muy corriente. Java 8 añade
+		 * otra más mediante el uso de lambdas.
+		 * 
+		 * 
+		 */
+
+		strings.forEach((String c) -> System.out.println(c));
+		strings.forEach(System.out::println);
+
+		/*
+		 * La nueva API Map de Java 8
+		 * 
+		 * Al parecer sólo el método merge() forma parte de los objetivos del
+		 * examen OCP. Y otros dos computeIfPresent() y computeIfAbsent() forman
+		 * parte de los objetivos del examen de actualización.
+		 * 
+		 * El autor recomienda visitar este enlace para saber si se mantiene así:
+		 * 
+		 * http://www.selikoff.net/ocp
+		 * 
+		 */
 		
+		Map<String, String> favorites = new HashMap<>();
+		// putIfAbsent no modificará porque ja esta asignado
+		favorites.put("Jenny", "Bus Tour");
+		// putIfAbsent() modificará el valor porque es null
+		favorites.put("Tom", null); 
+		favorites.putIfAbsent("Jenny", "Tram");
+		favorites.putIfAbsent("Sam", "Tram");
+		favorites.putIfAbsent("Tom", "Tram");
+		System.out.println(favorites); 
+		
+		/*
+		 * merge
+		 */
 	}
 
 }
