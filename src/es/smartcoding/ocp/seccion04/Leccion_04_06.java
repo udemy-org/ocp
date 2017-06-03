@@ -227,17 +227,46 @@ public class Leccion_04_06 {
 		/*
 		 * Esta expresión es una función que retorna la cadena más larga
 		 */
-		BiFunction<String, String, String> biFunction = 
-				(String s1, String s2) -> s1.length() > s2.length() ? s1 : s2;
+		BiFunction<String, String, String> biFunction = (String s1, String s2) -> s1.length() > s2.length() ? s1 : s2;
+		/*
+		 * Esta expresión es una función que retorna la cadena menor
+		 */
+		BiFunction<String, String, String> biFunction2 = (String s1, String s2) -> s1.compareTo(s2) < 0 ? s1 : s2;
+		/*
+		 * Esta expresión es una función que retorna null
+		 */
+		BiFunction<String, String, String> biFunction3 = (s1, s2) -> null;
 		String value = "abcde";
 		Map<String, String> nombres = new HashMap<>();
 		nombres.put("clave1", "abcdefg");
 		nombres.put("clave2", "abcd");
+		nombres.put("clave3", null);
 		String clave1 = nombres.merge("clave1", value, biFunction);
 		String clave2 = nombres.merge("clave2", value, biFunction);
+		/*
+		 * En este caso la función de mapeo no se invoca, si se invocara
+		 * lanzaría una NullPointerException.
+		 */
+		String clave3 = nombres.merge("clave3", value, biFunction);
 		System.out.println(nombres);
 		System.out.println(clave1);
 		System.out.println(clave2);
+		System.out.println(clave3);
+		/*
+		 * Por ultimo debes tener en cuenta que si la función de mapeo retorna
+		 * null, la clave se elimina del mapa.
+		 */
+		clave2 = nombres.merge("clave2", value, biFunction3);
+		System.out.println(clave2);
+		System.out.println(nombres);
+		/*
+		 * computeIfPresent() y computeIfAbsent()
+		 * 
+		 * Estos dos métodos no forman parte del examen OCP sino del examen de
+		 * actualización.
+		 * 
+		 */
+		
 	}
 
 }

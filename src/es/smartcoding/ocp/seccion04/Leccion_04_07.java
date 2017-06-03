@@ -7,6 +7,7 @@ package es.smartcoding.ocp.seccion04;
  * @author pep
  *
  */
+
 public class Leccion_04_07 {
 
 	/**
