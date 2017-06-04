@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -265,8 +266,34 @@ public class Leccion_04_06 {
 		 * Estos dos métodos no forman parte del examen OCP sino del examen de
 		 * actualización.
 		 * 
+		 * El método computeIfPresent realiza un calculo si la clave existe y
+		 * toma como argumento la clave y una BiFunction.
+		 * 
+		 * El método computeIfAbsent realiza un calculo si la clave no existe o
+		 * es un valor nulo y toma como argumento la clave i una Function.
+		 * 
+		 * Si la función de mapeo retorna un valor null, el método
+		 * computeIfPresent(), la clave se elimina del mapa. Con el método
+		 * computeIfAbsent() la clave no se llega a añadir nunca en el mapa.
+		 * 
 		 */
-		
+
+		Map<String, Integer> contadores = new HashMap<>();
+		contadores.put("reds", 5);
+
+		BiFunction<String, Integer, Integer> contBiFunction = (String clave, Integer val) -> val + 1;
+		Function<String, Integer> contFunction = (String clave) -> 1;
+		BiFunction<String, Integer, Integer> nullBiFunction = (String clave, Integer val) -> null;
+		Function<String, Integer> nullFunction = (String clave) -> null;
+
+		contadores.computeIfPresent("reds", contBiFunction);
+		contadores.computeIfPresent("greens", contBiFunction);
+		contadores.computeIfAbsent("blues", contFunction);
+		System.out.println(contadores);
+		contadores.computeIfPresent("reds", nullBiFunction);
+		contadores.computeIfAbsent("pinks", nullFunction);
+		System.out.println(contadores);
+
 	}
 
 }
