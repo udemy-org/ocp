@@ -5,7 +5,11 @@ package es.smartcoding.ocp.seccion05;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
+
+import static java.lang.System.out;
 
 /**
  * @author pep
@@ -74,7 +78,83 @@ public class Leccion_05_04 {
 		 */
 		Stream<Double> randoms = Stream.generate(Math::random);
 		Stream<Integer> impares = Stream.iterate(1, n -> n + 2);
+		/*
+		 * Operaciones terminales
+		 */
+		System.out.println(desdeLista.count()); // 3
+		// System.out.println(randoms.count()); // no acaba nunca
+		desdeLista = list.stream();
+		Optional<String> minimo = desdeLista.min((String s1, String s2) -> s1.compareTo(s2));
+		minimo.ifPresent(out::println);
 
+		/*
+		 * Los métodos Optional<T> findAny() y Optional<T> findFirst() retornan
+		 * un elemento del stream si no está vacío, en cuyo caso retorna una
+		 * Optional vacío. El método findAny() es útil cuando trabajamos con
+		 * streams paralelos y proporciona el primer elemento que viene.
+		 * 
+		 * Estos métodos son operationes terminales pero no se trata de
+		 * reducciones ya que muchas veces retornan sin procesar todos los
+		 * elementos. Son útiles cuando queramos tener un caso cualquiera.
+		 * 
+		 */
+		// Stream finito de 3 elementos
+		Stream<String> stream1 = Stream.of("alfa", "bravo", "charlie");
+		// Stream infinito
+		Stream<String> stream2 = Stream.generate(() -> "zulu");
+		stream1.findAny().ifPresent(out::println);
+		stream2.findAny().ifPresent(out::println);
+
+		/*
+		 * Los métodos
+		 * 
+		 * boolean anyMatch(Predicate <? super T> predicate),
+		 * 
+		 * boolean allMatch(Predicate <? super T> predicate)
+		 * 
+		 * boolean noneMatch(Predicate <? super T> predicate)
+		 * 
+		 * buscan en un stream y retornan true si cumplen el predicado. Estos
+		 * streams pueden terminar o no para streams infinitos, dependen de los
+		 * datos. Igual que los métodos de búsqueda no son métodos reductores
+		 * porque no necesariamente recorrren todos los elementos.
+		 * 
+		 */
+		List<Integer> lista = Arrays.asList(121, 231, 99);
+		Stream stream3 = Stream.generate(() -> 101);
+		Predicate<Integer> predicate1 = n -> n > 100;
+		// Un predicado SÍ se puede reutilizar pero un stream NO
+		System.out.println(lista.stream().anyMatch(predicate1)); // true
+		System.out.println(lista.stream().allMatch(predicate1)); // false
+		System.out.println(lista.stream().noneMatch(predicate1)); // false
+		System.out.println(stream3.anyMatch(predicate1)); // true
+
+		/*
+		 * El método void forEach(Consumer<? super T> action) proporciona un
+		 * mecanismo para recorrer un stream dado que no se puede utilizar un
+		 * bucle mejorado porque no implementa la interfaz Iterable.
+		 * 
+		 * Aunque a simple vista parece un bucle es una operación terminal, y es
+		 * la única que retorna void.
+		 * 
+		 */
+		Stream<Integer> stream4 = Stream.of(1, 2, 3, 4, 5);
+		stream4.forEach(out::print);
+
+		/*
+		 * Los métodos:
+		 * 
+		 * T reduce(T identity, BinaryOperator<T> accumulator)
+		 * 
+		 * Optional<T> reduce(BinaryOperator<T> accumulator)
+		 * 
+		 * <U> U reduce(U identity, BiFunction<U,? super T,U> accumulator,
+		 * BinaryOperator<U> combiner)
+		 * 
+		 * combinan un stream en un único objeto, y como el mismo nombre indica
+		 * se trata de una reducción.
+		 * 
+		 */
 	}
 
 }
