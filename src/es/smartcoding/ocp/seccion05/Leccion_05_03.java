@@ -5,6 +5,7 @@ package es.smartcoding.ocp.seccion05;
 
 import java.util.Optional;
 import static java.lang.System.out;
+
 /**
  * @author pep
  * 
@@ -19,16 +20,20 @@ import static java.lang.System.out;
  * 
  *         Se puede pensar en un Optional como en una caja que puede estar vacía
  *         o tener algún contenido.
+ * 
+ *         Por lo tanto, retornar Optional puede considerarse como una
+ *         alternativa más próximo al estilo de programación funcional que
+ *         retornar null.
  *
  */
 public class Leccion_05_03 {
 
-	public static Optional<Double> promedio(double... valores) {
+	public static Optional<Double> promedio(Double... valores) {
 		if (valores.length == 0) {
 			return Optional.empty();
 		}
 		double d = 0;
-		for (double valor: valores) {
+		for (double valor : valores) {
 			d += valor;
 		}
 		return Optional.of(d / valores.length);
@@ -38,7 +43,24 @@ public class Leccion_05_03 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		promedio(1,2,3,4,5).ifPresent(out::println);
+		Optional<Double> promedio = promedio(1.0, 2.0, 3.0);
+		if (promedio.isPresent()) {
+			System.out.println(promedio.get());
+		}
+		// alternativamente
+		promedio(1.0, 2.0, 3.0, 4.0, 5.0).ifPresent(out::println);
+
+		promedio = promedio();
+		// java.util.NoSuchElementException: No value present
+		// System.out.println(promedio.get());
+		/*
+		 * Alternativas a get() con la lógica necesaria para prever el caso de
+		 * que no exista un valor.
+		 * 
+		 */
+		System.out.println(promedio.orElse(Double.NaN));
+		System.out.println(promedio.orElseGet(() -> 0.0));
+		System.out.println(promedio.orElseThrow(() -> new IllegalStateException()));
 	}
 
 }
