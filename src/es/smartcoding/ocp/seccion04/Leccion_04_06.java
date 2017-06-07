@@ -9,7 +9,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.util.function.BiFunction;
+
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -224,7 +228,129 @@ public class Leccion_04_06 {
 		
 		/*
 		 * merge
+		 * 
+		 * La interfaz funcional UnaryOperator es un especialización de Function
+		 * cuyo método abstracto acepta un parámetro y retorna un valor del
+		 * mismo tipo.
+		 * 
+		 * 
 		 */
+
+		strings.replaceAll((String string) -> string.toUpperCase());
+		System.out.println(strings);
+
+		/*
+		 * Recorriendo una colección
+		 * 
+		 * Java 8 introduce una nuevo método que utiliza una expresión lambda o
+		 * referencia a función.
+		 * 
+		 * 
+		 */
+
+		strings.forEach((String str) -> System.out.println(str));
+		strings.forEach(System.out::println);
+
+		/*
+		 * La nueva API Map de Java 8
+		 * 
+		 * Java 8 ha añadido nuevos métodos a la interfaz Map. Pero sólo merge
+		 * forma parte de los objetivos del examen OCP. Dos métodos más,
+		 * computeIfPresent() y computeIfAbsent() forman parte de los objetivos
+		 * del examen de actualización
+		 * 
+		 */
+
+		Map<String, String> capitales = new HashMap<>();
+		capitales.put("Suiza", "Geneve");
+		capitales.put("Francia", "Paris");
+		capitales.put("Italia", null);
+		// Modifica el valor de la clave "Suiza"
+		capitales.put("Suiza", "Ginebra");
+		// Modifica el valor si no existe o es nula
+		capitales.putIfAbsent("Italia", "Roma");
+		capitales.putIfAbsent("Suiza", "Kiev");
+		System.out.println(capitales);
+
+		/*
+		 * El método merge()
+		 * 
+		 * Algunas veces necesitamos más lógica a la hora de determinar qué
+		 * valor asignar a una clave.
+		 * 
+		 * El método merge proporciona un mecanismo para añadir lógica sobre qué
+		 * valor escoger.
+		 */
+
+		/*
+		 * Esta expresión es una función que retorna la cadena más larga
+		 */
+		BiFunction<String, String, String> biFunction = (String s1, String s2) -> s1.length() > s2.length() ? s1 : s2;
+		/*
+		 * Esta expresión es una función que retorna la cadena menor
+		 */
+		BiFunction<String, String, String> biFunction2 = (String s1, String s2) -> s1.compareTo(s2) < 0 ? s1 : s2;
+		/*
+		 * Esta expresión es una función que retorna null
+		 */
+		BiFunction<String, String, String> biFunction3 = (s1, s2) -> null;
+		String value = "abcde";
+		Map<String, String> nombres = new HashMap<>();
+		nombres.put("clave1", "abcdefg");
+		nombres.put("clave2", "abcd");
+		nombres.put("clave3", null);
+		String clave1 = nombres.merge("clave1", value, biFunction);
+		String clave2 = nombres.merge("clave2", value, biFunction);
+		/*
+		 * En este caso la función de mapeo no se invoca, si se invocara
+		 * lanzaría una NullPointerException.
+		 */
+		String clave3 = nombres.merge("clave3", value, biFunction);
+		System.out.println(nombres);
+		System.out.println(clave1);
+		System.out.println(clave2);
+		System.out.println(clave3);
+		/*
+		 * Por ultimo debes tener en cuenta que si la función de mapeo retorna
+		 * null, la clave se elimina del mapa.
+		 */
+		clave2 = nombres.merge("clave2", value, biFunction3);
+		System.out.println(clave2);
+		System.out.println(nombres);
+		/*
+		 * computeIfPresent() y computeIfAbsent()
+		 * 
+		 * Estos dos métodos no forman parte del examen OCP sino del examen de
+		 * actualización.
+		 * 
+		 * El método computeIfPresent realiza un calculo si la clave existe y
+		 * toma como argumento la clave y una BiFunction.
+		 * 
+		 * El método computeIfAbsent realiza un calculo si la clave no existe o
+		 * es un valor nulo y toma como argumento la clave i una Function.
+		 * 
+		 * Si la función de mapeo retorna un valor null, el método
+		 * computeIfPresent(), la clave se elimina del mapa. Con el método
+		 * computeIfAbsent() la clave no se llega a añadir nunca en el mapa.
+		 * 
+		 */
+
+		Map<String, Integer> contadores = new HashMap<>();
+		contadores.put("reds", 5);
+
+		BiFunction<String, Integer, Integer> contBiFunction = (String clave, Integer val) -> val + 1;
+		Function<String, Integer> contFunction = (String clave) -> 1;
+		BiFunction<String, Integer, Integer> nullBiFunction = (String clave, Integer val) -> null;
+		Function<String, Integer> nullFunction = (String clave) -> null;
+
+		contadores.computeIfPresent("reds", contBiFunction);
+		contadores.computeIfPresent("greens", contBiFunction);
+		contadores.computeIfAbsent("blues", contFunction);
+		System.out.println(contadores);
+		contadores.computeIfPresent("reds", nullBiFunction);
+		contadores.computeIfAbsent("pinks", nullFunction);
+		System.out.println(contadores);
+
 	}
 
 }

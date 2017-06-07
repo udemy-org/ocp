@@ -13,7 +13,7 @@ import java.util.TreeSet;
 /**
  * @author pep
  * 
- *         Searching and Sorting
+ *         Búsquedas y ordenamiento
  * 
  *         El método sort() de la clase Collections ordena colecciones de
  *         objetos que implementan la interfaz Comparable. Lanza una excepción
