@@ -6,6 +6,7 @@ package es.smartcoding.ocp.seccion05;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -154,6 +155,53 @@ public class Leccion_05_04 {
 		 * combinan un stream en un único objeto, y como el mismo nombre indica
 		 * se trata de una reducción.
 		 * 
+		 * El primero permite especificar un valor inicial.
+		 * 
+		 * El tercero es útil para trabajar con streams paralelos.
+		 * 
+		 */
+
+		/*
+		 * Para ilustar el método vamos a concatenar un array de cadenas,
+		 * primero sin streams y después con streams.
+		 */
+
+		// Sin streams
+		String[] strings = new String[] { "Java ", "Rocks ", "Forever!!" };
+		String titulo1 = "";
+		for (String string : strings) {
+			titulo1 += string;
+		}
+		System.out.println(titulo1);
+
+		// Ahora con streams
+		Stream<String> stream5 = Stream.of("Java ", "Rocks ", "Forever!!");
+		String titulo2 = stream5.reduce("", (String s1, String s2) -> new StringBuilder(s1).append(s2).toString());
+		System.out.println(titulo2);
+
+		// O alternativamente
+		Stream<String> stream6 = Stream.of("Java ", "Rocks ", "Forever!!");
+		String titulo3 = stream6.reduce("", String::concat);
+		System.out.println(titulo3);
+
+		// Streams paralelos
+		BinaryOperator<Integer> bop = (a, b) -> a * b;
+		Stream<Integer> stream7 = Stream.iterate(1, n -> n + 1).limit(10);
+		System.out.println(stream7.reduce(1, bop, bop));
+
+		/*
+		 * Los métodos:
+		 * 
+		 * <R> R collect(Supplier<R> supplier, BiConsumer<R, ? super T>
+		 * accumulator, BiConsumer<R, R> combiner)
+		 * 
+		 * <R,A> R collect(Collector<? super T, A,R> collector)
+		 * 
+		 * representan una forma especial de reducción llamada reducción
+		 * mutable. Es más eficiente que una reducción regular porque utilizamos
+		 * el mismo objto mutable mientras vamos acumulando.
+		 * 
+		 * Los objetos mutables más habituales son StringBuilder y ArrayList.
 		 */
 	}
 
