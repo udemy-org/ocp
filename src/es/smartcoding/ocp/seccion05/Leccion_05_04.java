@@ -6,8 +6,11 @@ package es.smartcoding.ocp.seccion05;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.System.out;
@@ -48,6 +51,8 @@ import static java.lang.System.out;
  *         estaciones de trabajo y la tarea que debe llevarse a cabo en cada una
  *         de ellas. Pero cada tarea no empieza hasta que se de define una
  *         operación terminal.
+ *         
+ *         En esta lección veremos las operaciones terminales
  * 
  */
 public class Leccion_05_04 {
@@ -203,6 +208,34 @@ public class Leccion_05_04 {
 		 * 
 		 * Los objetos mutables más habituales son StringBuilder y ArrayList.
 		 */
+
+		Stream<String> stream8 = Stream.of("Java ", "Rocks ", "Forever!!");
+		StringBuilder builder = stream8.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
+		System.out.println(builder);
+
+		/*
+		 * Algunos collectors estan ya implementados listos para usar. Por
+		 * ejemplo, en caso que el orden sea importante podemos usar un TreeSet
+		 * o un Set si no lo es.
+		 */
+		Stream<String> stream9 = Stream.of("Java ", "Rocks ", "Forever!!");
+		TreeSet<String> ts = stream9.collect(Collectors.toCollection(TreeSet::new));
+		System.out.println(ts);
+
+		Stream<String> stream10 = Stream.of("Java ", "Rocks ", "Forever!!");
+		Set<String> set = stream10.collect(Collectors.toSet());
+		System.out.println(set);
+		
+		Stream<String> stream11 = Stream.of("Java ", "Rocks ", "Forever!!");
+		List<String> list2 = stream11.collect(Collectors.toList());
+		System.out.println(list2);
+
+		/*
+		 * Durante el examen deberas provar que conoces los Collectors
+		 * predefinidos más comunes y que eres capaz de crear tus propios
+		 * Collectors proporcionando un supplier, accumulator y combiner.
+		 */
+
 	}
 
 }
