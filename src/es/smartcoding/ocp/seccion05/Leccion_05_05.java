@@ -111,6 +111,16 @@ public class Leccion_05_05 {
 		long total = Stream.of("sdfds@asdfads.cat", "asdfasd.cat", "asdfasfd@dffdxz.cat").filter(s -> s.contains("@"))
 				.peek(out::println).count();
 		System.out.println(total);
+		
+		/*
+		 * Intenta determinar la salida de esta línea de código
+		 */
+		Stream
+		.iterate(1, n -> n + 1)
+		.limit(5)
+		.peek(out::print)
+		.filter(n -> n % 2 == 0)
+		.forEach(out::print);
 
 	}
 
