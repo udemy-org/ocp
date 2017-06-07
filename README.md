@@ -5,8 +5,5 @@ El Curso **NO OFICIAL** OCP publicado en **Udemy** sigue estrictamente los conte
 
 Está formado por 11 secciones y unas 80 lecciones. Al final de cada sección encontrarás 3 tests de diez preguntas clave y sus soluciones razonadas. Además incluye el código, ampliamente comentado, que puedes descargar desde *https://github.com/jmendezv/ocp.git* para que experimentes.
 
-<<<<<<< HEAD
-Lección actual 4/6 página 208
-=======
+
 Lección actual 5/5 página 250
->>>>>>> branch 'master' of https://github.com/jmendezv/ocp.git
