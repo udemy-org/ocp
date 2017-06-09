@@ -9,9 +9,18 @@ import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Random;
 import java.util.function.BooleanSupplier;
+import java.util.function.DoubleBinaryOperator;
+import java.util.function.DoubleFunction;
 import java.util.function.DoubleSupplier;
+import java.util.function.DoubleUnaryOperator;
+import java.util.function.IntBinaryOperator;
+import java.util.function.IntFunction;
 import java.util.function.IntSupplier;
+import java.util.function.IntUnaryOperator;
+import java.util.function.LongBinaryOperator;
+import java.util.function.LongFunction;
 import java.util.function.LongSupplier;
+import java.util.function.LongUnaryOperator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -91,6 +100,27 @@ public class Leccion_05_06 {
 		DoubleSupplier s3 = () -> Math.random();
 		IntSupplier s4 = () -> 1;
 		LongSupplier s5 = () -> System.currentTimeMillis();
+
+		/*
+		 * Interfaces funciones comunes que usan primitivos
+		 */
+		DoubleFunction<Long> dfunc = (d) -> Math.round(d);
+		IntFunction<Double> ifunc = (i) -> i * 1.0;
+		LongFunction<Integer> lfunc = (l) -> (int) l;
+
+		DoubleUnaryOperator duop = (d) -> d / 2;
+		IntUnaryOperator iuop = (i) -> i * 2;
+		LongUnaryOperator luop = (l) -> l * l;
+
+		DoubleBinaryOperator dbop = (d1, d2) -> d1 + d2;
+		IntBinaryOperator ibop = (i1, i2) -> i1 * i2;
+		LongBinaryOperator lbop = (l1, l2) -> l1 / l2;
+
+		/*
+		 * Y la lista sigue y sigue. Consulta las tablas 4.9 y 4.10 del manual
+		 * de referencia
+		 */
+
 	}
 
 }
