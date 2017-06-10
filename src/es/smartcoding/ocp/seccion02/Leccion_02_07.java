@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion03;
+package es.smartcoding.ocp.seccion02;
 
 /**
  * @author pep
@@ -59,7 +59,7 @@ class VehiculoFactory {
 	}
 }
 
-public class Leccion_03_07 {
+public class Leccion_02_07 {
 
 	/**
 	 * @param args

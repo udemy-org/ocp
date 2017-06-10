@@ -1,12 +1,12 @@
 /**
  * NOT USED
  */
-package es.smartcoding.ocp.seccion02;
+package es.smartcoding.ocp.seccion01;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import es.smartcoding.ocp.seccion02.Gato.Color;
+import es.smartcoding.ocp.seccion01.Gato.Color;
 
 @FunctionalInterface
 interface Felino {

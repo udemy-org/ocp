@@ -1,4 +1,4 @@
-package es.smartcoding.ocp.seccion06;
+package es.smartcoding.ocp.seccion05;
 
 import java.util.ListResourceBundle;
 
@@ -19,7 +19,7 @@ import java.util.ListResourceBundle;
  * La tabla 5.7 muestra el orden en que Java determina el recurso a utilizar.
  * 
  */
-public class l0603_es extends ListResourceBundle {
+public class l0503_es extends ListResourceBundle {
 
 	@Override
 	protected Object[][] getContents() {

@@ -3,88 +3,125 @@
  */
 package es.smartcoding.ocp.seccion02;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
 /**
- * 
  * @author pep
  * 
- *         Los método equals(), hashCode() y toString()
- *         
- *         El método equals() tiene un parámetro de tipo Object y retornará false si el argumento es null o el tipo no coincide
- *         
- *         El método hashCode() retorna un entero calculado a partir de todas o algunas de las variables de instancia de la clase
- *         
- *         El método toString() retorna una cadena que será la representación escrita de una clase
- *
+ *         Principios de diseño.
+ * 
+ *         Un principio de diseño es una idea preestablecida o practica
+ *         recomendada que facilita el proceso de diseño de software.
+ * 
+ *         En general es recomendable seguir unos buenos principio de diseño
+ *         porque:
+ * 
+ *         1. Se produce código más lógico.
+ * 
+ *         2. Se produce código que es más fácil de entender.
+ * 
+ *         3. Se facilita el reuso de clases.
+ * 
+ *         4. El código es más fácil de mantener y de adaptar a cambios en los
+ *         requerimientos de las aplicaciones.
+ * 
+ *         La encapsulación es uno de los principios básicos de diseño. De hecho
+ *         es tan relevante que existe un standard llamado JavaBeans.
+ * 
+ *         Un JavaBean es un principio de diseño para encapsular datos en Java
+ *         que sigue unas normas sencillas:
+ * 
+ *         1. Las propiedades tienen que ser privadas.
+ * 
+ *         2. Los métodos de lectura deben empiezar por get o is si el método retorna
+ *         un valor lógico.
+ * 
+ *         3. Los métodos de escritura deben empiezar por set.
+ * 
+ *         4. Después de set/is/get escribiremos el nombre de la propiedad
+ *         empezando con una mayúscula.
+ * 
+ *         La relación es-un expresa una relación de herencia.
+ * 
+ *         La relación tiene-un expresa una relación de composición.
+ * 
  */
 
-class Fraccion {
-	private double numerador;
-	private double denominador;
+enum Tamaño {
+	PEQUEÑO, MEDIANO, GRANDE
+}
 
-	public Fraccion(double numerador, double denominador) {
+class Aspecto {
+	private String color;
+	private double peso;
+	private Tamaño tamaño;
+	
+	// ...
+}
+
+class Mascota {
+	/*
+	 * Propiedades privadas
+	 */
+	private String nombre;
+	private boolean exotico;
+	/*
+	 * Relacion tiene-un. Has-a
+	 */
+	private Aspecto aspecto;
+
+	/*
+	 * No hay constructor por defecto
+	 */
+	public Mascota(String nombre, boolean exotico, Aspecto aspecto) {
 		super();
-		this.numerador = numerador;
-		this.denominador = denominador;
+		this.nombre = nombre;
+		this.exotico = exotico;
+		this.aspecto = aspecto;
+	}
+
+	/*
+	 * Métodos accesores
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/*
+	 * El cambio de nombre de una mascota sigue unas normas.
+	 * Cualquier nombre no es válido. 
+	 * 
+	 * Si la propiedad nombre fuera public se podría poner un nomber arbitrario.
+	 */
+	public void setNombre(String nombre) {
+		if (nombre == null || nombre.length() < 5) {
+			throw new IllegalArgumentException("Nombre nulo o demasiado corto");
+		}
+		this.nombre = nombre;
+	}
+
+	public boolean isExotico() {
+		return exotico;
+	}
+
+	public void setExotico(boolean exotico) {
+		this.exotico = exotico;
 	}
 
 	@Override
 	public String toString() {
-//		return String.format("Fraccion [numerador=%s, denominador=%s]",	numerador, denominador);
-		return ToStringBuilder.reflectionToString(this,	ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(denominador);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(numerador);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		// Propiedad reflexiva, un objeto tiene que ser igual a sí mismo.
-		if (this == obj) {
-			return true;
-		}
-		// Recuerda, x.equals(null) siempre retorna false.
-		if (obj == null) {
-			return false;
-		}
-		// Una fraccion sólo puede comparse con una fracción, si se compara con cualquier otras cosa retorna false.
-		if (!(obj instanceof Fraccion)) {
-			return false;
-		}
-		Fraccion other = (Fraccion) obj;
-//		if (Double.doubleToLongBits(denominador) != Double
-//				.doubleToLongBits(other.denominador)) {
-//			return false;
-//		}
-//		if (Double.doubleToLongBits(numerador) != Double
-//				.doubleToLongBits(other.numerador)) {
-//			return false;
-//		}
-//		return true;
-		return new EqualsBuilder().appendSuper(super.equals(obj))
-				.append(numerador, other.numerador) .append(denominador, other.denominador) .isEquals();
+		return "AnimalDomestico [nombre=" + nombre + ", exotico=" + (exotico ? "Sí" : "No") + "]";
 	}
 
 }
 
 public class Leccion_02_04 {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		Fraccion f1 = new Fraccion(1, 2);
-		Fraccion f2 = new Fraccion(2, 1);
-		System.out.println(f1.hashCode());
-		System.out.println(f2.hashCode());
+		Mascota mascota = new Mascota("El gato con botas", false, null);
+		// mascota.setNombre(null);
+		System.out.println(mascota);
 	}
+
 }

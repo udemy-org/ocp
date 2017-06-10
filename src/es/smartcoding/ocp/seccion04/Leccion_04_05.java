@@ -3,67 +3,125 @@
  */
 package es.smartcoding.ocp.seccion04;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.TreeSet;
+import java.util.stream.Stream;
+
+import static java.lang.System.out;
 
 /**
  * @author pep
  * 
- *         Búsquedas y ordenamiento
+ *         Usando Streams
  * 
- *         El método sort() de la clase Collections ordena colecciones de
- *         objetos que implementan la interfaz Comparable. Lanza una excepción
- *         en tiempo de compilación si la coleccion no contiene objetos que
- *         implementen la interfac Comparable.
+ *         Las operaciones intermedias
  * 
- *         Sin embargo, La clase TreeSet que mantiene ordenada una colección
- *         según un orden natural, lanza un excepción en tiempo de ejecución si
- *         añadimos un objeto que no implementa la interfaz Comparabale.
- *
+ *         A diferencia de las operaciones terminales, las operaciones
+ *         intermedias tratan los streams infinitos simplemente retornando un
+ *         stream infinito.
+ * 
  */
-
-class Desordenada {
-	int id;
-}
-
 public class Leccion_04_05 {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		List<Desordenada> list = new ArrayList<>();
-		// Collections.sort(list); // No compila porque list no implementa Comparable
-		Comparator<Desordenada> c = (d1, d2) -> d1.id - d2.id;
-		// Pero si le pasamos un comparator entonce sí
-		Collections.sort(list, c);
-		TreeSet<Desordenada> treeSet = new TreeSet<>();
 		/*
-		 * java.lang.ClassCastException:
-		 * es.smartcoding.ocp.seccion04.Desordenada cannot be cast to
-		 * java.lang.Comparable
-		 * Al principio puede parecer extraño, porque no hay nada que comparar
-		 * dado que sólo tiene un elemento la colección, pero Java trabaja
-		 * así por consistencia.
+		 * El método Stream<T> filter(Predicate<? super T> predicate) retorna un
+		 * stream de objetos que pasan la condición del predicado.
 		 */
-		// treeSet.add(new Desordenada());
+		Stream.iterate(1, n -> n + 1).limit(5).filter(n -> n % 2 == 0).forEach(out::print);
+		System.out.println();
+
+		/*
+		 * El método Stream<T> distinct() elimina duplicados
+		 */
+		Stream.of(1, 2, 3, 3).distinct().forEach(out::print);
+		System.out.println();
+
+		/*
+		 * Los métodos
+		 * 
+		 * Stream<T> limit(int maxSize)
+		 * 
+		 * Stream<T> skip(int n)
+		 * 
+		 * limitan el número de elementos de un stream y saltan los n primeros
+		 * respectivamente.
+		 */
+		Stream.iterate(1, n -> n + 1).skip(3).limit(4).forEach(out::print);
+		System.out.println();
+
+		/*
+		 * El método <R> Stream<R> map(Function<? super T, ? extends R> mapper)
+		 * crea una correspondencia uno-a-uno de cada objeto del stream.
+		 * 
+		 * Este ejemplo utiliza una stream de cadenas para crear un stream de
+		 * enteros donde cada entero representa la longitud de la cadena.
+		 * 
+		 */
+		Stream.of("Alfa", "Echo", "Italy", "Oscar", "Uniform").map(s -> s.length()).forEach(out::print);
+		System.out.println();
+		Stream.of("Alfa", "Echo", "Italy", "Oscar", "Uniform").map(String::length).forEach(out::print);
+		System.out.println();
+
+		/*
+		 * El método
+		 * 
+		 * <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends
+		 * R>> mapper)
+		 * 
+		 * toma cada elemento del stream y lo convierte en un elemento de primer
+		 * nivel en su propio stream.
+		 * 
+		 * Es útil a la hora de eliminar elementos vacíos de stream o si quieres
+		 * combinar un stream de listas.
+		 * 
+		 */
+		List<String> zero = Arrays.asList();
+		List<String> one = Arrays.asList("Alfa");
+		List<String> two = Arrays.asList("Bravo", "Charlie");
+		Stream<List<String>> stream1 = Stream.of(zero, one, two);
+		stream1.flatMap(l -> l.stream()).forEach(out::println);
+
+		/*
+		 * el método
+		 * 
+		 * Stream<T> sorted()
+		 * 
+		 * Stream<T> sorted(Comparator<? super T> comparator)
+		 * 
+		 */
+		Stream.of("Bravo", "Charlie", "Alfa").sorted().forEach(out::println);
+		Stream.of("Zulu", "Echo", "November").sorted(Comparator.reverseOrder()).forEach(out::println);
+
+		/*
+		 * El método Stream<T> peek(Consumer<? super T> action) es la última
+		 * operación intermedia. Es ideal para depurar porque nos permite operar
+		 * con el stream sin cambiarlo.
+		 * 
+		 * Habitualmente se utiliza para monitorizar los valores de un stream
+		 * mientras progresa.
+		 * 
+		 * En este ejemplo vemos que cadenas cumplen el predicado. 
+		 */
+		long total = Stream.of("sdfds@asdfads.cat", "asdfasd.cat", "asdfasfd@dffdxz.cat").filter(s -> s.contains("@"))
+				.peek(out::println).count();
+		System.out.println(total);
 		
-		// Considera el siguiente código y determina la salida
-		List<String> names = Arrays.asList("Alfa", "Bravo", "Delta", "Echo");		
-		// List<String> names = Arrays.asList("Echo", "Delta", "Bravo", "Alfa" );
-		// Comparator<String> r = Comparator.naturalOrder();
-		Comparator<String> r = Comparator.reverseOrder();
-		int index = Collections.binarySearch(names, "Alfa", r);
-		System.out.println(index);
 		/*
-		 * La respuesta es indeterminado porque el método binarySearch() espera un orden natural.
-		 * Sería 0 si el comparador fuera en orden natural.
-		 *  
+		 * Intenta determinar la salida de esta línea de código
 		 */
+		Stream
+		.iterate(1, n -> n + 1)
+		.limit(5)
+		.peek(out::print)
+		.filter(n -> n % 2 == 0)
+		.forEach(out::print);
+
 	}
 
 }

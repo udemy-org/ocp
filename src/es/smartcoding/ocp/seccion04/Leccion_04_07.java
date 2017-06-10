@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion05;
+package es.smartcoding.ocp.seccion04;
 
 import static java.lang.System.out;
 
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
  *         Trabajando con conceptos avanzados de tuberias de streams
  * 
  */
-public class Leccion_05_07 {
+public class Leccion_04_07 {
 
 	/**
 	 * @param args

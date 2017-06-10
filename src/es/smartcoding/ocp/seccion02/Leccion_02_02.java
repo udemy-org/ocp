@@ -3,51 +3,62 @@
  */
 package es.smartcoding.ocp.seccion02;
 
-
-
 /**
- * 
  * @author pep
  * 
- *         Métodos virtuales
+ *         Introducción a la programación funcional.
  * 
- *         Desde Java 8 se conocen a los métodos no static como métodos virtuales.
+ *         Una interfaz funcional es aquella que contiene exactamente un único método abstracto.
  *         
- *         Como ves en este ejemplo, Java llama al método virtual come() correspondiente lo que se determina en tiempo de ejecución.
+ *         Representan la base de las expresiones lambda en la programación funcional.
  *         
- *         Pero en el caso de las campos no ocurre lo mismo. Java accede al campo en función del tipo de la instancia y no del tipo de objeto a que hace referencia.
- *
+ *         Una expresión lambda es un bloque de código parecido a un método anónimo que puede pasarse como parámetro.
+ *         
+ *         Dado que las expresiones lambda y la programación funcional es una parte integral de Java 8 haremos una revisión en esta lección, si bien se ven ampliamente en la sección Colecciones Genéricas.
+ *         
+ *         Aunque es una buena práctica marcar una interfaz funcional con la anotación @FunctionalInterface, no es un requerimiento ya que el compilador lo asume ímplicitamente.
+ *         
+ *         Revisa el apartado 'Syntax of Lambda Expressions' de este enlace: https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+ *         
+ *         Revisa también la sección 'Understanding Lambda Syntax' del libro 'Oracle Certified Professional Java 8'.
+ *         
+ *         La interfaz Predicate<T> declara el método test(T t) que retorna un valor lógico es una de las interfaces funcionales que proporciona Java 8.
+ * 	
  */
-abstract class Animal {
-	String nombre = "??????";
-	abstract void come(); 
-}
-class Vaca extends Animal {
-	String nombre = "Vaca";
-	
-	@Override
-	void come() {comePastos();}
-	
-	private void comePastos() { System.out.println("comiendo pastos...");}
-	
-}
-class Foca extends Animal {
-	String nombre = "Foca";
 
-	@Override
-	void come() {comePeces();}
+@FunctionalInterface
+interface Impresora {
+	void imprime(String doc);
+}
+
+class Impresion {
+	private Impresora impresora;
 	
-	private void comePeces() { System.out.println("comiendo peces...");}
-	
+	public Impresion(Impresora impresora) {
+		this.impresora = impresora;
+	}
+	public void escribe(String doc) {
+		impresora.imprime(doc);
+	}
 }
 
 public class Leccion_02_02 {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		Animal animal = new Foca();
-		animal.come();
-		System.out.println(animal.nombre);
-
+		String doc = "Mi documento a imprimir...";
+		/* Implementación tradicional de una interfaz */
+		Impresion impresion1 = new Impresion(new Impresora() {
+			@Override
+			public void imprime(String doc) {
+				System.out.println(doc);		
+			}
+		});
+		/* Implementación de una interfaz funcional con una expresión lambda */
+		Impresion impresion2 = new Impresion((String documento) -> { System.out.println(documento);	 });
+		impresion2.escribe(doc);		
 	}
 
 }

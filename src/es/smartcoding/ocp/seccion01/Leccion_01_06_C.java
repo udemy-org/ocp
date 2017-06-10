@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion02;
+package es.smartcoding.ocp.seccion01;
 
 /**
  * 
@@ -21,7 +21,7 @@ package es.smartcoding.ocp.seccion02;
  *         
  */
 
-public class Leccion_02_06_C {
+public class Leccion_01_06_C {
 	
 	abstract class Impresora {
 		public abstract void imprime() ;
@@ -34,7 +34,7 @@ public class Leccion_02_06_C {
 	
 	public static void main(String[] args) {
 		String doc = "OCP";
-		Leccion_02_06_C l17c = new Leccion_02_06_C();
+		Leccion_01_06_C l17c = new Leccion_01_06_C();
 		l17c.print(l17c.new Impresora() {
 
 			@Override

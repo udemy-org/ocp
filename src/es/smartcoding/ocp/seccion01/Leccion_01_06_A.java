@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion02;
+package es.smartcoding.ocp.seccion01;
 
 /**
  * 
@@ -22,7 +22,7 @@ package es.smartcoding.ocp.seccion02;
  *         Aunque si no se utilizan adecuadamente, pueden hacer el código más difícil de leer.
  *         
  */
-public class Leccion_02_06_A {
+public class Leccion_01_06_A {
 	
 	private String msg = "OCP";
 	
@@ -40,15 +40,15 @@ public class Leccion_02_06_A {
 		public static final int LIMITE = 3;
 		public void f() {
 			for (int i = 0; i < LIMITE; i++) {
-				System.out.println(Leccion_02_06_A.this.msg);
+				System.out.println(Leccion_01_06_A.this.msg);
 			}
 		}
 	}
 
 	public static void main(String[] args) {
-		Leccion_02_06_A l17 = new Leccion_02_06_A();
+		Leccion_01_06_A l17 = new Leccion_01_06_A();
 		// Como InnerClass es un miembro de la clase Leccion_01_06 se necesita una instancia de esa clase para invocar al constructor de InnerClass.
-		Leccion_02_06_A.InnerInterface ic = l17.new InnerClass();
+		Leccion_01_06_A.InnerInterface ic = l17.new InnerClass();
 		ic.f();	
 	}
 
