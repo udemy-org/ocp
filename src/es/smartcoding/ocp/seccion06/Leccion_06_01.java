@@ -4,6 +4,7 @@
 package es.smartcoding.ocp.seccion06;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,6 +22,8 @@ import static java.lang.System.out;
  * @author pep
  * 
  *         Fechas, Cadenas y Localización
+ *         
+ *         Fechas, horas y zona horarias
  * 
  *         Java 8 ha renovado completamente cómo trabajamos con fechas y horas y
  *         aunque todavía se pueden utilizar las clases antiguas, esas clases no
@@ -145,12 +148,13 @@ public class Leccion_06_01 {
 		 * La clase LocalTime no tienen un método epoch porque representa una
 		 * fecha que puede ocurrir en cualquier fecha.
 		 * 
-		 * Un período Period expresa un número de años, meses y dias.
+		 * Un período (Period) expresa un número de años, meses y dias.
 		 * 
-		 * Una duración Duration expresa un número de horas, minutos, segundos y
-		 * nanosegundos.
+		 * Una duración (Duration) expresa un número de horas, minutos, segundos
+		 * y nanosegundos.
 		 * 
-		 * Un instante Instant.
+		 * Un instante (Instant) representa un momento específico en la zona
+		 * horaria GMT.
 		 * 
 		 */
 		System.out.println(date2.toEpochDay());
@@ -173,10 +177,108 @@ public class Leccion_06_01 {
 		LocalTime one = LocalTime.of(5, 15);
 		LocalTime two = LocalTime.of(6, 30);
 		LocalDate date = LocalDate.of(2016, 1, 20);
-		System.out.println(ChronoUnit.HOURS.between(one, two)); 
+		System.out.println(ChronoUnit.HOURS.between(one, two));
 		System.out.println(ChronoUnit.MINUTES.between(one, two));
-		// java.time.DateTimeException: Unable to obtain LocalTime from TemporalAccessor
+
+		/*
+		 * java.time.DateTimeException: Unable to obtain LocalTime from
+		 * TemporalAccessor
+		 * 
+		 * Alguna operaciones no son válidas, por ejemplo, no se pueden calcular
+		 * los minutos transcurridos entre una hora y una fecha.
+		 * 
+		 * La tabla 5.4 del libro de referencia resume todas las acciones
+		 * válida. Pero en general, un Period es como una fecha y se puede
+		 * operar con todo menos con LocalTime, porque es una hora; y una
+		 * Duration es como una hora, por lo tanto se puede operar con todo
+		 * menos con LocalDate.
+		 * 
+		 */
 		// System.out.println(ChronoUnit.MINUTES.between(one, date));
+
+		Instant i1 = Instant.now();
+		for (int i = 0; i < Integer.MAX_VALUE; i++) {
+		}
+		Instant i2 = Instant.now();
+		Duration d3 = Duration.between(i1, i2);
+		System.out.println(d3); // PT0.03S
+
+		/*
+		 * También podemos convertir un número de segundos transcurridos desde
+		 * epoch en un instante.
+		 */
+		Instant i3 = Instant.ofEpochMilli(System.currentTimeMillis());
+		System.out.println(i3);
+
+		/*
+		 * Finalmente, podemos convertir una ZonedDateTime en un instante que
+		 * representan el mismo momento.
+		 */
+		ZonedDateTime zdt = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.systemDefault());
+		Instant i4 = zdt.toInstant();
+		System.out.println(zdt);
+		System.out.println(i4); // 2017-06-10T07:39:21.026Z
+
+		/*
+		 * Puede parecer extraño, pero un instante se representa con años y mes,
+		 * en cambio, no se pueden hacer operaciones con esos campos.
+		 */
+		System.out.println(i4.plus(1, ChronoUnit.DAYS));
+		System.out.println(i4.minus(2, ChronoUnit.MINUTES));
+		// java.time.temporal.UnsupportedTemporalTypeException: Unsupported
+		// unit: Months
+		// System.out.println(i4.plus(3, ChronoUnit.MONTHS));
+
+		/*
+		 * En la mayoría de paises, no en todos, se produce una cambio horario.
+		 * Por ejemplo, en España, en marzo, la hora pasa de 2 de la madrugada a
+		 * 3, y en octubre, la hora pasa de 3 de la madrugada a 2. Suele hacerse
+		 * en un domingo y el objetivo es el de ahorrar energia.
+		 * 
+		 * En USA los cambios se producen en marzo y noviembre respectivamente.
+		 * 
+		 * Oracle ha decido que esto es suficientemente importante como para
+		 * estar presente en el examen OCP.
+		 * 
+		 * En este ejemplo vemos como una hora después de la 1:30 am del 13 de
+		 * marzo de 2016, el dia en el que la hora pasa de las 2 am a las 3 am,
+		 * no resulta en las 2:30 sino en las 3:30.
+		 * 
+		 * Y algo parecido sucedería el 6 de noviembre de 2016 si restamos 1
+		 * hora a la 1:30 am. Se deja como ejercicio
+		 * 
+		 */
+		LocalDate ldate = LocalDate.of(2016, Month.MARCH, 13);
+		LocalTime ltime = LocalTime.of(1, 30);
+		ZoneId zoneid = ZoneId.of("US/Eastern");
+		ZonedDateTime dateTime = ZonedDateTime.of(ldate, ltime, zoneid);
+		System.out.println(dateTime);
+		dateTime = dateTime.plusHours(1);
+		System.out.println(dateTime);
+
+		/*
+		 * En el caso de España, el 29 de octubre de 2017 pasamos de las 3 am a
+		 * las 2 am. Y nuestro uso horario cambia de UTC+2 a UTC+1 en la
+		 * Península y de UTC+1 a UTC+0 en Canarias.
+		 * 
+		 * El 25 de marzo de 2018 pasamos de las 2 am a las 3 am. Por lo tanto,
+		 * durante los 7 meses que dura el horario de primavera-verano,
+		 * estaremos en el uso horario UTC+2 en la Península y UTC+1 en
+		 * Canarias.
+		 * 
+		 * En este ejemplo vemos como al sumar una hora a las 2:30 am del dia 29
+		 * de octube de 2017, dia en el que España pasa al horario de
+		 * otoño-invierno, no sólo la hora queda igual sino que además cambiamos
+		 * de uso horario, pasando de UTC+2 a UTC+1.
+		 */
+		LocalDate ldate2 = LocalDate.of(2017, Month.OCTOBER, 29);
+		LocalTime ltime2 = LocalTime.of(2, 30);
+		ZoneId zoneid2 = ZoneId.of("Europe/Madrid");
+		ZonedDateTime zonedDateTime = ZonedDateTime.of(ldate2, ltime2, zoneid2);
+		System.out.println(zonedDateTime); // 2017-10-29T02:30+02:00[Europe/Madrid]
+		zonedDateTime = zonedDateTime.plusHours(1);
+		System.out.println(zonedDateTime); // 2017-10-29T02:30+01:00[Europe/Madrid]
+
 	}
 
 }
