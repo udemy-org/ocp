@@ -5,6 +5,8 @@ package es.smartcoding.ocp.seccion07;
 
 /**
  * @author pep
+ * 
+ * Concurrencia
  *
  */
 public class Leccion_07_01 {

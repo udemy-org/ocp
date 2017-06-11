@@ -5,6 +5,8 @@ package es.smartcoding.ocp.seccion10;
 
 /**
  * @author pep
+ * 
+ * JDBC
  *
  */
 public class Leccion_10_01 {
