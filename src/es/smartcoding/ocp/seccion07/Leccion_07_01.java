@@ -7,6 +7,8 @@ package es.smartcoding.ocp.seccion07;
  * @author pep
  * 
  *         Concurrencia
+ *         
+ *         Introducción
  * 
  *         La idea detrás del procesamiento multi-thread es que una aplicación o
  *         grupo de aplicaciones puedan ejecutar múltiples tareas en paralelo.
@@ -55,7 +57,13 @@ package es.smartcoding.ocp.seccion07;
  *         que no previenen el final de un programa. Es decir, una aplicación
  *         Java terminará incluso si hay hilos demonio en marcha, porquer
  *         previamente los para.
- *
+ * 
+ *         Concurrencia se refiere a la propiedad de ejecutar múltiples hilos y
+ *         procesos al mismo tiempo. Pero generalmente, hay más hilos que
+ *         procesadores, por lo que el Scheduler o Planificador del sistema
+ *         operativo es quien decide qué hilo se ejecuta en cada momento,
+ *         mediante cambios de contexto cada cierta cantidad de tiempo.
+ * 
  */
 class Job extends Thread {
 	@Override
