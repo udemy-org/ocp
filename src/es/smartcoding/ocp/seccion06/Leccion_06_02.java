@@ -5,6 +5,10 @@ package es.smartcoding.ocp.seccion06;
 
 /**
  * @author pep
+ * 
+ *         Excepciones y aserciones
+ * 
+ *         Trabajando con aserciones
  *
  */
 public class Leccion_06_02 {
