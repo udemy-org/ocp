@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * @author pep
  * 
- *         Concurrency
+ *         Concurrencia
  * 
  *         ExecutorService
  * 
@@ -41,6 +41,8 @@ public class Leccion_07_04 {
 	/**
 	 * @param args
 	 * 
+	 *            El método submit()
+	 * 
 	 *            La API Concurrency permite hacer tareas avanzadas con hilos
 	 *            sin ni siquera utilizar la clase Thread directamente.
 	 * 
@@ -48,6 +50,15 @@ public class Leccion_07_04 {
 	 *            valor de retorno del método run() de la interfaz Runnable, que
 	 *            como sabes es void. Por lo tanto el método get() en este caso
 	 *            retornará null.
+	 * 
+	 *            En este ejemplo, procesamos un Runnable con el método submit()
+	 *            y guardamos el valor de retorno en la variable result de tipo
+	 *            Future. Después esperamos 10 segundos y obtenemos el valor de
+	 *            retorno, si no estuviera disponible se lanzaría una excepcion
+	 *            de tipo TimeoutException. Como he adelantado anteriormente el
+	 *            valor de retorno es null porque sencillamente el método run()
+	 *            de Runnable retorna void.
+	 * 
 	 * 
 	 */
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
@@ -58,8 +69,8 @@ public class Leccion_07_04 {
 				for (int i = 0; i < 500; i++)
 					Leccion_07_04.counter++;
 			});
-			result.get(10, TimeUnit.SECONDS);
-			System.out.println("Reached!");
+			Object object = result.get(10, TimeUnit.SECONDS);
+			System.out.println("Reached! " + object);
 		} catch (TimeoutException e) {
 			System.out.println("Not reached in time");
 		} finally {
