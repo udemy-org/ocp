@@ -94,7 +94,31 @@ public class Leccion_07_17 {
 		System.out.println(Arrays.asList("alfa", "bravo", "charlie").parallelStream().reduce("", String::concat));
 
 		/*
-		 * La operación collect()
+		 * La operación collect() al igual que la operación reduce() también
+		 * puede tener tres argumentos: un acumulador, un combinador y un
+		 * supplier.
+		 * 
+		 * La versión de un parámetro toma un collector.
+		 * 
+		 * Para hacer una reducción paralela con la operación collect() deben
+		 * darse unas condiciones:
+		 * 
+		 * 1. Que se trate de un stream paralelo
+		 * 
+		 * 2. Que el argumento de la operación collect tenga la característica
+		 * Collector.Characteristics.CONCURRENT
+		 * 
+		 * 3. Que el stream este desordenado que tenga la característica
+		 * Collector.Characteristics.UNORDERED
+		 * 
+		 * Cualquier clase que implementa la interfaz Collector incluye el
+		 * método characteristics() que retorna un conjunto de los atributos
+		 * disponibles de ese collector.
+		 * 
+		 * Por ejemplo, Collectors.toSet() tiene la característica UNDORDERED
+		 * pero no la característica CONCURRENT lo que quiere decir que no es
+		 * válido como operaciones concurrentes.
+		 * 
 		 */
 		List<String> list = Arrays.asList("Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot");
 		Stream<String> stream5 = list.parallelStream();
