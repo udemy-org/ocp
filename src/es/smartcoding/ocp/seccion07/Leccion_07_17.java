@@ -3,10 +3,17 @@
  */
 package es.smartcoding.ocp.seccion07;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 import static java.lang.System.out;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author pep
@@ -89,7 +96,20 @@ public class Leccion_07_17 {
 		/*
 		 * La operación collect()
 		 */
-
+		List<String> list = Arrays.asList("Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot");
+		Stream<String> stream5 = list.parallelStream();
+		SortedSet<String> set1 = stream5.collect(ConcurrentSkipListSet::new, Set::add, Set::addAll);
+		System.out.println(set1);
+		Stream<String> stream6 = list.parallelStream();
+		Set<String> set2 = stream6.collect(Collectors.toSet());
+		System.out.println(set2);
+		Stream<String> stream7 = list.parallelStream();
+		Map<Integer, List<String>> map1 = stream7.collect(Collectors.groupingBy(String::length));
+		System.out.println(map1);
+		Stream<String> stream8 = list.parallelStream();
+		ConcurrentMap<Integer, String> map2 = stream8
+				.collect(Collectors.toConcurrentMap(String::length, k -> k.toUpperCase(), (s1, s2) -> s1 + "-" + s2));
+		System.out.println(map2);
 	}
 
 }
