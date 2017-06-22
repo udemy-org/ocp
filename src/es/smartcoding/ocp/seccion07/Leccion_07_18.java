@@ -15,15 +15,18 @@ package es.smartcoding.ocp.seccion07;
  *         diseñadas para ser usadas en escenarios específicos. Durante el
  *         examen debes estar familiarizado con las clases CyclicBarrier y
  *         ForkJoinPool.
- *         
+ * 
  *         La clase CycliBarrier
  * 
- *         Supongamos que queremos pintar una pared. Podríamos tener un único
- *         pintor, lo que sería demasiado lento. O contratar varios pintores,
- *         por ejemplo 3, con lo que iríamos tres veces más rápido.
+ *         Supongamos que queremos vaciar, limpiar y llenar de agua una piscina
+ *         olimpica. Esta es una tarea que a un solo operario le llevaria
+ *         demasiado tiempo. Sin embargo, si contratamos varios operarios podria
+ *         ser mucho más eficiente. Por supuesto, los operarios deben
+ *         gestionarse adecuadamente. Mientras se esta vaciando la piscina no se
+ *         puede entrar a limpiar, y mientras se está limpiando, no se puede
+ *         empezar a llenar de agua.
  * 
- *         Lógicamente, mientras se pinta la pared no es deseable que nadie la
- *         toque. Para esta tareas, podríamos utilizar la clase CyclicBarrier.
+ *         Para esta tareas, podríamos utilizar la clase CyclicBarrier.
  *
  */
 public class Leccion_07_18 {
