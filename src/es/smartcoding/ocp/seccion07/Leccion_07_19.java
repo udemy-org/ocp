@@ -56,6 +56,7 @@ package es.smartcoding.ocp.seccion07;
  *         La ForkJoinTask es una entidad parecida a un thread pero más ligera.
  *         Una ForkJoinTask comienza la ejecución cuando se envía a un
  *         ForkJoinPool. Una vez ha comenzado, pondrá en marcha otras subtareas.
+ *         
  *
  */
 public class Leccion_07_19 {
