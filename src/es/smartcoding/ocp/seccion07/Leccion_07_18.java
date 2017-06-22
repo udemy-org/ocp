@@ -16,7 +16,7 @@ package es.smartcoding.ocp.seccion07;
  *         examen debes estar familiarizado con las clases CyclicBarrier y
  *         ForkJoinPool.
  * 
- *         La clase CycliBarrier
+ *         La clase CyclicBarrier
  * 
  *         Supongamos que queremos vaciar, limpiar y llenar de agua una piscina
  *         olimpica. Esta es una tarea que a un solo operario le llevaria
@@ -33,9 +33,12 @@ public class Leccion_07_18 {
 
 	/**
 	 * @param args
+	 * 
+	 * changed!!!!
+	 * 
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
