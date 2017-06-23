@@ -85,6 +85,47 @@ import java.util.concurrent.RecursiveTask;
  *         Y si son demasiado pequeñas, entonces la memoria y la propia
  *         sobrecarga interna de gestión pueden sobrecargar el sistema.
  * 
+ *         Cuando se trabaja con hilos, pueden darse algunos problemas
+ *         relacionados con la propia gestión de los hilos.
+ * 
+ *         Se denomina Liveness a la habilidad de una aplicación de ejecutarse
+ *         en un tiempo adecuado.
+ * 
+ *         Para el examen OCP debes estar familiarizado con tres problemas:
+ * 
+ *         1. Deadlock, se da cuando dos o más hilos estan bloqueados para
+ *         siempre, cada uno esperando al otro habitualmente debido a que ocupan
+ *         un recurso que requiere el otro. Lamentablemente, no se puede evitar
+ *         el deadlock, pero sí prevenir. Hay multiples estrategias que pueden
+ *         ayudar pero no son de fácil aplicación
+ * 
+ *         2. Starvation, ocurre cuando a un solo hilo se le niega
+ *         constantemente el acceso a un recurso compartido o a un lock. El hilo
+ *         sigue vivo pero nunca sera capaz de completar su trabajo porque otros
+ *         hilos se adelantan y adquieren el lock antes.
+ * 
+ *         3. Livelock, es aquella situación cuando dos o más hilos estan
+ *         bloqueados para siempre. Es una forma especial de livelock donde dos
+ *         o más threads tratan de adquirir un conjunto de locksl, pero como no
+ *         lo consiguen, vuelven a empezar parte del proceso. Dado que los hilos
+ *         aparecen como activos y van respondiendo a las peticiones, livelock
+ *         es un estado muy difícil de detectar.
+ * 
+ *         Por último, las condiciones de carrera (race conditions) se
+ *         encuentran en aquellos escenarios cuando dos tareas, que deberían
+ *         completarse secuencialmente, se completan en paralelo. Por ejemplo,
+ *         cuando dos clientes quieren registrar el mismo nombre de usuario a la
+ *         vez. En este escenario, pueden darse tres resultados:
+ * 
+ *         1. Ambos consiguen registrar una cuenta con el mismo nombre de
+ *         usuario!!!
+ * 
+ *         2. Ninguno consigue registrar una cuenta con el mismo nombre de
+ *         usuario.
+ * 
+ *         3. Uno lo consigue pero el otro no y recibe un mensaje de error, que
+ *         es el caso óptimo.
+ * 
  */
 
 /*
@@ -124,6 +165,10 @@ class RellenaArrayRecursiveAction extends RecursiveAction {
 			}
 		} else {
 			int centro = mInicio + ((mFinal - mInicio) / 2);
+			/*
+			 * El método invokeAll() tiene dos parámetros de la clase fork/join
+			 * y no retorna ningún resultado.
+			 */
 			invokeAll(new RellenaArrayRecursiveAction(mInicio, centro, mValores),
 					new RellenaArrayRecursiveAction(centro, mFinal, mValores));
 		}
@@ -171,7 +216,25 @@ class SumaArrayRecursiveTask extends RecursiveTask<Double> {
 		} else {
 			int centro = mInicio + ((mFinal - mInicio) / 2);
 			RecursiveTask<Double> tascaIzda = new SumaArrayRecursiveTask(mInicio, centro, mValores);
+			/*
+			 * Este es el orden adecuado de encadenar llamadas a fork(),
+			 * compute() y join()
+			 */
+			/*
+			 * El método fork() es similar al método submit() de un executor.
+			 * Provoca que se envie una nueva tarea al pool.
+			 * 
+			 * Debería llamarse antes de que el thread actual invoque la
+			 * operación compute() seguida de join().
+			 */
 			tascaIzda.fork();
+			/*
+			 * Al método join() se le invoca después del método fork() y provoca
+			 * que el hilo actual espere el resultado de la subtarea.
+			 * 
+			 * El método compute() no lleva argumentos, generalmente recibe
+			 * instrucciones del constructor de la clase.
+			 */
 			return new SumaArrayRecursiveTask(centro, mFinal, mValores).compute() + tascaIzda.join();
 		}
 
@@ -187,7 +250,7 @@ public class Leccion_07_19 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+
 		/*
 		 * Rellenamos el array
 		 */
