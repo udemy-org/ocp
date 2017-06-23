@@ -5,6 +5,10 @@ package es.smartcoding.ocp.seccion10;
 
 /**
  * @author pep
+ * 
+ * JDBC
+ * 
+ * Ejecutando un Statement
  *
  */
 public class Leccion_10_05 {

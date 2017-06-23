@@ -5,6 +5,10 @@ package es.smartcoding.ocp.seccion08;
 
 /**
  * @author pep
+ * 
+ * Entradas y salidas
+ * 
+ * Introducción a los Streams (java.io)
  *
  */
 public class Leccion_08_02 {

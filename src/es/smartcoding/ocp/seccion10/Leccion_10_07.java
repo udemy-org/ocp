@@ -5,6 +5,10 @@ package es.smartcoding.ocp.seccion10;
 
 /**
  * @author pep
+ * 
+ * JDBC
+ * 
+ * Cerrando recursos de bases de datos
  *
  */
 public class Leccion_10_07 {

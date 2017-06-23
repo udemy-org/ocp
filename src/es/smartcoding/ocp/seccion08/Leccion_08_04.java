@@ -5,6 +5,10 @@ package es.smartcoding.ocp.seccion08;
 
 /**
  * @author pep
+ * 
+ * Entradas y salidas
+ * 
+ * Interactuando con usuarios
  *
  */
 public class Leccion_08_04 {

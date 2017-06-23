@@ -1,13 +1,17 @@
 /**
  * 
  */
-package es.smartcoding.ocp.seccion08;
+package es.smartcoding.ocp.seccion10;
 
 /**
- * @author pep
+ * @author jmendez
+ * 
+ * JDBC
+ * 
+ * Gestión de excepciones
  *
  */
-public class Leccion_08_08 {
+public class Leccion_10_08 {
 
 	/**
 	 * @param args

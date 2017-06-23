@@ -5,6 +5,8 @@ package es.smartcoding.ocp.seccion10;
 
 /**
  * @author pep
+ * 
+ * Recorriendo un ResultSet
  *
  */
 public class Leccion_10_06 {
