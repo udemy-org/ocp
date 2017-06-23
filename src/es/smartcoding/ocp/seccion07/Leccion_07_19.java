@@ -3,7 +3,6 @@
  */
 package es.smartcoding.ocp.seccion07;
 
-import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
@@ -86,9 +85,14 @@ import java.util.concurrent.RecursiveTask;
  *         Y si son demasiado pequeñas, entonces la memoria y la propia
  *         sobrecarga interna de gestión pueden sobrecargar el sistema.
  * 
- * 
  */
 
+/*
+ * Esta clase ilustra el tema de una acción, rellenar un array muy grande,
+ * dividido en subacciones de forma recursiva mediante diferentes hilos hasta
+ * que se da una condición base.
+ * 
+ */
 class RellenaArrayRecursiveAction extends RecursiveAction {
 
 	// Límite inferior
@@ -126,6 +130,13 @@ class RellenaArrayRecursiveAction extends RecursiveAction {
 	}
 }
 
+/*
+ * Esta clase ilustra el tema de una tarea, encontrar la suma de los valores de
+ * un array muy grande de doubles, dividido en subtareas de forma recursiva
+ * mediante diferentes hilos que retornan cálculos intermedios hasta que se da
+ * una condición base.
+ * 
+ */
 class SumaArrayRecursiveTask extends RecursiveTask<Double> {
 
 	// Límite inferior
@@ -176,19 +187,29 @@ public class Leccion_07_19 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		/*
+		 * Rellenamos el array
+		 */
 		Double[] ds = new Double[DIM];
 		ForkJoinTask<?> task = new RellenaArrayRecursiveAction(0, ds.length, ds);
 		ForkJoinPool pool = new ForkJoinPool();
 		pool.invoke(task);
 
+		/*
+		 * Mostramos el array
+		 */
 		for (Double d : ds) {
 			System.out.println(d);
 		}
 
+		/*
+		 * Sumamos los valores de una array
+		 */
 		ForkJoinTask<Double> task2 = new SumaArrayRecursiveTask(0, ds.length, ds);
 		ForkJoinPool pool2 = new ForkJoinPool();
-		Double sum = pool2.invoke(task2);
-		System.out.println("Sum: " + sum);
+		Double suma = pool2.invoke(task2);
+		System.out.println("Suma: " + suma);
 	}
 
 }
