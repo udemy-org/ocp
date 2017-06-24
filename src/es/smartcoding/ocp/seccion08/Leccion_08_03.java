@@ -32,12 +32,17 @@ import java.util.List;
  *         Entradas y salidas
  * 
  *         Trabajando con streams
+ * 
+ *         Consulta la figura 8.3 si quieres conocer la jerarquía de clases o
+ *         consulta la propia documentación del Javadoc relativa a al paquete
+ *         java.io.
  *
  */
 
 class Caja implements Serializable {
 	/**
-	 * 
+	 * Se recomienda que las clases serializables tengan esta propiedad para
+	 * gestionar las diferentes versiones de la clase.
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -324,20 +329,29 @@ public class Leccion_08_03 {
 		 * 
 		 */
 		File source = new File("ocp.log");
-		try (PrintWriter out = new PrintWriter(
-		new BufferedWriter(new FileWriter(source)))) { 
-			out.print("Today's weather is: "); 
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(source)))) {
+			out.print("Today's weather is: ");
 			out.println("Sunny");
-			out.print("Today's temperature at the zoo is: "); 
-			out.print(1/3.0);
+			out.print("Today's temperature at the zoo is: ");
+			out.print(1 / 3.0);
 			out.println('C');
-			out.format("It has rained 10.12 inches this year"); 
+			out.format("It has rained 10.12 inches this year");
 			out.println();
 			out.printf("It may rain 21.2 more inches this year");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+		/*
+		 * Hay algunas clases de alto nivel como InputStreamReader y
+		 * InputStreamWriter, DataInputStream y DataOutputStream que no forman
+		 * parte de los objetivos del examen pero que pueden ser útiles en el
+		 * dia a dia. De la misma forma, las clases Filter, como
+		 * FilterInputStream y FilterOutputStream tampoco forman parte de los
+		 * objetivos del examen, pero pueden ser útiles para filtrar o
+		 * transformar datos.
+		 */
+
 		System.out.println("OK");
 
 	}
