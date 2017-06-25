@@ -149,7 +149,7 @@ public class Leccion_09_02 {
 		 * tener la misma unidad de disco.
 		 */
 		Path path9 = Paths.get("/usr/home/pep");
-		Path path10 = Paths.get("//bin");
+		Path path10 = Paths.get("/bin");
 		Path path11 = Paths.get("file1.txt");
 		System.out.println(path9.relativize(path10));
 		System.out.println(path10.relativize(path9));
@@ -157,6 +157,50 @@ public class Leccion_09_02 {
 		 * Lanza una excepcion de tipo IllegalArgumentException
 		 */
 		// System.out.println(path10.relativize(path11));
+
+		/*
+		 * El método resolve(Path) sirve para crear un nuevo Path uniendo un
+		 * Path con el Path actual. Es decir, la instrucción a.resolve(b) donde
+		 * a y b son Paths junta ambos Path en uno.
+		 * 
+		 * Ni el método relativize() ni el método resolve() resuleven nombres
+		 * simbólicos como '.' o '..'.
+		 * 
+		 */
+		final Path path12 = Paths.get("/temporal/../bin");
+		final Path path13 = Paths.get("sbin");
+		System.out.println(path12.resolve(path13));
+		/*
+		 * Pero si ambos Paths son absolutos el primer Path se ignora y el
+		 * resultado es el segundo Path.
+		 */
+		final Path path14 = Paths.get("/temporal/../bin");
+		final Path path15 = Paths.get("/sbin");
+		System.out.println(path14.resolve(path15));
+
+		/*
+		 * Como hemos visto, los métodos anteriores relativize() y resolve() no
+		 * interpretan nombres simbólicos como '.' o '..'. El método normalize()
+		 * en cambio sí que lo hace. Además fíjate como Java no comprueba que
+		 * existan estos Paths en el sistema de archivos.
+		 */
+		Path path16 = Paths.get("/data");
+		Path path17 = Paths.get("/user/home");
+		Path relativePath = path16.relativize(path17);
+		System.out.println(path16.resolve(relativePath));
+		System.out.println(path16.resolve(relativePath).normalize());
+
+		/*
+		 * Con el método toRealPath(Path) todo cambia. Java comprueba que el
+		 * Path exista dentro del sistema de archivos ya que devuelve una
+		 * referencia a un Path real dentro del sistema de archivos.
+		 */
+		Path path18 = Paths.get("ocp.log");
+		try {
+			System.out.println(path18.toRealPath(LinkOption.NOFOLLOW_LINKS));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
