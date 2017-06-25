@@ -81,6 +81,83 @@ public class Leccion_09_02 {
 		for (int i = 0; i < path2.getNameCount(); i++) {
 			System.out.println("El elemento " + i + " es: " + path2.getName(i));
 		}
+
+		/*
+		 * Los método getFileName(), getParent() y getRoot() retornan un objeto
+		 * Path. El método getRoot() retorna null si la ruta es relativa.
+		 */
+		Path path3 = Paths.get("/user/pep/file.txt");
+		System.out.println(path3.getFileName() + " " + path3.getParent() + " " + path3.getRoot());
+
+		/*
+		 * Los métodos isAbsolute() y toAbsolutePath() que convierte un path
+		 * relativo en absoluto añadiendo el directorio de trabajo actual.
+		 * 
+		 * Recuerda que si el path ya representa una path absoluto entonces el
+		 * método toAbsolutePath() retorna un nuevo Path con el mismo valor.
+		 */
+		Path path4 = Paths.get("user/pep/file.txt");
+		System.out.println(path4.isAbsolute());
+		System.out.println(path4.toAbsolutePath());
+
+		/*
+		 * El método subpath() se utiliza para extraer paths de un path
+		 */
+		Path path5 = Paths.get("/Users/pep/git/ocp/user/pep/file.txt");
+		System.out.println("Path: " + path5);
+		System.out.println("Subpath de 0 a 3: " + path5.subpath(0, 3));
+		System.out.println("Subpath de 1 a 3: " + path5.subpath(1, 3));
+		System.out.println("Subpath de 1 a 2: " + path5.subpath(1, 2));
+		// java.lang.IllegalArgumentException
+		// System.out.println("Subpath de 0 a 9: " + path5.subpath(0, 9));
+
+		/*
+		 * Símbolos de path: '.' y '..'
+		 * 
+		 * El símbolo '.' se refiere al directorio actual y el símbolo '..' al
+		 * directorio padre.
+		 * 
+		 */
+		Path path6 = Paths.get("./../file1.txt");
+		System.out.println(path6.toAbsolutePath());
+
+		/*
+		 * El método relativize(Path) sirve para construir el path relativo
+		 * desde un path a otro.
+		 * 
+		 * Si ambos caminos son relativos, entonces el método relativize()
+		 * computa los caminos como si estuvieran en el mismo directorio de
+		 * trabajo.
+		 */
+		Path path7 = Paths.get("fish.txt");
+		Path path8 = Paths.get("birds.txt");
+		System.out.println(path7.relativize(path8));
+		System.out.println(path8.relativize(path7));
+
+		/*
+		 * Pero si ambos son paths absolutos entonces el método relativize()
+		 * computa el path relativo del primero al segundo.
+		 * 
+		 * Aunque pueda parecer que el método relativize(Path) acceda al sistema
+		 * de archivos, en realidad no lo hace.
+		 * 
+		 * Lo que sí que es necesario es que ambos paths sean o bien relativos o
+		 * bien absolutos, en caso contrario, se lanza una excepción de tipo
+		 * IllegalArgumentException en tiempo de ejecución.
+		 * 
+		 * Además en sistemas de archivos basados en Windows, ambos path deben
+		 * tener la misma unidad de disco.
+		 */
+		Path path9 = Paths.get("/usr/home/pep");
+		Path path10 = Paths.get("//bin");
+		Path path11 = Paths.get("file1.txt");
+		System.out.println(path9.relativize(path10));
+		System.out.println(path10.relativize(path9));
+		/*
+		 * Lanza una excepcion de tipo IllegalArgumentException
+		 */
+		// System.out.println(path10.relativize(path11));
+
 	}
 
 }
