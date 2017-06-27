@@ -33,7 +33,23 @@ import java.sql.Statement;
  *         datos: select ...
  * 
  *         Otras bases de datos NoSQL no estructuran la información en forma de
- *         tablas.
+ *         tablas como las llamadas base de datos documentales.
+ * 
+ *         Algunas de las operaciones básicas que se pueden hacer en un base de
+ *         datos relacional son:
+ * 
+ *         INSERT, que añade un registro o fila a la base de datos
+ * 
+ *         SELECT, que recupera información de la base de datos
+ * 
+ *         UPDATE, que cambia cero o más filas en la tabla
+ * 
+ *         DELETE, que elimina cero o más filas de la tabla
+ * 
+ *         Durante el examen OCP no necesitas ser un experto en SQL, basta que
+ *         sepas interpretar instrucciones como esta:
+ * 
+ *         DELETE FROM eventos WHERE nombre = 'server shut down';
  *
  */
 public class Leccion_10_01 {
@@ -42,19 +58,25 @@ public class Leccion_10_01 {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		String url = "jdbc:derby:zoo;create=true";
-		try (Connection conn = DriverManager.getConnection(url); Statement stmt = conn.createStatement()) {
-			stmt.executeUpdate("CREATE TABLE species (" + "id INTEGER PRIMARY KEY, " + "name VARCHAR(255), "
-					+ "num_acres DECIMAL)");
-			stmt.executeUpdate("CREATE TABLE animal (" + "id INTEGER PRIMARY KEY, " + "species_id integer, "
-					+ "name VARCHAR(255), " + "date_born TIMESTAMP)");
-			stmt.executeUpdate("INSERT INTO species VALUES (1, 'African Elephant', 7.5)");
-			stmt.executeUpdate("INSERT INTO species VALUES (2, 'Zebra', 1.2)");
-			stmt.executeUpdate("INSERT INTO animal VALUES (1, 1, 'Elsa', '2001−05−06 02:15')");
-			stmt.executeUpdate("INSERT INTO animal VALUES (2, 2, 'Zelda', '2002−08−15 09:12')");
-			stmt.executeUpdate("INSERT INTO animal VALUES (3, 1, 'Ester', '2002−09−09 10:36')");
-			stmt.executeUpdate("INSERT INTO animal VALUES (4, 1, 'Eddie', '2010−06−08 01:24')");
-			stmt.executeUpdate("INSERT INTO animal VALUES (5, 2, 'Zoe', '2005−11−12 03:44')");
+		String url = "jdbc:mysql://localhost:3306/ocp";
+		try (Connection conn = DriverManager.getConnection(url, "root", "admin");
+				Statement stmt = conn.createStatement()) {
+			conn.setCatalog("ocp");
+			stmt.executeUpdate("DROP TABLE IF EXISTS eventos");
+			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS eventos (" + "id INTEGER PRIMARY KEY AUTO_INCREMENT, "
+					+ "nombre VARCHAR(65) NOT NULL, " + "descripcion VARCHAR(255), "
+					+ "fecha TIMESTAMP DEFAULT NOW())");
+			stmt.executeUpdate(
+					"INSERT INTO eventos (nombre, descripcion) VALUES ('shut down', 'se ha detenido el servidor por mantenimiento')");
+			stmt.executeUpdate(
+					"INSERT INTO eventos (nombre, descripcion) VALUES ('backup', 'se ha hecho una copia de seguridad del sistema')");
+			stmt.executeUpdate(
+					"INSERT INTO eventos (nombre, descripcion) VALUES ('restore', 'se ha restaurado la ultima imagen guardada')");
+			stmt.executeUpdate(
+					"DELETE FROM eventos WHERE nombre = 'restore'");
+			stmt.executeUpdate(
+					"UPDATE eventos SET nombre='copia' WHERE nombre = 'backup'");
+			System.out.println("OK");
 		}
 	}
 

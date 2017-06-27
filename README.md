@@ -6,4 +6,4 @@ El Curso **NO OFICIAL** OCP publicado en **Udemy** sigue estrictamente los conte
 Está formado por 10 secciones o temas y unas 80 lecciones. Al final de cada sección encontrarás 3 tests de diez preguntas clave y sus soluciones razonadas. Además incluye el código, ampliamente comentado, que puedes descargar desde *https://github.com/jmendezv/ocp.git* para que experimentes.
 
 
-Lecture 19/1 Relational data bases, page 545
+Lecture 10/6 Scrolling ResultSet, page 581
