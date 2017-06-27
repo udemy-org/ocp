@@ -28,6 +28,8 @@ import java.sql.Statement;
  * 
  *         java.sql.TimeStamp -> java.time.LocalDateTime
  * 
+ * 
+ * 
  */
 public class Leccion_10_06 {
 
@@ -39,6 +41,20 @@ public class Leccion_10_06 {
 		try (Connection conn = DriverManager.getConnection(url, "root", "admin");
 				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 				ResultSet rs = stmt.executeQuery("select descripcion from eventos")) {
+			/*
+			 * Un ResultSet navegable (scrollable) permite desplazarse por las
+			 * filas de forma aleatoria.
+			 * 
+			 * El método absolute(int) mueve el cursor a una fila concreta. Pero
+			 * ten en cuenta que absolute(0) mueve el cursor a la posición
+			 * anterior a la primera fila, y que valores negativos empiezan a
+			 * contar desde el final hacia atrás.
+			 * 
+			 * Si hay un método absolute(int) es porque también hay un método
+			 * relative(int) que mueve el cursor hacia adelante o hacia atrás a
+			 * partir de la posición actual.
+			 * 
+			 */
 			rs.afterLast();
 			System.out.println(rs.previous());
 			System.out.println(rs.getString(1));
