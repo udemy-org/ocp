@@ -102,7 +102,19 @@ public class Leccion_09_04 {
 		 * objeto Stream<String>, de manera que sólo un pequeña porción del
 		 * flujo ocupa memoria en un momento dado.
 		 * 
-		 * Durante el examen OCP debes estar familiarizado con ambos métodos,
+		 * Durante el examen OCP debes estar familiarizado con ambos métodos. En
+		 * ocasiones puede ser confuso porque el metodo forEach() está presente
+		 * tanto en la clase Stream como Collections.
+		 * 
+		 * Por ejemplo, ambas líneas de código compilan y se ejecutan sin
+		 * problemas. Pero la primera lee todo el fichero en memoria mientras
+		 * que la segunda lee la líneas perezosamente (lazily), es decir en el
+		 * momento en que se necesitan y tan sólo mantiene una pequeña porción
+		 * en memória.
+		 * 
+		 * Files.readAllLines(Paths.get("ocp.log")).forEach(System.out::println);
+		 * 
+		 * Files.lines(Paths.get("ocp.log")).forEach(System.out::println);
 		 */
 		try {
 			Files.lines(Paths.get("ocp.log")).forEach(System.out::println);
