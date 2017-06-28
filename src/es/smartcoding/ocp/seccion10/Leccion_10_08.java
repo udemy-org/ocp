@@ -21,7 +21,10 @@ import java.sql.Statement;
  *         trabajando con JDBC.
  * 
  *         El método getMessage() retorna una cadena con el problema que ha
- *         encontrado. El método getSQLState() retorna un código de error SQL.
+ *         encontrado.
+ * 
+ *         El método getSQLState() retorna un código de error SQL.
+ * 
  *         Finalmente el método getErrorCode() retorna un código de error
  *         específico de tu base de datos.
  * 

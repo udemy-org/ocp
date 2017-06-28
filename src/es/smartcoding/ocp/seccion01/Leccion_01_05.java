@@ -8,6 +8,8 @@ package es.smartcoding.ocp.seccion01;
  * 
  * @author pep
  *
+ *         Diseño avanzado de clases
+ *         
  *         enums
  * 
  *         Ya que los enumerados representan un conjunto de constantes es habitual escribirlas en mayúsculas.

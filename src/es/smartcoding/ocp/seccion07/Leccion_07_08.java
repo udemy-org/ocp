@@ -71,7 +71,7 @@ public class Leccion_07_08 {
 	 *            cambio con el método scheduledAtFixedDelay() se lanza un nuevo
 	 *            thread cada 8 segundo, 6 segundo que dura la tarea más 2
 	 *            segundos de retardo.
-	 *            
+	 * 
 	 */
 	public static void main(String[] args) {
 		System.out.println(Runtime.getRuntime().availableProcessors());

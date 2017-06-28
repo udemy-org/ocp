@@ -112,7 +112,8 @@ public class Leccion_09_04 {
 		 * momento en que se necesitan y tan sólo mantiene una pequeña porción
 		 * en memória.
 		 * 
-		 * Files.readAllLines(Paths.get("ocp.log")).forEach(System.out::println);
+		 * Files.readAllLines(Paths.get("ocp.log")).forEach(System.out::println)
+		 * ;
 		 * 
 		 * Files.lines(Paths.get("ocp.log")).forEach(System.out::println);
 		 */

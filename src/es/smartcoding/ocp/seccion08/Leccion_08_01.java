@@ -10,6 +10,8 @@ import java.io.File;
  * 
  *         Entradas y salidas
  * 
+ *         Introducción
+ * 
  *         Durante el examen OCP debes demostrar que sabes escribir y leer desde
  *         la consola.
  * 
@@ -75,17 +77,17 @@ public class Leccion_08_01 {
 		System.out.println(file.length());
 		System.out.println(file.lastModified());
 		File[] files = new File(".").listFiles();
-		
+
 		for (File f : files) {
 			System.out.println(f);
 		}
-		
+
 		/*
 		 * Juntos con otros como delete(), renameTo(file), mkdir(), mkdirs() y
 		 * getParent().
 		 * 
 		 */
-		
+
 		new File("tmp").mkdir();
 		new File("tmp").delete();
 		// ...

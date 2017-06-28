@@ -48,7 +48,8 @@ public class Leccion_10_07 {
 				System.out.println(rs2.getInt(1));
 			}
 			/*
-			 *  java.sql.SQLException: Operation not allowed after ResultSet closed
+			 * java.sql.SQLException: Operation not allowed after ResultSet
+			 * closed
 			 */
 			// System.out.println(rs.next());
 		} catch (SQLException e) {

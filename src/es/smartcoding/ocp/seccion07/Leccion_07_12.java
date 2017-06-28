@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * 
  *         Concurrencia
  * 
- *         Colecciones concurrentes más comunes
+ *         Las colecciones concurrentes más comunes
  * 
  *         Estas son algunas de las clases concurrentes más comunes. La clase
  *         ConcurrentHashMap implementa la interfaz ConcurrentMap, que también
@@ -131,7 +131,7 @@ public class Leccion_07_12 {
 		 * En general, una lista 'skip' es una estructura de datos que permite
 		 * una búsqueda rápida dentro de una secuencia ordenada de elementos.
 		 */
-		
+
 		SortedMap<String, Integer> smap = new ConcurrentSkipListMap<>();
 		smap.put("Alfa", 1);
 		smap.put("Zulu", 26);

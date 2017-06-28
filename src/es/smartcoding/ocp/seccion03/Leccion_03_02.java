@@ -11,6 +11,8 @@ import java.util.List;
 /**
  * @author pep
  * 
+ *         Genéricos y Colecciones
+ * 
  *         Los Genéricos
  * 
  *         Los genéricos son necesarios porque nos ayudan a prevenir que una
@@ -119,8 +121,8 @@ import java.util.List;
  *         porque Java elimina el tipo en los genéricos y lo pasa a Object para
  *         proporcionar compatibilidad con versiones anteriores. En el caso de
  *         los arrays, Java sí que conoce el verdadero tipo de cada array.
- *         
- *         
+ * 
+ * 
  * 
  */
 
@@ -193,25 +195,33 @@ public class Leccion_03_02 {
 	/*
 	 * Acepta solo una lista de Shoe's
 	 */
-	private static void testShoes(List<Shoe> list) {}
-	
+	private static void testShoes(List<Shoe> list) {
+	}
+
 	/*
 	 * Acepta una lista de Shoe's o de Boot's
 	 */
-	private static void testAnyShoes(List<? extends Shoe> list) {}
-	
+	private static void testAnyShoes(List<? extends Shoe> list) {
+	}
+
 	// Atención
-	// Error: The method add(capture#1-of ?) in the type List<capture#1-of ?> is not applicable for the arguments (String)
+	// Error: The method add(capture#1-of ?) in the type List<capture#1-of ?> is
+	// not applicable for the arguments (String)
 	// public static void addSound(List<?> list) {list.add("Alfa");}
-	
-	// Error: The method add(capture#1-of ? extends Object) in the type List<capture#1-of ? extends Object> is not applicable for the arguments (String)
-	// public static void addSound(List<? extends Object> list) {list.add("quack");}
-	
+
+	// Error: The method add(capture#1-of ? extends Object) in the type
+	// List<capture#1-of ? extends Object> is not applicable for the arguments
+	// (String)
+	// public static void addSound(List<? extends Object> list)
+	// {list.add("quack");}
+
 	// Compila pero no se puede pasar una lista de Strings como parámetro formal
 	// public static void addSound(List<Object> list) {list.add("quack");}
-	
+
 	// Compila y se puede pasar una lista de Strings y de Objects
-	public static void addSound(List<? super String> list) {list.add("quack");}
+	public static void addSound(List<? super String> list) {
+		list.add("quack");
+	}
 
 	/**
 	 * @param args
@@ -229,12 +239,12 @@ public class Leccion_03_02 {
 		 */
 		Box<Shoe> b1 = Box.wrap(new Shoe()); // (1)
 		Box<Shoe> b2 = Box.<Shoe>wrap(new Shoe());
-		
+
 		testShoes(new ArrayList<Shoe>());
 		// testShoes(new ArrayList<Boot>()); // Error
 		testAnyShoes(new ArrayList<Shoe>());
 		testAnyShoes(new ArrayList<Boot>());
-		
+
 		// Atención
 		List<? super IOException> exceptions = new ArrayList<Exception>();
 		// exceptions.add(new Exception()); // DOES NOT COMPILE

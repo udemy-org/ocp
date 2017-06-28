@@ -7,7 +7,7 @@ package es.smartcoding.ocp.seccion05;
  * @author pep
  * 
  *         Fechas, Cadenas y Localización
- *         
+ * 
  *         La clase String
  * 
  *         Aunque la clase String no forma parte de los objetivos del examen

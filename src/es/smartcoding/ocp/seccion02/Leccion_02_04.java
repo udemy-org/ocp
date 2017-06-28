@@ -6,6 +6,8 @@ package es.smartcoding.ocp.seccion02;
 /**
  * @author pep
  * 
+ *         Principios de diseño y patrones
+ *         
  *         Principios de diseño.
  * 
  *         Un principio de diseño es una idea preestablecida o practica

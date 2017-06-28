@@ -12,6 +12,8 @@ import java.sql.Statement;
 /**
  * @author pep
  * 
+ *         JDBC
+ * 
  *         Recorriendo un ResultSet
  * 
  *         La tabla 10.6 del libro de referencia, muestra una guía completa de

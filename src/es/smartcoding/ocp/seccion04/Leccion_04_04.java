@@ -18,6 +18,8 @@ import static java.lang.System.out;
 /**
  * @author pep
  * 
+ *         Programación Funcional
+ * 
  *         Usando Streams
  * 
  *         Un stream o flujo en Java es una secuencia de datos. Un stream
@@ -51,7 +53,7 @@ import static java.lang.System.out;
  *         estaciones de trabajo y la tarea que debe llevarse a cabo en cada una
  *         de ellas. Pero cada tarea no empieza hasta que se de define una
  *         operación terminal.
- *         
+ * 
  *         En esta lección veremos las operaciones terminales
  * 
  */
@@ -225,7 +227,7 @@ public class Leccion_04_04 {
 		Stream<String> stream10 = Stream.of("Java ", "Rocks ", "Forever!!");
 		Set<String> set = stream10.collect(Collectors.toSet());
 		System.out.println(set);
-		
+
 		Stream<String> stream11 = Stream.of("Java ", "Rocks ", "Forever!!");
 		List<String> list2 = stream11.collect(Collectors.toList());
 		System.out.println(list2);

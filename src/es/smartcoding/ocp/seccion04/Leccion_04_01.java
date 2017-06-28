@@ -6,7 +6,9 @@ package es.smartcoding.ocp.seccion04;
 /**
  * @author pep
  * 
- *         Functional Programming
+ *         Programación Funcional
+ * 
+ *         Introducción
  * 
  *         Ya hemos visto que las expresines lambda y referencias a métodos se
  *         utilizan para implementar interfaces funcionales, en este capítulo

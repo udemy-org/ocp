@@ -10,6 +10,10 @@ import java.util.List;
 /**
  * @author pep
  * 
+ *         Principios de diseño y patrones
+ * 
+ *         Patrones de diseño básicos
+ * 
  *         El patron de diseño creacional Builder resuelve el problema de cómo
  *         crear un objeto que requiere establecer numerosos valores a la hora
  *         de crearlo.
@@ -33,7 +37,7 @@ import java.util.List;
  *         de cambios. Otra ventaja es que los diseñadores pueden declarar el
  *         constructor como private o protected, lo que obligaria a utilizar la
  *         clase builder para crear instancias de la clase objetivo.
- *         
+ * 
  *         EL APARTADO ANTERIOR SE DEJA COMO EJERCICIO.
  * 
  */

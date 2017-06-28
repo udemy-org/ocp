@@ -72,7 +72,7 @@ public class Leccion_07_15 {
 		Stream<Integer> paralelo = Arrays.asList(1, 2, 3, 4, 5).parallelStream();
 		paralelo.forEach(out::print);
 		System.out.println();
-		
+
 		/*
 		 * La API Streams incluye una versión alternativa del método forEach()
 		 * llamada forEachOrdered(), que fuerza al stream paralelo a procesar

@@ -17,9 +17,9 @@ import java.util.stream.Stream;
 /**
  * @author pep
  * 
- *         Usando Streams
+ *         Programación Funcional
  * 
- *         Trabajando con conceptos avanzados de tuberias de streams
+ *         Usando Streams: Trabajando con conceptos avanzados de tuberias de streams
  * 
  */
 public class Leccion_04_07 {
@@ -69,7 +69,7 @@ public class Leccion_04_07 {
 
 		TreeMap<Integer, String> tmap = Stream.of("Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot")
 				.collect(Collectors.toMap(String::length, k -> k, (s1, s2) -> s1 + "," + s2, TreeMap::new));
-		System.out.println(tmap); 
+		System.out.println(tmap);
 		System.out.println(tmap.getClass()); // class. java.util.TreeMap
 
 		Map<Integer, List<String>> map = Stream.of("Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot")

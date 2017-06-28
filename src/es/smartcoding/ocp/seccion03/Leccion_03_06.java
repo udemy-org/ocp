@@ -20,6 +20,8 @@ import java.util.function.Supplier;
 /**
  * @author pep
  * 
+ *         Genéricos y Colecciones
+ * 
  *         Lo nuevo de Java 8
  * 
  *         Si dejamos a un lado el hecho de haber implementado un Comparator con
@@ -210,22 +212,23 @@ public class Leccion_03_06 {
 		 * examen OCP. Y otros dos computeIfPresent() y computeIfAbsent() forman
 		 * parte de los objetivos del examen de actualización.
 		 * 
-		 * El autor recomienda visitar este enlace para saber si se mantiene así:
+		 * El autor recomienda visitar este enlace para saber si se mantiene
+		 * así:
 		 * 
 		 * http://www.selikoff.net/ocp
 		 * 
 		 */
-		
+
 		Map<String, String> favorites = new HashMap<>();
 		// putIfAbsent no modificará porque ja esta asignado
 		favorites.put("Jenny", "Bus Tour");
 		// putIfAbsent() modificará el valor porque es null
-		favorites.put("Tom", null); 
+		favorites.put("Tom", null);
 		favorites.putIfAbsent("Jenny", "Tram");
 		favorites.putIfAbsent("Sam", "Tram");
 		favorites.putIfAbsent("Tom", "Tram");
-		System.out.println(favorites); 
-		
+		System.out.println(favorites);
+
 		/*
 		 * merge
 		 * 

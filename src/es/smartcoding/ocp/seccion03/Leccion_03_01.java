@@ -11,7 +11,9 @@ import java.util.List;
 /**
  * @author pep
  * 
- *         Generics y Collections
+ *         Genéricos y Colecciones
+ * 
+ *         Introducción
  * 
  *         Como Java es acumulativo, debes recordar cómo trabajar con la clase
  *         ArrayList y arrays vistos en el curso OCA.
@@ -33,9 +35,10 @@ import java.util.List;
  * 
  *         Así como Java 5 introdujo los genericos, Java 7 introdujo el operador
  *         diamante (diamond) '<>' para no tener que repetir el tipo de la clase
- *         genérica. 
- *         
- *         Así List<String> l = new List<String>(); pasó a List<String> l = new List<>();
+ *         genérica.
+ * 
+ *         Así List<String> l = new List<String>(); pasó a List<String> l = new
+ *         List<>();
  * 
  */
 public class Leccion_03_01 {

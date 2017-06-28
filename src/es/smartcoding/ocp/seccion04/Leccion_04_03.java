@@ -9,6 +9,8 @@ import static java.lang.System.out;
 /**
  * @author pep
  * 
+ *         Programación Funcional
+ * 
  *         La clase Optional
  * 
  *         La clase Optional se utiliza para expresar en Java que un resultado

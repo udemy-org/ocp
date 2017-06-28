@@ -7,7 +7,7 @@ package es.smartcoding.ocp.seccion07;
  * @author pep
  * 
  *         Concurrencia
- *         
+ * 
  *         Introducción
  * 
  *         La idea detrás del procesamiento multi-thread es que una aplicación o

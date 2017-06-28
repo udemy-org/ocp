@@ -9,6 +9,8 @@ import java.util.TreeSet;
 /**
  * @author pep
  * 
+ *         Genéricos y Colecciones
+ * 
  *         Lists, Sets, Maps y Queues
  * 
  *         Una colección es un grupo de objetos contenidos en un único objeto.
@@ -261,9 +263,9 @@ public class Leccion_03_03 {
 		System.out.println(ts.floor(10));
 		System.out.println(ts.higher(10));
 		System.out.println(ts.ceiling(10));
-		
+
 		System.out.println("================");
-		
+
 		ArrayDeque<Number> ad = new ArrayDeque<>();
 		ad.offer(1);
 		ad.offer(10);

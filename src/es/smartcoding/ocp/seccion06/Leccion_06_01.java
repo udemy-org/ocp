@@ -16,6 +16,8 @@ import java.util.Locale;
  * 
  *         Excepciones y aserciones
  * 
+ *         Introducción
+ * 
  *         Un programa puede fallar por muchas razones: intento de acceso a un
  *         fichero que no existe, problemas de red en el acceso a una base de
  *         datos, una instrucción SQL mal escrita...

@@ -11,13 +11,20 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 
  * @author pep
  * 
+ *         Diseño avanzado de clases
+ * 
+ *         Algunos métodos particulares
+ * 
  *         Los método equals(), hashCode() y toString()
- *         
- *         El método equals() tiene un parámetro de tipo Object y retornará false si el argumento es null o el tipo no coincide
- *         
- *         El método hashCode() retorna un entero calculado a partir de todas o algunas de las variables de instancia de la clase
- *         
- *         El método toString() retorna una cadena que será la representación escrita de una clase
+ * 
+ *         El método equals() tiene un parámetro de tipo Object y retornará
+ *         false si el argumento es null o el tipo no coincide
+ * 
+ *         El método hashCode() retorna un entero calculado a partir de todas o
+ *         algunas de las variables de instancia de la clase
+ * 
+ *         El método toString() retorna una cadena que será la representación
+ *         escrita de una clase
  *
  */
 
@@ -33,8 +40,9 @@ class Fraccion {
 
 	@Override
 	public String toString() {
-//		return String.format("Fraccion [numerador=%s, denominador=%s]",	numerador, denominador);
-		return ToStringBuilder.reflectionToString(this,	ToStringStyle.SHORT_PREFIX_STYLE);
+		// return String.format("Fraccion [numerador=%s, denominador=%s]",
+		// numerador, denominador);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	@Override
@@ -59,22 +67,23 @@ class Fraccion {
 		if (obj == null) {
 			return false;
 		}
-		// Una fraccion sólo puede comparse con una fracción, si se compara con cualquier otras cosa retorna false.
+		// Una fraccion sólo puede comparse con una fracción, si se compara con
+		// cualquier otras cosa retorna false.
 		if (!(obj instanceof Fraccion)) {
 			return false;
 		}
 		Fraccion other = (Fraccion) obj;
-//		if (Double.doubleToLongBits(denominador) != Double
-//				.doubleToLongBits(other.denominador)) {
-//			return false;
-//		}
-//		if (Double.doubleToLongBits(numerador) != Double
-//				.doubleToLongBits(other.numerador)) {
-//			return false;
-//		}
-//		return true;
-		return new EqualsBuilder().appendSuper(super.equals(obj))
-				.append(numerador, other.numerador) .append(denominador, other.denominador) .isEquals();
+		// if (Double.doubleToLongBits(denominador) != Double
+		// .doubleToLongBits(other.denominador)) {
+		// return false;
+		// }
+		// if (Double.doubleToLongBits(numerador) != Double
+		// .doubleToLongBits(other.numerador)) {
+		// return false;
+		// }
+		// return true;
+		return new EqualsBuilder().appendSuper(super.equals(obj)).append(numerador, other.numerador)
+				.append(denominador, other.denominador).isEquals();
 	}
 
 }

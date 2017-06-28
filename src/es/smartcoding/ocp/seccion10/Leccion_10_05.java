@@ -35,7 +35,7 @@ import java.sql.Statement;
  *         Las ventajas son las siguientes:
  * 
  *         1. Velocidad
- *  
+ * 
  *         2. Seguridad
  * 
  *         3. Legibilidad

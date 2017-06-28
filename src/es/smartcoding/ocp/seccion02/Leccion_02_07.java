@@ -6,6 +6,9 @@ package es.smartcoding.ocp.seccion02;
 /**
  * @author pep
  * 
+ *         Principios de diseño y patrones
+ * 
+ *         Patrones de diseño básicos
  * 
  *         El patrón de diseño creacional Factory resuelve el problema de cómo
  *         crear objetos aun cuando el tipo concreto de objeto no sea conocido
@@ -19,7 +22,7 @@ package es.smartcoding.ocp.seccion02;
  *         Igual que en el patrón Builder los constructores podrian privados o
  *         protegidos si la clase Factory fuera una clase interna o estuviera en
  *         el mismo paquete respectivamente.
- *         
+ * 
  *         EL APARTADO ANTERIOR SE DEJA COMO EJERCICIO.
  *
  */

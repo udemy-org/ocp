@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
  * 
  *         Concurrencia
  * 
+ *         Sincronización del acceso a los datos (Continuación)
+ * 
  *         Otra solución al problema anterior pasa por utilizar bloques
  *         sincronizados: si sincronizamos el acceso a la zona crítica del
  *         método incrementAndPrint() obtenemos el resultado que queremos.

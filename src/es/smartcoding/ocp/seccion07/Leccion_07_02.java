@@ -7,6 +7,8 @@ package es.smartcoding.ocp.seccion07;
  * @author pep
  * 
  *         Concurrencia
+ *         
+ *         Runnable
  * 
  *         La interfaz Runnable es una interfaz funcional con un único método
  *         que no tiene argumentos y que retorna void. Aunque desde Java 8 es

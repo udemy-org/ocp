@@ -14,9 +14,9 @@ import static java.lang.System.out;
 /**
  * @author pep
  * 
- *         Usando Streams
+ *         Programación Funcional
  * 
- *         Las operaciones intermedias
+ *         Usando Streams: Las operaciones intermedias
  * 
  *         A diferencia de las operaciones terminales, las operaciones
  *         intermedias tratan los streams infinitos simplemente retornando un
@@ -106,21 +106,16 @@ public class Leccion_04_05 {
 		 * Habitualmente se utiliza para monitorizar los valores de un stream
 		 * mientras progresa.
 		 * 
-		 * En este ejemplo vemos que cadenas cumplen el predicado. 
+		 * En este ejemplo vemos que cadenas cumplen el predicado.
 		 */
 		long total = Stream.of("sdfds@asdfads.cat", "asdfasd.cat", "asdfasfd@dffdxz.cat").filter(s -> s.contains("@"))
 				.peek(out::println).count();
 		System.out.println(total);
-		
+
 		/*
 		 * Intenta determinar la salida de esta línea de código
 		 */
-		Stream
-		.iterate(1, n -> n + 1)
-		.limit(5)
-		.peek(out::print)
-		.filter(n -> n % 2 == 0)
-		.forEach(out::print);
+		Stream.iterate(1, n -> n + 1).limit(5).peek(out::print).filter(n -> n % 2 == 0).forEach(out::print);
 
 	}
 

@@ -29,9 +29,9 @@ import static java.lang.System.out;
 /**
  * @author pep
  * 
- *         Usando Streams
+ *         Programación Funcional
  * 
- *         Trabajando con primitivos
+ *         Usando Streams: Trabajando con primitivos
  * 
  *         A la hora de trabajar con tipos primitivos, int, double, etc., hay
  *         streams que tratan con estos tipos primitivos.

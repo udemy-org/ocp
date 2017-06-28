@@ -19,6 +19,8 @@ import java.util.function.UnaryOperator;
 /**
  * @author pep
  * 
+ *         Programación Funcional
+ * 
  *         Interfaces funcionales de Java 8
  * 
  *         El paqueta java.util.functional de Java 8 incluye algunas interfaces

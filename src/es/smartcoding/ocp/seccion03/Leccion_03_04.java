@@ -11,6 +11,8 @@ import java.util.List;
 /**
  * @author pep
  * 
+ *         Genéricos y Colecciones
+ * 
  *         Comparator vs Comparable
  * 
  *         Los números tienen un orden natural y las cadenas se ordenan en
@@ -31,23 +33,23 @@ import java.util.List;
  *         esta pensada para ser implementada dentro de la propia clase. En
  *         cambio sí que tiene sentido implementar la interfaz Comparator con
  *         una expresión lambda.
- *         
+ * 
  *         Hay algunas diferencias entre ambas interfaces:
- *         
+ * 
  *         Diferencia Comparable Comparator
- *         
+ * 
  *         Paquete java.lang java.util
- *         
+ * 
  *         Implementación en la propia clase Sí No
- *         
+ * 
  *         Nombre del método compareTo compare
- *         
- *         Número de parámetros 1 2 
- *         
+ * 
+ *         Número de parámetros 1 2
+ * 
  *         Recomendado usar expresiones lambda No Sí
- *         
- *         
- *        
+ * 
+ * 
+ * 
  * 
  */
 

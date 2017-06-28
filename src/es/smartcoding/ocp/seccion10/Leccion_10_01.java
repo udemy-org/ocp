@@ -72,10 +72,8 @@ public class Leccion_10_01 {
 					"INSERT INTO eventos (nombre, descripcion) VALUES ('backup', 'se ha hecho una copia de seguridad del sistema')");
 			stmt.executeUpdate(
 					"INSERT INTO eventos (nombre, descripcion) VALUES ('restore', 'se ha restaurado la ultima imagen guardada')");
-			stmt.executeUpdate(
-					"DELETE FROM eventos WHERE nombre = 'restore'");
-			stmt.executeUpdate(
-					"UPDATE eventos SET nombre='copia' WHERE nombre = 'backup'");
+			stmt.executeUpdate("DELETE FROM eventos WHERE nombre = 'restore'");
+			stmt.executeUpdate("UPDATE eventos SET nombre='copia' WHERE nombre = 'backup'");
 			System.out.println("OK");
 		}
 	}

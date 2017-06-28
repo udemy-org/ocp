@@ -5,8 +5,9 @@ package es.smartcoding.ocp.seccion01;
 
 /**
  * 
- * @author pep 
+ * @author pep
  * 
+ *         Diseño avanzado de clases
  * 
  *         Ejemplo de clase interna local
  * 
@@ -33,7 +34,7 @@ public class Leccion_01_06_B {
 		// k++; // No seria efectivamente final
 		class InnerLocalClass {
 			public void calcula() {
-//				System.out.println(euros * T * k);
+				// System.out.println(euros * T * k);
 			}
 		}
 		InnerLocalClass c = new InnerLocalClass();

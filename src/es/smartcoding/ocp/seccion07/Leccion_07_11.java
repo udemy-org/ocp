@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 
  *         Concurrencia
  * 
- *         Colecciones concurrente
+ *         Colecciones concurrentes
  * 
  *         Además de tratar la gestión de threads, la API de concurrencia
  *         incluye clases e interfaces que nos pesmiten coordinar el acceso a
