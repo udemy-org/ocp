@@ -185,7 +185,7 @@ class RellenaArrayRecursiveAction extends RecursiveAction {
 class SumaArrayRecursiveTask extends RecursiveTask<Double> {
 
 	// Límite inferior
-	private static final int THRESHOLD = 100;
+	private static final int THRESHOLD = 3;
 
 	/*
 	 * Algunos autores usan 'm' como prefijo de las variable miembro
@@ -244,7 +244,7 @@ class SumaArrayRecursiveTask extends RecursiveTask<Double> {
 public class Leccion_07_19 {
 
 	// Dimension del array
-	private static final int DIM = 10_000;
+	private static final int DIM = 6;
 
 	/**
 	 * @param args
