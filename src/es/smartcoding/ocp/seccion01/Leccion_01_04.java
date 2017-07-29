@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.smartcoding.ocp.seccion01;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -15,16 +12,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 
  *         Algunos métodos particulares
  * 
- *         Los método equals(), hashCode() y toString()
+ *         Los método equals(), hashCode() y toString() de la clase Object
  * 
- *         El método equals() tiene un parámetro de tipo Object y retornará
- *         false si el argumento es null o el tipo no coincide
+ *         El método equals() tiene un parámetro de tipo Object y retornará false si el argumento es null, el tipo no coincide 
+ *         o sencillamente los dos objetos son diferentes según algún criterio. En caso contrario, si son iguales, retornará true.
  * 
- *         El método hashCode() retorna un entero calculado a partir de todas o
- *         algunas de las variables de instancia de la clase
+ *         El método hashCode() retorna un entero calculado a partir de todas o algunas de las variables de instancia de la clase
  * 
- *         El método toString() retorna una cadena que será la representación
- *         escrita de una clase
+ *         El método toString() retorna una cadena que será la representación en forma de cadena de una clase
  *
  */
 
@@ -67,7 +62,7 @@ class Fraccion {
 		if (obj == null) {
 			return false;
 		}
-		// Una fraccion sólo puede comparse con una fracción, si se compara con
+		// Una fraccion sólo puede compararse con una fracción, si se compara con
 		// cualquier otras cosa retorna false.
 		if (!(obj instanceof Fraccion)) {
 			return false;
@@ -93,7 +88,12 @@ public class Leccion_01_04 {
 	public static void main(String[] args) {
 		Fraccion f1 = new Fraccion(1, 2);
 		Fraccion f2 = new Fraccion(2, 1);
+		System.out.println(f1.equals(f1));
+		System.out.println(f1.equals(f2));
+		System.out.println(f1.equals(null));
+		System.out.println(f1.equals("1/2"));
 		System.out.println(f1.hashCode());
 		System.out.println(f2.hashCode());
+		System.out.println(f1);
 	}
 }

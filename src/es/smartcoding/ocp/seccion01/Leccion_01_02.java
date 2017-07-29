@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.smartcoding.ocp.seccion01;
 
 /**
@@ -11,15 +8,13 @@ package es.smartcoding.ocp.seccion01;
  * 
  *         Métodos virtuales
  * 
- *         Desde Java 8 se conocen a los métodos no static como métodos
- *         virtuales.
+ *         Desde Java 8 se conocen a los métodos no static como métodos virtuales.
  * 
- *         Como ves en este ejemplo, Java llama al método virtual come()
- *         correspondiente lo que se determina en tiempo de ejecución.
+ *         Como ves en este ejemplo, Java llama al método virtual come() correspondiente, en función del objeto al que hace referencia, lo que se determina en
+ *         tiempo de ejecución.
  * 
- *         Pero en el caso de las campos no ocurre lo mismo. Java accede al
- *         campo en función del tipo de la instancia y no del tipo de objeto a
- *         que hace referencia.
+ *         Pero en el caso de las campos no ocurre lo mismo. Java accede al campo en función del tipo de la instancia y no del tipo de objeto al que hace
+ *         referencia.
  *
  */
 abstract class Animal {
@@ -59,9 +54,12 @@ class Foca extends Animal {
 public class Leccion_01_02 {
 
 	public static void main(String[] args) {
-		Animal animal = new Foca();
-		animal.come();
-		System.out.println(animal.nombre);
+		Animal foca = new Foca();
+		Animal vaca = new Vaca();
+		foca.come();
+		vaca.come();
+		System.out.println(foca.nombre);
+		System.out.println(vaca.nombre);
 
 	}
 
