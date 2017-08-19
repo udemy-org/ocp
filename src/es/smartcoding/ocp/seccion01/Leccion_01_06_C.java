@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.smartcoding.ocp.seccion01;
 
 /**
@@ -11,17 +8,13 @@ package es.smartcoding.ocp.seccion01;
  * 
  *         Ejemplo de clase interna anónima
  * 
- *         Una clase interna anónima es una clase interna local que no tiene
- *         nombre.
+ *         Una clase interna anónima es una clase interna local que no tiene nombre.
  * 
- *         Se declara y se instancia todo en una misma orden mediante la palabra
- *         clave new.
+ *         Se declara y se instancia todo en una misma orden mediante la palabra clave new.
  * 
- *         Todas las clases internas anónimas deben extender otra clase o
- *         implementar una interfaz pero no puede hacer las dos cosas a la vez.
+ *         Todas las clases internas anónimas deben extender otra clase o implementar una interfaz pero no puede hacer las dos cosas a la vez.
  * 
- *         Son muy útiles a la hora de hacer una implementación corta que no se
- *         usará en ningún otro sitio.
+ *         Son muy útiles a la hora de hacer una implementación corta que no se usará en ningún otro sitio, como por ejemplo un Listener.
  * 
  * 
  * 
@@ -44,7 +37,7 @@ public class Leccion_01_06_C {
 
 			@Override
 			public void imprime() {
-				// System.out.println(doc);
+				System.out.println(doc);
 
 			}
 
@@ -53,3 +46,10 @@ public class Leccion_01_06_C {
 	}
 
 }
+
+
+
+
+
+
+

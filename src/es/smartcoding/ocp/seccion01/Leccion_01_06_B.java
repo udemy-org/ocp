@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.smartcoding.ocp.seccion01;
 
 /**
@@ -17,11 +14,9 @@ package es.smartcoding.ocp.seccion01;
  * 
  *         2. No pueden ser estáticas ni declarar ningún miembro estático
  * 
- *         3. Tienen acceso a todos los miembros de la clase contenedora
- *         (Leccion_01_06_B)
+ *         3. Tienen acceso a todos los miembros de la clase contenedora (Leccion_01_06_B)
  * 
- *         4. Sólo tienen acceso a las variables locales finales o efectivamente
- *         finales (que se han inicializado exactamente una vez)
+ *         4. Sólo tienen acceso a las variables locales finales o efectivamente finales (que se han inicializado exactamente una vez)
  * 
  */
 
@@ -31,10 +26,10 @@ public class Leccion_01_06_B {
 
 	public void calcula(final double euros) {
 		int k = 3;
-		// k++; // No seria efectivamente final
+		// k++; // 'k' no seria efectivamente final
 		class InnerLocalClass {
 			public void calcula() {
-				// System.out.println(euros * T * k);
+				System.out.println(euros * T * k);
 			}
 		}
 		InnerLocalClass c = new InnerLocalClass();
@@ -47,3 +42,9 @@ public class Leccion_01_06_B {
 	}
 
 }
+
+
+
+
+
+

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.smartcoding.ocp.seccion01;
 
 /**
@@ -9,29 +6,21 @@ package es.smartcoding.ocp.seccion01;
  * 
  *         Diseño avanzado de clases
  * 
- *         Clases dentro de clases
+ *         Clases dentro de clases (clases anidadas o nested classes)
  * 
- *         A las clases anidadas que no son estáticas se las llama clases
- *         internas. Hay cuatro tipos de clases anidadas:
+ *         A las clases anidadas que no son estáticas se las llama clases internas. Hay cuatro tipos de clases anidadas:
  * 
- *         1. Una clase interna es una clase no estática definida al mismo nivel
- *         que un miembro de instancia (inner class)
+ *         1. Una clase interna es una clase no estática definida al mismo nivel que un miembro de instancia (inner class)
  * 
- *         2. Una clase interna local es una clase no estática definida a nivel
- *         de método.
+ *         2. Una clase interna local es una clase no estática definida a nivel de método.
  * 
- *         3. Una clase interna anónima es una clase especial de clase interna
- *         local que no tiene nombre.
+ *         3. Una clase interna anónima es una clase especial de clase interna local que no tiene nombre.
  * 
- *         4. Por último, una clase anidada estática es una clase estática
- *         definida al mismo nivel que una miembro de clase.
+ *         4. Por último, una clase anidada estática es una clase estática definida al mismo nivel que un miembro de clase.
  * 
- *         Básicamente las clases anidadas son clases de ayuda que definimos
- *         dentro de otra clase fáciles de crear y que sólo se utilizarána en
- *         ese contexto.
+ *         Básicamente las clases anidadas son clases de ayuda que definimos dentro de otra clase fáciles de crear y que sólo se utilizarán en ese contexto.
  * 
- *         Aunque si no se utilizan adecuadamente, pueden hacer el código más
- *         difícil de leer.
+ *         Aunque si no se utilizan adecuadamente, pueden hacer el código más difícil de leer.
  * 
  */
 public class Leccion_01_06_A {
@@ -67,3 +56,9 @@ public class Leccion_01_06_A {
 	}
 
 }
+
+
+
+
+
+

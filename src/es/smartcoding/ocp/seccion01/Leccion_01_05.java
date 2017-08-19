@@ -26,7 +26,7 @@ enum Planeta {
 }
 
 /*
- * Y pueden ser como clases regulares: con campos, constructores (privados o default porque sólo se pueden llamar internamente) y métodos.
+ * O puede ser como una clase regulare: con campos, constructores (privados o default porque sólo se pueden llamar internamente) y métodos.
  */
 enum Dia {
 
@@ -138,3 +138,10 @@ public class Leccion_01_05 {
 	}
 
 }
+
+
+
+
+
+
+

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package es.smartcoding.ocp.seccion02;
 
 /**
@@ -10,32 +7,23 @@ package es.smartcoding.ocp.seccion02;
  * 
  *         Introducción a la programación funcional.
  * 
- *         Una interfaz funcional es aquella que contiene exactamente un único
- *         método abstracto.
+ *         Una interfaz funcional es aquella interfaz que contiene exactamente un único método abstracto.
  * 
- *         Representan la base de las expresiones lambda en la programación
- *         funcional.
+ *         Representan la base de las expresiones lambda en la programación funcional.
  * 
- *         Una expresión lambda es un bloque de código parecido a un método
- *         anónimo que puede pasarse como parámetro.
+ *         Una expresión lambda es un bloque de código parecido a un método anónimo que puede pasarse como parámetro.
  * 
- *         Dado que las expresiones lambda y la programación funcional es una
- *         parte integral de Java 8 haremos una revisión en esta lección, si
- *         bien se ven ampliamente en la sección Colecciones Genéricas.
+ *         Dado que las expresiones lambda y la programación funcional es una parte integral de Java 8 en esta lección haremos sólo una revisión, ya que se ven
+ *         ampliamente en la sección 'Colecciones Genéricas'.
  * 
- *         Aunque es una buena práctica marcar una interfaz funcional con la
- *         anotación @FunctionalInterface, no es un requerimiento ya que el
- *         compilador lo asume ímplicitamente.
+ *         Aunque es una buena práctica marcar una interfaz funcional con la anotación @FunctionalInterface, no es un requerimiento ya que el compilador lo
+ *         asume implícitamente.
  * 
- *         Revisa el apartado 'Syntax of Lambda Expressions' de este enlace:
- *         https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+ *         La interfaz Predicate<T> que declara el método public boolean test(T t) es una de las interfaces funcionales que proporciona Java 8.
  * 
- *         Revisa también la sección 'Understanding Lambda Syntax' del libro
- *         'Oracle Certified Professional Java 8'.
+ *         Revisa el apartado 'Syntax of Lambda Expressions' de este enlace: https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
  * 
- *         La interfaz Predicate<T> declara el método test(T t) que retorna un
- *         valor lógico es una de las interfaces funcionales que proporciona
- *         Java 8.
+ *         Revisa también la sección 'Understanding Lambda Syntax' del libro 'Oracle Certified Professional Java 8'.
  * 
  */
 
@@ -78,3 +66,8 @@ public class Leccion_02_02 {
 	}
 
 }
+
+
+
+
+
