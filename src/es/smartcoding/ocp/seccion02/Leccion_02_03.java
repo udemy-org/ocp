@@ -3,8 +3,6 @@
  */
 package es.smartcoding.ocp.seccion02;
 
-import java.util.Date;
-
 /**
  * @author pep
  * 
@@ -12,59 +10,40 @@ import java.util.Date;
  * 
  *         Implementando Polimorfismo.
  * 
- *         El polimorfismo es la característica por la que una interfaz puede
- *         tener múltiples implementaciones.
+ *         El polimorfismo es la característica por la que una interfaz puede tener múltiples implementaciones.
  * 
- *         En Java a todos los objetos se accede mediante referencias, lo que
- *         significa que no tenemos acceso directo a la memoria que ocupa el
- *         objeto mismo.
+ *         En Java a todos los objetos se accede mediante referencias, lo que significa que no tenemos acceso directo a la memoria que ocupa el objeto mismo.
  * 
- *         Por lo tanto el objeto es la entidad que existe en memoria que Java a
- *         reservado.
+ *         Por lo tanto el objeto es la entidad que existe en la memoria que Java le ha reservado.
  * 
- *         Cuando reasignamos un objeto cualquiera a una referencia de tipo
- *         Object, el objeto en si no cambia, lo que cambia es que ya no podemos
- *         acceder a las propiedades del objeto original.
+ *         Cuando reasignamos un objeto cualquiera a una referencia de tipo Object, el objeto en sí no cambia, lo que cambia es que ya no podemos acceder a las
+ *         propiedades del objeto original.
  * 
- *         En cambio, podemos volver a acceder a las propiedades del objeto
- *         original si hacemos el cast adecuado.
+ *         En cambio, sí que podemos volver a acceder a las propiedades del objeto original si hacemos el cast adecuado.
  * 
  *         Un cast, sin embargo, sigue unas reglas básicas:
  * 
- *         1. Si vamos de subclase a superclase no necesitamos ningún casting
- *         explícito, (por ejemplo, de gallina a animal).
+ *         1. Cuando vamos de subclase a superclase no necesitamos ningún casting explícito, (por ejemplo, de gallina a animal).
  * 
- *         2. El camino contrario de superclase a subclase sí que necesita un
- *         casting explícito, (por ejemplo, de animal a gallina).
+ *         2. El camino contrario de superclase a subclase sí que necesita un casting explícito, (por ejemplo, de animal a gallina).
  * 
- *         3. Una conversion (cast) de tipos que no estan relacionados generan
- *         un error en tiempo de compilación.
+ *         3. Una conversion (cast) de tipos que no estan relacionados generan un error en tiempo de compilación.
  * 
- *         4. Incluso cuando el código compila sin problemas, puede lanzare una
- *         excepción en tiempo de ejecución si la transformación no es válida.
+ *         4. Incluso cuando el código compila sin problemas, puede lanzare una excepción en tiempo de ejecución si la transformación no es válida.
  * 
  *         La línea (1) no compila porque un elefante no es un animal domestico.
  * 
- *         La línea (2) en cambio, sí que compila pero genera un error en tiempo
- *         de ejecución.
+ *         La línea (2) en cambio, sí que compila pero genera un error en tiempo de ejecución.
  * 
- *         Para acabar, es importante reconocer las diferencias entre objeto y
- *         referencia.
- * 
- *         En Java todos los objetos son accedidos por referencia.
+ *         Para acabar, es importante reconocer las diferencias entre objeto y referencia porque en Java todos los objetos son accedidos por referencia.
  * 
  *         Hay dos reglas que resumen este concepto:
  * 
- *         1. El tipo de un objeto determina qué propiedades existen dentro del
- *         objeto en memória.
+ *         1. El tipo de un objeto determina qué propiedades existen dentro del objeto en memória.
  * 
- *         2. El tipo de la referencia de un objeto determina qué métodos son
- *         accesibles.
+ *         2. El tipo de la referencia de un objeto determina qué métodos son accesibles.
  * 
- *         En la línea (3) el objeto o aunque hace referencia a una instancia de
- *         tipo AnimalDomestico
- * 
- *         no puede acceder al método habla().
+ *         En la línea (3) el objeto 'object' aunque hace referencia a una instancia de tipo AnimalDomestico no puede acceder al método habla().
  *
  */
 
@@ -117,8 +96,8 @@ public class Leccion_02_03 {
 		// ca = elefante; // (1)
 		// compila pero genera un error en tiempo de ejecución
 		ad = (AnimalDomestico) elefante; // (2)
-		Object o = ad; // (3)
-
+		Object object = ad; // (3)
+		// object.habla();
 	}
 
 }
