@@ -1,5 +1,5 @@
 /**
- * 
+ * NO FORMA PARTE DEL CURSO OCP
  */
 package es.smartcoding.ocp.seccion02;
 

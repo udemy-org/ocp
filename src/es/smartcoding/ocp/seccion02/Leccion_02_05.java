@@ -13,27 +13,24 @@ import java.util.List;
  * 
  *         Principios de diseño y patrones
  * 
- *         Un patrón de diseño es una solución generalmente aceptada a un
- *         problema recurrente de diseño de software en un contexto dado.
+ *         Un patrón de diseño es una solución generalmente aceptada a un problema recurrente de
+ *         diseño de software en un contexto dado.
  * 
- *         Estas soluciones que han encontrado otros programadores forman un
- *         vocabulario que utilizan los programadores para comunicarse entre
- *         ellos.
+ *         Estas soluciones que han encontrado otros programadores conforman un vocabulario que
+ *         utilizan los programadores para comunicarse entre ellos.
  * 
- *         En el curso de certificación OCP sólo se tratan dos de los patrones
- *         creacionales, que gestionan la creación de objetos dentro de las
- *         aplicaciones: el patrón Singleton y el patrón Immutable.
+ *         En el curso de certificación OCP sólo se tratan dos de los patrones, que gestionan la
+ *         creación de objetos dentro de las aplicaciones: el patrón Singleton y el patrón
+ *         Immutable. Son por lo tanto, dos ejemplos de patrones creacionales.
  * 
- *         El patrón Singleton soluciona el problema de cómo diseñar una clase
- *         de la que sólamente se pueda crear un único objeto.
+ *         El patrón Singleton soluciona el problema de cómo diseñar una clase de la que sólamente
+ *         se pueda crear un único objeto.
  * 
- *         El patrón Immutable soluciona el problema de cómo crear objetos de
- *         sólo lectura para que puedan ser compartidos por múltiples clases.
- *         Como su estado no cambia después de haber sido creado, son
- *         inherentemente thread safe.
+ *         El patrón Immutable soluciona el problema de cómo crear objetos de sólo lectura para que
+ *         puedan ser compartidos por múltiples clases. Como su estado no cambia después de haber
+ *         sido creado, son inherentemente thread safe.
  * 
- *         Los patrones de diseño Builder y Factory aunque muy utiles no forman
- *         del examen.
+ *         Los patrones de diseño Builder y Factory aunque muy utiles no forman parte del examen.
  * 
  * 
  */
@@ -67,8 +64,8 @@ class SingletonLateInstanciation {
 	}
 
 	/*
-	 * Instanciación tardia y thread safe. Aunque sólo la primera invocación
-	 * necesita estar sincronizada.
+	 * Instanciación tardia y thread safe. Aunque sólo la primera invocación necesita estar
+	 * sincronizada.
 	 */
 	public synchronized static SingletonLateInstanciation getInstance() {
 		if (instance == null) {
@@ -81,8 +78,8 @@ class SingletonLateInstanciation {
 
 class SingletonLateInstanciationWithDoubleCheckLocking {
 	/*
-	 * volatile previene optimizaciones. Previene que un objeto sea accedido
-	 * antes de que se haya acabado de construir.
+	 * volatile previene optimizaciones. Previene que un objeto sea accedido antes de que se haya
+	 * acabado de construir.
 	 */
 	private static volatile SingletonLateInstanciationWithDoubleCheckLocking instance;
 
@@ -94,8 +91,8 @@ class SingletonLateInstanciationWithDoubleCheckLocking {
 	}
 
 	/*
-	 * Instanciación tardia y thread safe. Realmente la sincronización sólo es
-	 * necesaria la primera vez que se crea una instancia.
+	 * Instanciación tardia y thread safe. Realmente la sincronización sólo es necesaria la primera
+	 * vez que se crea una instancia.
 	 */
 	public static SingletonLateInstanciationWithDoubleCheckLocking getInstance() {
 		if (instance == null) {
@@ -113,11 +110,15 @@ class SingletonLateInstanciationWithDoubleCheckLocking {
 /*
  * Requisitos:
  * 
- * 1. El constructor debe proporcionar un valor para cada propiedad. 2. Todas
- * las variables de instancia deben ser privadas y finales. 3. No se deben
- * debinir métodos setter. 4. No se debe permitir el acceso a objetos mutables
- * directamente. 5. Prevenir que los métodos de la clase puedan ser
- * sobrescritos.
+ * 1. El constructor debe proporcionar un valor para cada propiedad.
+ * 
+ * 2. Todas las variables de instancia deben ser privadas y finales.
+ * 
+ * 3. No se deben debinir métodos setter.
+ * 
+ * 4. No se debe permitir el acceso a objetos mutables directamente.
+ * 
+ * 5. Prevenir que los métodos de la clase puedan ser sobrescritos.
  */
 class Immutable {
 	/*
@@ -130,20 +131,18 @@ class Immutable {
 			throw new RuntimeException("La lista de elementos no puede ser nula.");
 		}
 		/*
-		 * Previene que se puedan modificar los elementos de this.elements a
-		 * través de elements.
+		 * Previene que se puedan modificar los elementos de this.elements a través de elements.
 		 */
 		this.elements = new ArrayList<String>(elements);
 		/*
-		 * Esta variante no funciona!!! Porque hay dos referencias al mismo
-		 * objeto por lo tanto no queda garantizada la inmutabilidad.
+		 * Esta variante no funciona!!! Porque hay dos referencias al mismo objeto por lo tanto no
+		 * queda garantizada la inmutabilidad.
 		 */
 		// this.elements = elements; // NO FUNCIONA
 	}
 
 	/*
-	 * No debemos compartir referencias a objetos mutables contenidos dentro de
-	 * un objeto inmutable.
+	 * No debemos compartir referencias a objetos mutables contenidos dentro de un objeto inmutable.
 	 */
 	public final List<String> getElements() {
 		return Collections.unmodifiableList(elements);
@@ -172,3 +171,7 @@ public class Leccion_02_05 {
 	}
 
 }
+
+
+
+

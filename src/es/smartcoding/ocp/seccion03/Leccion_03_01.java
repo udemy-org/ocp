@@ -15,30 +15,25 @@ import java.util.List;
  * 
  *         Introducción
  * 
- *         Como Java es acumulativo, debes recordar cómo trabajar con la clase
- *         ArrayList y arrays vistos en el curso OCA.
+ *         Como los contenidos son acumulativos, debes recordar cómo trabajar con las clases
+ *         ArrayList y Arrays vistos en el curso OCA.
  * 
- *         También a modo de recordatorio, el método Arrays.binarySearch() busca
- *         un elemento en un array ordenado y retorna la posición que ocupa. Si
- *         no existe retorna la posición que deberia ocupar negada y le resta
- *         -1.
+ *         A modo de recordatorio, el método Arrays.binarySearch() busca un elemento en un array
+ *         ordenado y retorna la posición que ocupa. Si no existe retorna la posición que deberia
+ *         haber ocupado negada y le resta -1.
  * 
- *         Las clases envolventes (Wrappers) son clases que enmascaran un valor
- *         primitivo como un objeto. Cada tipo primitivo: boolean, byte, short,
- *         int, long, float, double, char tiene su clase envolvente: Boolean,
- *         Byte, Short, Integer, Long, Float, Double y Character
+ *         Las clases envolventes (Wrappers) son clases que enmascaran un valor primitivo como un
+ *         objeto. Cada tipo primitivo: boolean, byte, short, int, long, float, double, char tiene
+ *         su clase envolvente: Boolean, Byte, Short, Integer, Long, Float, Double y Character
  *         respectivamente.
  * 
- *         Autoboxing se refiere al mecanismo por el cual Java convierte de
- *         forma automática un valor primitivo en su correspondiente objeto
- *         (inboxing) o viceversa (unboxing).
+ *         Autoboxing se refiere al mecanismo por el cual Java convierte de forma automática un
+ *         valor primitivo en su correspondiente objeto (inboxing) o viceversa (unboxing).
  * 
- *         Así como Java 5 introdujo los genericos, Java 7 introdujo el operador
- *         diamante (diamond) '<>' para no tener que repetir el tipo de la clase
- *         genérica.
+ *         Así como Java 5 introdujo los genericos, Java 7 introdujo el operador diamante (diamond)
+ *         '<>' para no tener que repetir el tipo de la clase genérica al invocar el constructor.
  * 
- *         Así List<String> l = new List<String>(); pasó a List<String> l = new
- *         List<>();
+ *         Así List<String> l = new List<String>(); pasó a List<String> l = new List<>();
  * 
  */
 public class Leccion_03_01 {
@@ -65,8 +60,7 @@ public class Leccion_03_01 {
 		 * 
 		 * 1. Si modificamos list2 estamos modificando array2
 		 * 
-		 * 2. El método Arrays.asList() retorna una lista cuyo tamaño no se
-		 * puede modificar
+		 * 2. El método Arrays.asList() retorna una lista cuyo tamaño no se puede modificar
 		 * 
 		 */
 		String[] array2 = { "Alfa", "Bravo" };
@@ -105,8 +99,8 @@ public class Leccion_03_01 {
 		enteros.remove(new Integer(9)); // (2)
 		System.out.println(enteros);
 		/*
-		 * La salida es [1]. Porque (1) elima el elemento con índice 1 de la
-		 * lista, es decir 7 y (2) elimina 9.
+		 * La salida es [1]. Porque (1) elima el elemento con índice 1 de la lista, es decir 7 y (2)
+		 * elimina 9.
 		 */
 	}
 

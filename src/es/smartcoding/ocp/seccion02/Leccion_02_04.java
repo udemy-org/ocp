@@ -7,14 +7,14 @@ package es.smartcoding.ocp.seccion02;
  * @author pep
  * 
  *         Principios de diseño y patrones
- *         
+ * 
  *         Principios de diseño.
  * 
- *         Un principio de diseño es una idea preestablecida o practica
- *         recomendada que facilita el proceso de diseño de software.
+ *         Un principio de diseño es una idea preestablecida o práctica recomendada que facilita el
+ *         proceso de diseño de software.
  * 
- *         En general es recomendable seguir unos buenos principio de diseño
- *         porque:
+ *         En general es recomendable seguir unos buenos principio de diseño por los siguiente
+ *         motivos:
  * 
  *         1. Se produce código más lógico.
  * 
@@ -22,28 +22,35 @@ package es.smartcoding.ocp.seccion02;
  * 
  *         3. Se facilita el reuso de clases.
  * 
- *         4. El código es más fácil de mantener y de adaptar a cambios en los
- *         requerimientos de las aplicaciones.
+ *         4. El código es más fácil de mantener y de adaptar a cambios en los requerimientos de las
+ *         aplicaciones.
  * 
- *         La encapsulación es uno de los principios básicos de diseño. De hecho
- *         es tan relevante que existe un standard llamado JavaBeans.
+ *         La encapsulación es uno de los principios básicos de diseño. De hecho es tan relevante
+ *         que existe un standard llamado JavaBeans.
  * 
- *         Un JavaBean es un principio de diseño para encapsular datos en Java
- *         que sigue unas normas sencillas:
+ *         Un JavaBean es un principio de diseño para encapsular datos en Java que sigue unas normas
+ *         sencillas:
  * 
  *         1. Las propiedades tienen que ser privadas.
  * 
- *         2. Los métodos de lectura deben empiezar por get o is si el método retorna
- *         un valor lógico.
+ *         2. Debe haber un constructor por defecto, sin parámetros, además de otros si fueran
+ *         necesarios.
  * 
- *         3. Los métodos de escritura deben empiezar por set.
+ *         3. Los métodos de lectura deben empiezar por 'get' o 'is' si el método retorna un valor
+ *         lógico.
  * 
- *         4. Después de set/is/get escribiremos el nombre de la propiedad
- *         empezando con una mayúscula.
+ *         4. Los métodos de escritura deben empiezar por 'set'.
  * 
- *         La relación es-un expresa una relación de herencia.
+ *         5. Después de set/is/get escribiremos el nombre de la propiedad empezando con una
+ *         mayúscula, es decir, en camel case.
  * 
- *         La relación tiene-un expresa una relación de composición.
+ *         6. Suelen implementar la interfaz Serializable.
+ * 
+ *         Para acabar, existen dos relaciones básicas entre clases:
+ * 
+ *         1. La relación es-un, is-a en ingles, expresa una relación de herencia.
+ * 
+ *         2. La relación tiene-un, has-a en ingles expresa una relación de composición.
  * 
  */
 
@@ -55,7 +62,7 @@ class Aspecto {
 	private String color;
 	private double peso;
 	private Tamaño tamaño;
-	
+
 	// ...
 }
 
@@ -71,7 +78,14 @@ class Mascota {
 	private Aspecto aspecto;
 
 	/*
-	 * No hay constructor por defecto
+	 * Constructor por defecto
+	 */
+	public Mascota() {
+
+	}
+
+	/*
+	 * Constuctor por conveniencia
 	 */
 	public Mascota(String nombre, boolean exotico, Aspecto aspecto) {
 		super();
@@ -88,8 +102,7 @@ class Mascota {
 	}
 
 	/*
-	 * El cambio de nombre de una mascota sigue unas normas.
-	 * Cualquier nombre no es válido. 
+	 * El cambio de nombre de una mascota sigue unas normas. Cualquier nombre no es válido.
 	 * 
 	 * Si la propiedad nombre fuera public se podría poner un nomber arbitrario.
 	 */
