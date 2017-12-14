@@ -15,8 +15,8 @@ import java.util.List;
  * 
  *         Los Genéricos
  * 
- *         Los genéricos son necesarios porque nos ayudan a prevenir que una lista de Strings
- *         contenga por ejemplo Numbers.
+ *         Los genéricos son necesarios porque nos ayudan a prevenir que por ejemplo, una lista de Strings
+ *         contenga Numbers.
  * 
  *         Nosotros podemos definir nuestras propias clases, interfaces y métodos genéricos. Por
  *         ejemplo, En la clase genérica Box, el tipo genérico T está presente en toda la clase.
@@ -56,7 +56,7 @@ import java.util.List;
  * 
  *         Con los tipos 'reifiable' se puede hacer cualquier cosa que permita Java mientras que los
  *         tipos 'non-feifiable', aquellos tipos donde se ha eliminado información en tiempo de
- *         ejecución debido al type-erasure, por ejemplo: List<String> y List<Number> tienen algunas
+ *         ejecución debido al type-erasure, por ejemplo: List<String> y List<Number>, tienen algunas
  *         limitaciones:
  * 
  *         1. No se puede llamar al constructor new T() porque en tiempo de ejecución se convertiría
@@ -85,7 +85,7 @@ import java.util.List;
  *         informe detallado de los problemas potenciales.
  * 
  *         Recuerda que el metodo get(int) de una colección no genérica (raw), retorna un Object y
- *         que Java no hace autoboxing de Object a otro tipo.
+ *         que Java no hace autoboxing de Object a ningun otro tipo.
  * 
  *         Como hemos visto los genéricos se tratan como si fueran Objects. Los Bounded wildcards o
  *         comodines límite restringen qué tipos pueden utilizarse como genéricos. Un bounded
@@ -112,37 +112,39 @@ import java.util.List;
  * 
  */
 
+
+/*
+ * Una interfaz genérica se puede implementar de tres maneras:
+ */
 interface WaterProofFootwear<T> {
 	void ship(T t);
 }
 
 /*
- * Implementación de una interfaz genérica con un tipo fijo
+ * 1. Implementación de una interfaz genérica con un tipo fijo
  */
 class Shoe implements WaterProofFootwear<Shoe> {
 
 	@Override
 	public void ship(Shoe t) {
 		// TODO Auto-generated method stub
-
 	}
 }
 
 /*
- * Implementación de una interfaz genérica con cualquier tipo
+ * 2. Implementación de una interfaz genérica con cualquier tipo
  */
 class WaterProofBoot<U> implements WaterProofFootwear<U> {
 
 	@Override
 	public void ship(U t) {
 		// TODO Auto-generated method stub
-
 	}
 
 }
 
 /*
- * Implementación de una interfaz genérica sin genéricos.
+ * 3. Implementación de una interfaz genérica sin genéricos.
  */
 @SuppressWarnings("rawtypes")
 class HighHeel implements WaterProofFootwear {
@@ -150,7 +152,6 @@ class HighHeel implements WaterProofFootwear {
 	@Override
 	public void ship(Object t) {
 		// TODO Auto-generated method stub
-
 	}
 }
 
@@ -226,19 +227,30 @@ public class Leccion_03_02 {
 		Box<Shoe> b2 = Box.<Shoe>wrap(new Shoe());
 
 		testShoes(new ArrayList<Shoe>());
-		// testShoes(new ArrayList<Boot>()); // Error
+		// testShoes(new ArrayList<Boot>()); // Error en tiempo de compilación.
 		testAnyShoes(new ArrayList<Shoe>());
 		testAnyShoes(new ArrayList<Boot>());
 
 		// Atención
 		List<? super IOException> exceptions = new ArrayList<Exception>();
-		// exceptions.add(new Exception()); // DOES NOT COMPILE
+		// exceptions.add(new Exception()); // Error en tiempo de compilación.
 		exceptions.add(new IOException());
 		// OK porque FineNotFoundException es una IOException
 		exceptions.add(new FileNotFoundException());
+		
+		// Ejemplo de type erasure
+		List<String> lstrings = new ArrayList<String>();
+		// System.out.println(lstrings instanceof List<Object>); // Error de compilación
+		System.out.println(lstrings instanceof List<?>); // true
+		
+		// String[] sí que deriva de Object[]
+		String[] strings = {};
+		System.out.println(strings instanceof Object[]); // true
+	
 	}
 
 }
+
 
 
 

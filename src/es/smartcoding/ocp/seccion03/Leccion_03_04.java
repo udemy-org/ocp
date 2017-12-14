@@ -15,24 +15,18 @@ import java.util.List;
  * 
  *         Comparator vs Comparable
  * 
- *         Los números tienen un orden natural y las cadenas se ordenan en
- *         función de su código UNICODE. Eso quiere decir que los números vienes
- *         antes, a continuación las letras mayúsculas y después las letras
- *         minúsculas. La interfaz Comparable porporciona el orden natural de
- *         una clase. Cuando queremos ordenar un conjunto de objetos por algún
- *         otro campo, utilizamos la interfaz Comparator.
+ *         Los números tienen un orden natural y las cadenas se ordenan en función de su código UNICODE. Eso quiere
+ *         decir que los números vienes antes, a continuación las letras mayúsculas y después las letras minúsculas. La
+ *         interfaz Comparable porporciona el orden natural de una clase. Cuando queremos ordenar un conjunto de objetos
+ *         por algún otro campo, utilizamos la interfaz Comparator.
  * 
- *         Si tus clases implementan Comparable, debes observar cierta
- *         coherencia entre el método compareTo() y el método equals(). Cuando
- *         compareTo() retorna 0 el método equals debería retornar true porque
- *         no todas las clases funcionan de forma precedible si no se da esta
- *         condición.
+ *         Si tus clases implementan Comparable, debes observar cierta coherencia entre el método compareTo() y el
+ *         método equals(). Cuando compareTo() retorna 0 el método equals debería retornar true porque no todas las
+ *         clases funcionan de forma precedible si no se da esta condición.
  * 
- *         Aunque ambas interfaces son funcionales no tiene sentido utilizar
- *         lambdas para implementar la interfaz Comparable porque esta interfaz
- *         esta pensada para ser implementada dentro de la propia clase. En
- *         cambio sí que tiene sentido implementar la interfaz Comparator con
- *         una expresión lambda.
+ *         Aunque ambas interfaces son funcionales no tiene sentido utilizar lambdas para implementar la interfaz
+ *         Comparable porque esta interfaz esta pensada para ser implementada dentro de la propia clase. En cambio sí
+ *         que tiene sentido implementar la interfaz Comparator con una expresión lambda.
  * 
  *         Hay algunas diferencias entre ambas interfaces:
  * 
@@ -55,10 +49,10 @@ import java.util.List;
 
 class HobbitAlturaComparator implements java.util.Comparator<Hobbit> {
 
-	@Override
-	public int compare(Hobbit hobbit1, Hobbit hobbit2) {
-		return hobbit1.altura - hobbit2.altura;
-	}
+    @Override
+    public int compare(Hobbit hobbit1, Hobbit hobbit2) {
+	return hobbit1.altura - hobbit2.altura;
+    }
 
 }
 
@@ -67,88 +61,88 @@ class HobbitAlturaComparator implements java.util.Comparator<Hobbit> {
  */
 class HobbitAlturaPesoComparator implements java.util.Comparator<Hobbit> {
 
-	@Override
-	public int compare(Hobbit hobbit1, Hobbit hobbit2) {
-		Comparator<Hobbit> c = Comparator.comparingInt(s -> s.altura);
-		c = c.thenComparingDouble(s -> s.peso);
-		return c.compare(hobbit1, hobbit2);
-	}
+    @Override
+    public int compare(Hobbit hobbit1, Hobbit hobbit2) {
+	Comparator<Hobbit> c = Comparator.comparingInt(s -> s.altura);
+	c = c.thenComparingDouble(s -> s.peso);
+	return c.compare(hobbit1, hobbit2);
+    }
 
 }
 
 class Hobbit implements java.lang.Comparable<Hobbit> {
 
-	String nombre;
-	int altura;
-	double peso;
+    String nombre;
+    int altura;
+    double peso;
 
-	public Hobbit(String nombre, int altura, double peso) {
-		this.nombre = nombre;
-		this.altura = altura;
-		this.peso = peso;
-	}
+    public Hobbit(String nombre, int altura, double peso) {
+	this.nombre = nombre;
+	this.altura = altura;
+	this.peso = peso;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+	return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Hobbit other = (Hobbit) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Hobbit other = (Hobbit) obj;
+	if (nombre == null) {
+	    if (other.nombre != null)
+		return false;
+	} else if (!nombre.equals(other.nombre))
+	    return false;
+	return true;
+    }
 
-	@Override
-	public int compareTo(Hobbit hobbit) {
-		return nombre.compareTo(hobbit.nombre);
-	}
+    @Override
+    public int compareTo(Hobbit hobbit) {
+	return nombre.compareTo(hobbit.nombre);
+    }
 
-	@Override
-	public String toString() {
-		return String.format("Hobbit [nombre=%s, altura=%s, peso=%s]", nombre, altura, peso);
-	}
+    @Override
+    public String toString() {
+	return String.format("Hobbit [nombre=%s, altura=%s, peso=%s]", nombre, altura, peso);
+    }
 
 }
 
 public class Leccion_03_04 {
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
 
-		Comparator<Hobbit> alturaComparator = (h1, h2) -> h1.altura - h2.altura;
+	Comparator<Hobbit> alturaComparator = (h1, h2) -> h1.altura - h2.altura;
 
-		List<Hobbit> hobbits = new LinkedList<>();
-		// List<Hobbit> hobbits = new ArrayList<>(); // No ordenada
-		hobbits.add(new Hobbit("Tom", 120, 109.90));
-		hobbits.add(new Hobbit("Heiss", 115, 89.78));
-		hobbits.add(new Hobbit("Timy", 120, 101.12));
-		hobbits.add(new Hobbit("Tomy", 122, 123.22));
-		hobbits.add(new Hobbit("Jossu", 127, 140.23));
-		for (Hobbit hobbit : hobbits) {
-			System.out.println(hobbit);
-		}
-		System.out.println("================");
-		// Collections.sort(hobbits, alturaComparator);
-		Collections.sort(hobbits, new HobbitAlturaPesoComparator());
-		for (Hobbit hobbit : hobbits) {
-			System.out.println(hobbit);
-		}
+	List<Hobbit> hobbits = new LinkedList<>();
+	// List<Hobbit> hobbits = new ArrayList<>(); // No ordenada
+	hobbits.add(new Hobbit("Tom", 120, 109.90));
+	hobbits.add(new Hobbit("Heiss", 115, 89.78));
+	hobbits.add(new Hobbit("Timy", 120, 101.12));
+	hobbits.add(new Hobbit("Tomy", 122, 123.22));
+	hobbits.add(new Hobbit("Jossu", 127, 140.23));
+	for (Hobbit hobbit : hobbits) {
+	    System.out.println(hobbit);
 	}
+	System.out.println("================");
+	// Collections.sort(hobbits, alturaComparator);
+	Collections.sort(hobbits, new HobbitAlturaPesoComparator());
+	for (Hobbit hobbit : hobbits) {
+	    System.out.println(hobbit);
+	}
+    }
 
 }
