@@ -15,17 +15,18 @@ import java.util.List;
  * 
  *         Comparator vs Comparable
  * 
- *         Los números tienen un orden natural y las cadenas se ordenan en función de su código UNICODE. Eso quiere
- *         decir que los números vienes antes, a continuación las letras mayúsculas y después las letras minúsculas. La
- *         interfaz Comparable porporciona el orden natural de una clase. Cuando queremos ordenar un conjunto de objetos
- *         por algún otro campo, utilizamos la interfaz Comparator.
+ *         Así como los números tienen un orden natural y las cadenas se ordenan en función de su código UNICODE, las
+ *         clases también pueden ordenarse.
+ * 
+ *         La interfaz Comparable porporciona el orden natural de una clase. Cuando queremos ordenar un conjunto de
+ *         objetos por algún otro campo, utilizamos la interfaz Comparator.
  * 
  *         Si tus clases implementan Comparable, debes observar cierta coherencia entre el método compareTo() y el
  *         método equals(). Cuando compareTo() retorna 0 el método equals debería retornar true porque no todas las
  *         clases funcionan de forma precedible si no se da esta condición.
  * 
  *         Aunque ambas interfaces son funcionales no tiene sentido utilizar lambdas para implementar la interfaz
- *         Comparable porque esta interfaz esta pensada para ser implementada dentro de la propia clase. En cambio sí
+ *         Comparable porque esta interfaz esta pensada para ser implementada dentro de la propia clase. En cambio, sí
  *         que tiene sentido implementar la interfaz Comparator con una expresión lambda.
  * 
  *         Hay algunas diferencias entre ambas interfaces:
@@ -42,11 +43,13 @@ import java.util.List;
  * 
  *         Recomendado usar expresiones lambda No Sí
  * 
- * 
- * 
+ *         Recuerda que los números vienen antes, a continuación las letras mayúsculas y después las letras minúsculas.
  * 
  */
 
+/*
+ * Este comparador compara por un campo: altura
+ */
 class HobbitAlturaComparator implements java.util.Comparator<Hobbit> {
 
     @Override
@@ -57,7 +60,7 @@ class HobbitAlturaComparator implements java.util.Comparator<Hobbit> {
 }
 
 /*
- * Este Comparator compara por dos campos
+ * Este Comparator compara por dos campos: altura y peso
  */
 class HobbitAlturaPesoComparator implements java.util.Comparator<Hobbit> {
 
@@ -146,3 +149,10 @@ public class Leccion_03_04 {
     }
 
 }
+
+
+
+
+
+
+
