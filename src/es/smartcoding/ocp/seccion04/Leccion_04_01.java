@@ -10,46 +10,47 @@ package es.smartcoding.ocp.seccion04;
  * 
  *         Introducción
  * 
- *         Ya hemos visto que las expresines lambda y referencias a métodos se
- *         utilizan para implementar interfaces funcionales, en este capítulo
- *         profundizamos en el trabajo con streams de la API Streams, que no
- *         esta relacionado con los streams del paquete java.io.
+ *         Ya hemos visto que las expresiones lambda y las referencias a métodos se utilizan para implementar interfaces
+ *         funcionales.
  * 
- *         Las expresiones lambdas pueden acceder variables estáticas, variables
- *         de instancia, parámetros de métodos efectivamente finaled y variables
- *         locales efectivamente locales.
+ *         Las expresiones lambda pueden acceder a las variables estáticas, variables de instancia, parámetros de
+ *         métodos efectivamente finales y variables locales efectivamente finales.
  * 
- *         Una variable es efectivamente final cuando una vez inicializada no
- *         vuelve a modifciarse.
+ *         Una variable es efectivamente final cuando una vez inicializada no vuelve a modificarse. Es decir, una
+ *         variable es efectivamente final cuando se inicializa una y sólo una vez.
+ * 
+ *         Revisa el código que acompaña a esta lección, responde a las preguntas planteadas y en definitiva, modifícalo
+ *         para experimentar con los contenidos de esta lección. 
  *
  */
 
-@FunctionalInterface
-interface I {
-	String f();
-}
+@FunctionalInterface interface I { String f(); }
 
 class J {
 
-	void g() {
-		String msg = "Efectivamente final";
-		// msg = "Ya no soy efectivamente final";
-		/*
-		 * Si descomentas la línea anterior la variable local msg deja de ser
-		 * efectivamente final.
-		 */
-		I i1 = () -> msg;
-	}
+    void g() {
+	String msg = "Efectivamente final"; 
+	// msg = "Ya no soy efectivamente final"; // (1)
+	/* Qué pasa si eliminas el comentario de (1) */
+	I i1 = () -> msg;
+	System.out.println(i1.f());
+    }
 
 }
 
 public class Leccion_04_01 {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	}
+    /**
+     * Determina la salida del siguiente código.
+     * 
+     * @param args
+     */
+    public static void main(String[] args) {
+	J j = new J();
+	j.g();
+    }
 
 }
+
+
+

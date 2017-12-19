@@ -5,10 +5,10 @@ package es.smartcoding.ocp.seccion06;
 
 /**
  * @author pep
- *
- *         Excepciones y aserciones
  * 
- *         Custom Exceptions
+ *         Excepciones y aserciones
+ *         
+ *         Try-With-Resources
  *         
  *         Un programa puede fallar por muchas razones: intento de acceso a un fichero que no existe, problemas de red
  *         en el acceso a una base de datos, una instrucción SQL mal escrita...
@@ -49,7 +49,7 @@ package es.smartcoding.ocp.seccion06;
  *         multi-catch.
  *
  */
-public class Leccion_06_02 {
+public class Leccion_06_04 {
 
     /**
      * @param args

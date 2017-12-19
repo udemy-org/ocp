@@ -24,16 +24,16 @@ import java.util.function.Supplier;
  * 
  *         Lo nuevo de Java 8
  * 
- *         Si dejamos a un lado el hecho de haber implementado un Comparator con una expresión lambda, así como los
- *         nuevos métodos estáticos y default añadidos a la interfaz Comparator, todo lo demás no es particular de Java
- *         8.
+ *         Hasta ahora, Si dejamos a un lado el hecho de haber implementado un Comparator con una expresión lambda, así
+ *         como los nuevos métodos estáticos y default añadidos a la interfaz Comparator, todo lo demás no es particular
+ *         de Java 8.
  * 
  *         La mayoría de las innovaciones de Java 8 giran en torno a las interfaces funcionanes, las referencias a
- *         métodos, las expresiones lambdas y los streams. Son parte integral del núcleo de Java 8, por lo que pueden
+ *         métodos, las expresiones lambda y los streams. Son parte integral del núcleo de Java 8, por lo que pueden
  *         aparecer frecuentemente.
  * 
- *         En particular, veremos cómo usar los métodos removeIf(), forEach(), merge(), computeIfPresent() y
- *         computeIfAbsent().
+ *         Revisa el código que acompaña a esta lección, responde a las preguntas planteadas y en definitiva, modifícalo
+ *         para experimentar las nuevas aportaciones de Java 8.
  * 
  */
 
@@ -48,6 +48,15 @@ class Cilindro {
     public static int comparaPorAltura(Cilindro c1, Cilindro c2) {
 	return (int) (c1.altura - c2.altura);
     }
+
+    public double getBase() {
+	return base;
+    }
+
+    public double getAltura() {
+	return altura;
+    }
+
 }
 
 public class Leccion_03_06 {
@@ -57,17 +66,18 @@ public class Leccion_03_06 {
      */
     public static void main(String[] args) {
 	/*
-	 * Si quisieramos crear un Comparator de Cilindros por base podríamos usar lambdas
+	 * Si quisieramos crear un Comparator de la clase Cilindro según el campo base, podríamos usar una lambda como
+	 * esta:
 	 */
 	Comparator<Cilindro> comparatorPorBase = (c1, c2) -> Cilindro.comparaPorBase(c1, c2);
 	/*
 	 * Aunque la implementación es correcta, hay cierta redundancia: la lambda declara dos parámetros que
 	 * simplemente se los pasa al método estático comparaPorBase de la clase Cilindro. Esta redundancia se puede
-	 * eliminar, usando una referencia a función.
+	 * eliminar, usando una referencia a un método.
 	 */
 	Comparator<Cilindro> comparatorPorAltura = Cilindro::comparaPorAltura;
 	/*
-	 * El operador de referencia a función :: dice a Java que pase automáticamente los parámetros a la función.
+	 * El operador de referencia a método :: dice a Java que pase automáticamente los parámetros a la función.
 	 * 
 	 * La expresión Cilindro::comparaPorAltura, retorna una interfaz funcional y por lo tanto es como una lambda.
 	 */
@@ -75,21 +85,26 @@ public class Leccion_03_06 {
 	/*
 	 * Hay cuatro formatos de referencia a métodos:
 	 * 
-	 * Métodos estáticos
+	 * 1.- Métodos estáticos: Math::random
 	 * 
-	 * Métodos de instancia de una instancia particular
+	 * 2.- Métodos de instancia de una instancia particular: cilindro::getBase
 	 * 
-	 * Métodos de instancia de una instancia que se determinará en tiempo de ejecución
+	 * 3.- Métodos de instancia de un tipo particular: String::toUpperCase
 	 * 
-	 * Constructores
+	 * 4.- Constructor: String::new
 	 * 
-	 * Para ilustrar el tema vamos a usar algunas interfaces funciones vistas anteriormente:
+	 * Java 8 incorpora algunas interfaes funcionales que debes conocer:
 	 * 
-	 * Predicate es una interfaz funcional que toma un parámetro de tipo T y retorna un boolean
+	 * Predicate<T> es una interfaz funcional cuyo método abstracto, test(T), toma un parámetro de tipo T y retorna
+	 * un boolean
 	 * 
-	 * Consumer es una interfaz funcional que toma un parámetro de tipo T y retorn void
+	 * Consumer<T> es una interfaz funcional cuyo método abstracto, accept(T), toma un parámetro de tipo T y retorn
+	 * void
 	 * 
-	 * Supplier es una interfaz funcional que no toma ningún parámetro y devuelve T
+	 * Supplier<T> es una interfaz funcional cuyo método abstracto, get(), no toma ningún parámetro y devuelve T
+	 * 
+	 * Function<T, R> es una interfaz funcional cuyo método abstracto, apply(T), toma un parámetro de tipo T y
+	 * retorna R
 	 * 
 	 */
 
@@ -124,7 +139,7 @@ public class Leccion_03_06 {
 	System.out.println(lambda2.test("lo que"));
 
 	/*
-	 * Ejemplo de método de instancia de una instancia conocida en tiempo de ejecución
+	 * Ejemplo de método de instancia de un tipo
 	 * 
 	 */
 
@@ -180,8 +195,6 @@ public class Leccion_03_06 {
 
 	/*
 	 * Recorrer una colección es una operación muy corriente. Java 8 añade otra más mediante el uso de lambdas.
-	 * 
-	 * 
 	 */
 
 	strings.forEach((String c) -> System.out.println(c));
@@ -210,11 +223,8 @@ public class Leccion_03_06 {
 	System.out.println(favorites);
 
 	/*
-	 * merge
-	 * 
-	 * La interfaz funcional UnaryOperator es un especialización de Function cuyo método abstracto acepta un
-	 * parámetro y retorna un valor del mismo tipo.
-	 * 
+	 * La interfaz funcional UnaryOperator es un especialización de Function cuyo método abstracto, apply(T) acepta
+	 * un parámetro y retorna un valor del mismo tipo.
 	 * 
 	 */
 
@@ -225,7 +235,6 @@ public class Leccion_03_06 {
 	 * Recorriendo una colección
 	 * 
 	 * Java 8 introduce una nuevo método que utiliza una expresión lambda o referencia a función.
-	 * 
 	 * 
 	 */
 
