@@ -37,6 +37,9 @@ package es.smartcoding.ocp.seccion06;
  * 
  *         Para acabar, recuerda que puedes pasar parámetros tanto al main como a la maquina virtual desde el menú
  *         Run/Run Configurations, pestaña Arguments.
+ *         
+ *         Revisa el código que acompaña a esta lección, responde a las preguntas planteadas y en definitiva, modifícalo
+ *         para experimentar con los contenidos de esta lección.
  * 
  */
 public class Leccion_06_06 {

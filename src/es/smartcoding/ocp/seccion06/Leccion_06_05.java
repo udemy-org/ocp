@@ -58,6 +58,9 @@ import java.util.Locale;
  *         Recuerda también la diferencia entre throws y throw y cómo se pueden crear exceptciones personalizadas, así
  *         como la posibilidad de capturar múltiples excepciones en un mismo bloque catch, lo que se conoce como
  *         multi-catch.
+ *         
+ *         Revisa el código que acompaña a esta lección, responde a las preguntas planteadas y en definitiva, modifícalo
+ *         para experimentar con los contenidos de esta lección.
  *
  */
 public class Leccion_06_05 {

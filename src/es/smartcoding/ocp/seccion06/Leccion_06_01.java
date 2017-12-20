@@ -1,16 +1,5 @@
 package es.smartcoding.ocp.seccion06;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Locale;
-
 /**
  * @author pep
  * 
@@ -42,21 +31,42 @@ import java.util.Locale;
  *         ArrayIndexOutOfBoundException, ClassCastException, IllegalArgumentException, NullPointerException y
  *         NumberFormatException. También aprendistes que IOException es una excepción de tipo comprobada.
  * 
- *         Durante el curso OCP debes familiarizarte con algunas más. Revisa las tablas 6.2 y 6.3 para consultar la
- *         lista completa, que incluye ParseException, IOException, FileNotFoundException, NotSerializableException,
- *         SQLException, ArrayStoreException, DateTimeException, MissingResourceException, IllegalStateException y
- *         UnsupportedOperationException.
+ *         Durante el curso OCP debes familiarizarte con algunas más. Revisa las tablas 6.2 y 6.3 del libro de
+ *         referencia para consultar la lista completa, que incluye ParseException, IOException, FileNotFoundException,
+ *         NotSerializableException, SQLException, ArrayStoreException, DateTimeException, MissingResourceException,
+ *         IllegalStateException y UnsupportedOperationException.
+ * 
+ *         Revisa el código que acompaña a esta lección, responde a las preguntas planteadas y en definitiva, modifícalo
+ *         para experimentar con los contenidos de esta lección.
  * 
  */
 
 public class Leccion_06_01 {
 
+    static void e() throws NullPointerException { }
+    
+    static void f() throws Exception {}
+    
+    static void g() {
+	try {
+	    f();
+	}
+	catch(Exception e) {}
+    }
+    
+    static void h() throws Exception {
+	f();
+    }
+    
+    static void i() {
+	e();
+    }
+    
     /**
      * @param args
      */
     public static void main(String[] args) {
-
-
+	
     }
 
 }
