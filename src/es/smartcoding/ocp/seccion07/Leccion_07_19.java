@@ -20,7 +20,7 @@ import java.util.concurrent.RecursiveTask;
  * 
  *         La framework se basa en el concepto de recursividad para resolver tareas complejas.
  * 
- *         Un ejemplo clásico que ya debes conocer es el cálculo del factorial de un número.
+ *         Un ejemplo clásico de recursividad que ya debes conocer es el cálculo del factorial de un número.
  * 
  *         public static int factorial(int n) {
  * 
@@ -47,8 +47,8 @@ import java.util.concurrent.RecursiveTask;
  *         La primera etapa es la mas compleja, requiere definir el proceso recursivo. Afortunadamente las otras dos
  *         etapas apenas requieren unas líneas de código.
  * 
- *         Durante el examen OCP, deberás saber cómo implementar una solución fork/join extendiendo una de las dos
- *         clases RecursiveAction o RecursiveTask, ya que ambas implementan la interfaz ForkJoinTask.
+ *         Durante el examen, deberás saber cómo implementar una solución fork/join extendiendo una de las dos clases
+ *         RecursiveAction o RecursiveTask, ya que ambas implementan la interfaz ForkJoinTask.
  * 
  *         La ForkJoinTask es una entidad parecida a un thread pero más ligera. Una ForkJoinTask comienza la ejecución
  *         cuando se envía a un ForkJoinPool. Una vez ha comenzado, pondrá en marcha otras subtareas.
@@ -73,7 +73,7 @@ import java.util.concurrent.RecursiveTask;
  * 
  *         Se denomina Liveness a la habilidad de una aplicación de ejecutarse en un tiempo adecuado.
  * 
- *         Para el examen OCP debes estar familiarizado con tres problemas:
+ *         Durante el examen debes estar familiarizado con tres problemas:
  * 
  *         1. Deadlock, se da cuando dos o más hilos estan bloqueados para siempre, cada uno esperando al otro
  *         habitualmente debido a que ocupan un recurso que requiere el otro. Lamentablemente, no se puede evitar el
@@ -84,7 +84,7 @@ import java.util.concurrent.RecursiveTask;
  *         adquieren el lock antes.
  * 
  *         3. Livelock, es aquella situación cuando dos o más hilos estan bloqueados para siempre. Es una forma especial
- *         de livelock donde dos o más threads tratan de adquirir un conjunto de locksl, pero como no lo consiguen,
+ *         de livelock donde dos o más threads tratan de adquirir un conjunto de locks, pero como no lo consiguen,
  *         vuelven a empezar parte del proceso. Dado que los hilos aparecen como activos y van respondiendo a las
  *         peticiones, livelock es un estado muy difícil de detectar.
  * 
@@ -98,6 +98,13 @@ import java.util.concurrent.RecursiveTask;
  * 
  *         3. Uno lo consigue pero el otro no y recibe un mensaje de error, que es el caso óptimo.
  * 
+ *         La clase RellenaArrayRecursiveAction ilustra el tema de una acción, rellenar un array muy grande, dividido en
+ *         subacciones de forma recursiva mediante diferentes hilos hasta que se da una condición base.
+ * 
+ *         La clase SumaArrayRecursiveTask ilustra el tema de una tarea, encontrar la suma de los valores de un array
+ *         muy grande de doubles, dividido en subtareas de forma recursiva mediante diferentes hilos que retornan
+ *         cálculos intermedios hasta que se da una condición base.
+ * 
  *         Revisa el código que acompaña a esta lección, responde a las preguntas planteadas y en definitiva, modifícalo
  *         para experimentar con los contenidos de esta lección.
  * 
@@ -109,6 +116,11 @@ import java.util.concurrent.RecursiveTask;
  * 
  */
 class RellenaArrayRecursiveAction extends RecursiveAction {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2904644983796087039L;
 
     // Límite inferior
     private static final int THRESHOLD = 100;
@@ -156,6 +168,11 @@ class RellenaArrayRecursiveAction extends RecursiveAction {
  */
 class SumaArrayRecursiveTask extends RecursiveTask<Double> {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3495050194318751618L;
+
     // Límite inferior
     private static final int THRESHOLD = 3;
 
@@ -190,8 +207,7 @@ class SumaArrayRecursiveTask extends RecursiveTask<Double> {
 	    RecursiveTask<Double> tascaIzda = new SumaArrayRecursiveTask(mInicio, centro, mValores);
 	    /*
 	     * Este es el orden adecuado de encadenar llamadas a fork(), compute() y join()
-	     */
-	    /*
+	     * 
 	     * El método fork() es similar al método submit() de un executor. Provoca que se envie una nueva tarea al
 	     * pool.
 	     * 

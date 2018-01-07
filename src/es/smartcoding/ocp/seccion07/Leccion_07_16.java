@@ -16,9 +16,9 @@ import java.util.List;
  *         Mejoras en la velocidad
  * 
  *         Supongamos que tenemos que procesar 3000 registros, y que cada registro requiere 10 milisengudos en promedio.
- *         En total tardaría unos 30 segundos (33.529) en completarse la tarea.
+ *         En total tardaría unos 30 segundos (33.529 ms) en completarse la tarea.
  * 
- *         En cambio, con un stream paralelo, tarda menos de 10 segundos (8.327) lo que mejora el resultado en un factor
+ *         En cambio, con un stream paralelo, tarda menos de 10 segundos (8.327 ms) lo que mejora el resultado en un factor
  *         de 1 a 4. E incluso más, los resultados mejorarían si añadimos más CPU's.
  * 
  *         En general esto es aplicable a problemas con grandes volumenes de datos, donde cada dato puede tratarse
@@ -52,18 +52,22 @@ public class Leccion_07_16 {
     }
 
     public void procesaDatos(List<Registro> data) {
-	data.stream().map(a -> procesaRegistro(a)).count();
-	// data.parallelStream().map(a -> procesaRegistro(a)).count();
+	// (1) Procesamiento en serie: tarda unos 30 segundos
+	data.stream().map(reg -> procesaRegistro(reg)).count();
+	// (2) Procesamiento en paralelo: tarda unos 8 segundos
+	//data.parallelStream().map(reg -> procesaRegistro(reg)).count();
     }
 
     /**
+     * Determina la salida del siguiente código. Sustituye (1) por (2) y verifica el resultado.
+     * 
      * @param args
      */
     public static void main(String[] args) {
 	Leccion_07_16 calculator = new Leccion_07_16();
 	// Definición de los datos
 	List<Registro> data = new ArrayList<>();
-	for (int i = 0; i < 3000; i++)
+	for (int i = 0; i < 3_000; i++)
 	    data.add(new Registro(i));
 	// Procesamiento
 	long start = System.currentTimeMillis();
@@ -79,15 +83,19 @@ public class Leccion_07_16 {
 	 * El método forEachOrdered() muestra el contenido secuencialmente, mientras que el orden de los valores en la
 	 * lista es totalmente aleatorio. Por supuesto que esto no hubiera pasado en un stream serie.
 	 * 
+	 * Modifica (3) para que use un stream serie.
+	 * 
 	 */
+	System.out.println("Stateful lambda expressions");
 	List<Integer> list = Collections.synchronizedList(new ArrayList<>());
-	Arrays.asList(1, 2, 3, 4, 5, 6).parallelStream().map(i -> {
-	    list.add(i);
-	    return i;
-	}).forEachOrdered(i -> System.out.print(i + " "));
+	// (3)
+	Arrays.asList(1, 2, 3, 4, 5, 6).parallelStream().map(elem -> {
+	    list.add(elem);
+	    return elem;
+	}).forEachOrdered(elem -> System.out.print(elem + " "));
 	System.out.println();
-	for (Integer e : list) {
-	    System.out.print(e + " ");
+	for (Integer elem : list) {
+	    System.out.print(elem + " ");
 	}
 
     }
