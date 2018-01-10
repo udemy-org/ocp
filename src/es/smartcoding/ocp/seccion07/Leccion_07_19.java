@@ -232,6 +232,8 @@ public class Leccion_07_19 {
     private static final int DIM = 6;
 
     /**
+     * Determina la salida del código siguiente.
+     * 
      * @param args
      */
     public static void main(String[] args) {
